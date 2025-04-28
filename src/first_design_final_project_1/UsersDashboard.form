@@ -284,7 +284,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Note: Any missing details of one of the users have it deleted and notify the said user afterwards to fill up the blanks."/>
+            <Property name="text" type="java.lang.String" value="Note: Any missing details of one of the users have it deleted and notify the said user afterwards to retry their registration."/>
           </Properties>
         </Component>
       </SubComponents>

@@ -145,7 +145,7 @@ public class UsersDashboard extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Note: Any missing details of one of the users have it deleted and notify the said user afterwards to fill up the blanks.");
+        jLabel8.setText("Note: Any missing details of one of the users have it deleted and notify the said user afterwards to retry their registration.");
 
         javax.swing.GroupLayout DBlue_panel1Layout = new javax.swing.GroupLayout(DBlue_panel1);
         DBlue_panel1.setLayout(DBlue_panel1Layout);
