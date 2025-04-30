@@ -39,7 +39,6 @@ public class CreateEvent extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         DBlue_panel3 = new javax.swing.JPanel();
-        DBlue_panel4 = new javax.swing.JPanel();
         createEvent_title = new javax.swing.JTextField();
         createEvent_location = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -166,52 +165,19 @@ public class CreateEvent extends javax.swing.JFrame {
 
         DBlue_panel.setBackground(new java.awt.Color(0, 0, 51));
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("BISU Campus Event Manager");
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Rockwell Condensed", 3, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Create Event");
 
-        javax.swing.GroupLayout DBlue_panelLayout = new javax.swing.GroupLayout(DBlue_panel);
-        DBlue_panel.setLayout(DBlue_panelLayout);
-        DBlue_panelLayout.setHorizontalGroup(
-            DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DBlue_panelLayout.createSequentialGroup()
-                .addGroup(DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DBlue_panelLayout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DBlue_panelLayout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jLabel1)))
-                .addContainerGap(67, Short.MAX_VALUE))
-        );
-        DBlue_panelLayout.setVerticalGroup(
-            DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panelLayout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addContainerGap())
-        );
-
-        getContentPane().add(DBlue_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 110));
-
         DBlue_panel3.setBackground(new java.awt.Color(130, 130, 146));
-
-        DBlue_panel4.setBackground(new java.awt.Color(0, 0, 51));
-
-        javax.swing.GroupLayout DBlue_panel4Layout = new javax.swing.GroupLayout(DBlue_panel4);
-        DBlue_panel4.setLayout(DBlue_panel4Layout);
-        DBlue_panel4Layout.setHorizontalGroup(
-            DBlue_panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 681, Short.MAX_VALUE)
-        );
-        DBlue_panel4Layout.setVerticalGroup(
-            DBlue_panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 110, Short.MAX_VALUE)
-        );
 
         createEvent_title.setBackground(new java.awt.Color(0, 0, 0));
         createEvent_title.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -241,9 +207,9 @@ public class CreateEvent extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Location:");
 
-        createEvent_category.setBackground(new java.awt.Color(0, 0, 0));
+        createEvent_category.setBackground(new java.awt.Color(255, 255, 255));
         createEvent_category.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        createEvent_category.setForeground(new java.awt.Color(255, 255, 255));
+        createEvent_category.setForeground(new java.awt.Color(0, 0, 0));
         createEvent_category.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Academic", "Cultural", "Sports & Fitness", "Student Engagement", "Tech & Innovation", "Social Impact", "Professional Development" }));
         createEvent_category.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         createEvent_category.addActionListener(new java.awt.event.ActionListener() {
@@ -252,9 +218,9 @@ public class CreateEvent extends javax.swing.JFrame {
             }
         });
 
-        createEvent_type.setBackground(new java.awt.Color(0, 0, 0));
+        createEvent_type.setBackground(new java.awt.Color(255, 255, 255));
         createEvent_type.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        createEvent_type.setForeground(new java.awt.Color(255, 255, 255));
+        createEvent_type.setForeground(new java.awt.Color(0, 0, 0));
         createEvent_type.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel7.setBackground(new java.awt.Color(0, 0, 0));
@@ -294,34 +260,36 @@ public class CreateEvent extends javax.swing.JFrame {
         DBlue_panel3Layout.setHorizontalGroup(
             DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DBlue_panel3Layout.createSequentialGroup()
-                .addComponent(DBlue_panel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(DBlue_panel3Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
                 .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(DBlue_panel3Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
                         .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel9)
                             .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel8)
                                 .addComponent(jLabel7)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(createEvent_location, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(createEvent_title, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(DBlue_panel3Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(createEvent_title, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                                    .addComponent(createEvent_location)))
+                            .addGroup(DBlue_panel3Layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(createEvent_type, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(createEvent_category, 0, 256, Short.MAX_VALUE)))))
                     .addGroup(DBlue_panel3Layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(createEvent_dateTime, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(createEvent_category, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(createEvent_type, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(createEvent_submit))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(createEvent_cancel)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18)
+                        .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(DBlue_panel3Layout.createSequentialGroup()
+                                .addComponent(createEvent_submit)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(createEvent_cancel))
+                            .addComponent(createEvent_dateTime))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         DBlue_panel3Layout.setVerticalGroup(
             DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,31 +298,63 @@ public class CreateEvent extends javax.swing.JFrame {
                 .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createEvent_title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(12, 12, 12)
+                .addGap(10, 10, 10)
                 .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createEvent_location, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
+                .addGap(24, 24, 24)
+                .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(createEvent_category, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createEvent_category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel8)
+                    .addComponent(createEvent_type, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createEvent_type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createEvent_dateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createEvent_cancel)
-                    .addComponent(createEvent_submit))
+                    .addComponent(jLabel9)
+                    .addComponent(createEvent_dateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(DBlue_panel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(createEvent_submit)
+                    .addComponent(createEvent_cancel))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        getContentPane().add(DBlue_panel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 430, 430));
+        javax.swing.GroupLayout DBlue_panelLayout = new javax.swing.GroupLayout(DBlue_panel);
+        DBlue_panel.setLayout(DBlue_panelLayout);
+        DBlue_panelLayout.setHorizontalGroup(
+            DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DBlue_panelLayout.createSequentialGroup()
+                .addGap(97, 97, 97)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panelLayout.createSequentialGroup()
+                .addContainerGap(78, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73))
+            .addGroup(DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panelLayout.createSequentialGroup()
+                    .addContainerGap(13, Short.MAX_VALUE)
+                    .addComponent(DBlue_panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(15, Short.MAX_VALUE)))
+        );
+        DBlue_panelLayout.setVerticalGroup(
+            DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DBlue_panelLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addContainerGap(422, Short.MAX_VALUE))
+            .addGroup(DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panelLayout.createSequentialGroup()
+                    .addContainerGap(143, Short.MAX_VALUE)
+                    .addComponent(DBlue_panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(79, Short.MAX_VALUE)))
+        );
+
+        getContentPane().add(DBlue_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 540));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -416,7 +416,6 @@ public class CreateEvent extends javax.swing.JFrame {
     private javax.swing.JPanel DBlue_panel1;
     private javax.swing.JPanel DBlue_panel2;
     private javax.swing.JPanel DBlue_panel3;
-    private javax.swing.JPanel DBlue_panel4;
     private javax.swing.JButton createEvent_cancel;
     private javax.swing.JComboBox<String> createEvent_category;
     private javax.swing.JSpinner createEvent_dateTime;
