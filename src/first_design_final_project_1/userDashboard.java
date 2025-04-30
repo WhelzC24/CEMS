@@ -10,6 +10,8 @@ package first_design_final_project_1;
  */
 public class userDashboard extends javax.swing.JFrame {
 
+    private String[] args;
+
     /**
      * Creates new form Organizer_Dashboard_Admin
      */
@@ -79,6 +81,11 @@ public class userDashboard extends javax.swing.JFrame {
         registerEvent_user.setForeground(new java.awt.Color(255, 255, 255));
         registerEvent_user.setText("Register Event");
         registerEvent_user.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        registerEvent_user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerEvent_userActionPerformed(evt);
+            }
+        });
 
         registerEvent_user1.setBackground(new java.awt.Color(51, 0, 0));
         registerEvent_user1.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
@@ -97,7 +104,7 @@ public class userDashboard extends javax.swing.JFrame {
                     .addComponent(registerEvent_user1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         DBlue_panel1Layout.setVerticalGroup(
             DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,15 +126,20 @@ public class userDashboard extends javax.swing.JFrame {
         DBlue_panelLayout.setHorizontalGroup(
             DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DBlue_panelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DBlue_panelLayout.createSequentialGroup()
+                        .addGap(0, 233, Short.MAX_VALUE)
+                        .addGroup(DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panelLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(234, 234, 234))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panelLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(413, 413, 413))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panelLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(234, 234, 234))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panelLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(413, 413, 413))
-                    .addComponent(DBlue_panel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(DBlue_panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         DBlue_panelLayout.setVerticalGroup(
             DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,7 +156,13 @@ public class userDashboard extends javax.swing.JFrame {
         getContentPane().add(DBlue_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 540));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void registerEvent_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerEvent_userActionPerformed
+        Register_Frames.main(args);
+        dispose();
+    }//GEN-LAST:event_registerEvent_userActionPerformed
 
     /**
      * @param args the command line arguments

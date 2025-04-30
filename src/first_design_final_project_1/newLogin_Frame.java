@@ -109,26 +109,24 @@ public class newLogin_Frame extends javax.swing.JFrame {
         White_panelLayout.setHorizontalGroup(
             White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(White_panelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(White_panelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6))
-                    .addGroup(White_panelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5)))
-                .addGap(155, 155, 155))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, White_panelLayout.createSequentialGroup()
-                .addComponent(jLabel8)
-                .addGap(188, 188, 188))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, White_panelLayout.createSequentialGroup()
-                .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                    .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(login_password)
-                        .addComponent(login_username)
-                        .addComponent(Register_cancel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                        .addComponent(Login_login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(76, 76, 76))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, White_panelLayout.createSequentialGroup()
+                        .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(155, 155, 155))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, White_panelLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(188, 188, 188))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, White_panelLayout.createSequentialGroup()
+                        .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                            .addComponent(login_password)
+                            .addComponent(login_username)
+                            .addComponent(Register_cancel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                            .addComponent(Login_login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(76, 76, 76))))
         );
         White_panelLayout.setVerticalGroup(
             White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,6 +185,7 @@ public class newLogin_Frame extends javax.swing.JFrame {
         getContentPane().add(DBlue_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 500));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void login_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_usernameActionPerformed

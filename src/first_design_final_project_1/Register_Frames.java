@@ -10,6 +10,8 @@ package first_design_final_project_1;
  */
 public class Register_Frames extends javax.swing.JFrame {
 
+    private String[] args;
+
     /**
      * Creates new form Register_Frames_fixed
      */
@@ -51,6 +53,8 @@ public class Register_Frames extends javax.swing.JFrame {
         register_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         DBlue_panel.setBackground(new java.awt.Color(0, 0, 51));
@@ -161,6 +165,11 @@ public class Register_Frames extends javax.swing.JFrame {
         Register_cancel.setForeground(new java.awt.Color(255, 255, 255));
         Register_cancel.setText("CANCEL");
         Register_cancel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Register_cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Register_cancelActionPerformed(evt);
+            }
+        });
 
         rbutton_male.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         rbutton_male.setForeground(new java.awt.Color(0, 0, 0));
@@ -312,6 +321,7 @@ public class Register_Frames extends javax.swing.JFrame {
         getContentPane().add(DBlue_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 550));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void register_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_nameActionPerformed
@@ -337,6 +347,11 @@ public class Register_Frames extends javax.swing.JFrame {
     private void register_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_idActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_register_idActionPerformed
+
+    private void Register_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Register_cancelActionPerformed
+        userDashboard.main(args);
+        dispose();
+    }//GEN-LAST:event_Register_cancelActionPerformed
 
     /**
      * @param args the command line arguments

@@ -10,6 +10,8 @@ package first_design_final_project_1;
  */
 public class CreateEvent extends javax.swing.JFrame {
 
+    private String[] args;
+
     /**
      * Creates new form CreateEvent
      */
@@ -160,6 +162,7 @@ public class CreateEvent extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusable(false);
+        setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -342,9 +345,9 @@ public class CreateEvent extends javax.swing.JFrame {
         DBlue_panelLayout.setVerticalGroup(
             DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DBlue_panelLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(41, 41, 41)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addContainerGap(422, Short.MAX_VALUE))
             .addGroup(DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,6 +360,7 @@ public class CreateEvent extends javax.swing.JFrame {
         getContentPane().add(DBlue_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 540));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void createEvent_titleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvent_titleActionPerformed
@@ -368,7 +372,8 @@ public class CreateEvent extends javax.swing.JFrame {
     }//GEN-LAST:event_createEvent_locationActionPerformed
 
     private void createEvent_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvent_cancelActionPerformed
-        // TODO add your handling code here:
+        OrganizerDashboard.main(args);
+        dispose();
     }//GEN-LAST:event_createEvent_cancelActionPerformed
 
     private void createEvent_categoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvent_categoryActionPerformed

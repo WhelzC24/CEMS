@@ -10,6 +10,8 @@ package first_design_final_project_1;
  */
 public class OrganizerDashboard extends javax.swing.JFrame {
 
+    private String[] args;
+
     /**
      * Creates new form Organizer_Dashboard_Admin
      */
@@ -82,6 +84,11 @@ public class OrganizerDashboard extends javax.swing.JFrame {
         organizer_new.setForeground(new java.awt.Color(255, 255, 255));
         organizer_new.setText("Create new event");
         organizer_new.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        organizer_new.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                organizer_newActionPerformed(evt);
+            }
+        });
 
         organizer_edit.setBackground(new java.awt.Color(37, 55, 30));
         organizer_edit.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
@@ -100,6 +107,11 @@ public class OrganizerDashboard extends javax.swing.JFrame {
         organzier_viewstudents.setForeground(new java.awt.Color(255, 255, 255));
         organzier_viewstudents.setText("View registered users");
         organzier_viewstudents.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        organzier_viewstudents.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                organzier_viewstudentsActionPerformed(evt);
+            }
+        });
 
         registerEvent_user1.setBackground(new java.awt.Color(51, 0, 0));
         registerEvent_user1.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
@@ -183,7 +195,18 @@ public class OrganizerDashboard extends javax.swing.JFrame {
         getContentPane().add(DBlue_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 540));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void organzier_viewstudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organzier_viewstudentsActionPerformed
+        UsersDashboard.main(args);
+        dispose();
+    }//GEN-LAST:event_organzier_viewstudentsActionPerformed
+
+    private void organizer_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizer_newActionPerformed
+        CreateEvent.main(args);
+        dispose();
+    }//GEN-LAST:event_organizer_newActionPerformed
 
     /**
      * @param args the command line arguments
