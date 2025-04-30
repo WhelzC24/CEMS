@@ -2,20 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package first_design_final_project_1;
+package cems;
 
 /**
  *
  * @author PC
  */
-public class CreateEvent extends javax.swing.JFrame {
+public class createEvent extends javax.swing.JFrame {
 
     private String[] args;
 
     /**
      * Creates new form CreateEvent
      */
-    public CreateEvent() {
+    public createEvent() {
         initComponents();
     }
 
@@ -372,7 +372,7 @@ public class CreateEvent extends javax.swing.JFrame {
     }//GEN-LAST:event_createEvent_locationActionPerformed
 
     private void createEvent_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvent_cancelActionPerformed
-        OrganizerDashboard.main(args);
+        organizerDashboard.main(args);
         dispose();
     }//GEN-LAST:event_createEvent_cancelActionPerformed
 
@@ -398,20 +398,21 @@ public class CreateEvent extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreateEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(createEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreateEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(createEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreateEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(createEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreateEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(createEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreateEvent().setVisible(true);
+                new createEvent().setVisible(true);
             }
         });
     }

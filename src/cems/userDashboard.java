@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package first_design_final_project_1;
+package cems;
 
 /**
  *
@@ -160,7 +160,7 @@ public class userDashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerEvent_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerEvent_userActionPerformed
-        Register_Frames.main(args);
+        registerEvent.main(args);
         dispose();
     }//GEN-LAST:event_registerEvent_userActionPerformed
 
