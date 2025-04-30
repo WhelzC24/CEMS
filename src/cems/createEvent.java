@@ -370,7 +370,7 @@ public class createEvent extends javax.swing.JFrame {
     }//GEN-LAST:event_createEvent_locationActionPerformed
 
     private void createEvent_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvent_cancelActionPerformed
-        organizerDashboard.main(args);
+        adminDashboard.main(args);
         dispose();
     }//GEN-LAST:event_createEvent_cancelActionPerformed
 

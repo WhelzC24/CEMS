@@ -4,20 +4,51 @@
  */
 package cems;
 
+import java.sql.*;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author PC
  */
 public class usersDashboard extends javax.swing.JFrame {
 
-    private String[] args;
-
+    private String currentUsername;
+    
     /**
      * Creates new form adminDashboard
      */
-    public usersDashboard() {
+    public usersDashboard(String username) {
+        this.currentUsername = username;
         initComponents();
+        loadUsersToTable();
     }
+    
+    private void loadUsersToTable() {
+        ResultSet rs = DBHelper.getAllUsersExcept(currentUsername);
+        DefaultTableModel model = (DefaultTableModel) usersTable.getModel();
+        model.setRowCount(0); // clear existing rows
+
+        try {
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("username"),
+                    rs.getString("email"),
+                    rs.getString("gender"),
+                    rs.getString("role")
+                };
+                model.addRow(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,11 +64,11 @@ public class usersDashboard extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         DBlue_panel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        students_table = new javax.swing.JTable();
+        usersTable = new javax.swing.JTable();
         student_delete = new javax.swing.JButton();
         organzier_viewstudents = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        registerEvent_user1 = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -59,24 +90,24 @@ public class usersDashboard extends javax.swing.JFrame {
 
         DBlue_panel1.setBackground(new java.awt.Color(98, 98, 130));
 
-        students_table.setAutoCreateRowSorter(true);
-        students_table.setBackground(new java.awt.Color(20, 20, 20));
-        students_table.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        students_table.setForeground(new java.awt.Color(51, 51, 51));
-        students_table.setModel(new javax.swing.table.DefaultTableModel(
+        usersTable.setAutoCreateRowSorter(true);
+        usersTable.setBackground(new java.awt.Color(0, 0, 0));
+        usersTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        usersTable.setForeground(new java.awt.Color(255, 255, 255));
+        usersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Name", "Username", "Email", "Gender"
+                "ID", "Name", "Username", "Email", "Gender", "Role"
             }
         ));
-        students_table.setFocusable(false);
-        students_table.setSelectionForeground(new java.awt.Color(51, 51, 51));
-        jScrollPane1.setViewportView(students_table);
+        usersTable.setFocusable(false);
+        usersTable.setSelectionForeground(new java.awt.Color(51, 51, 51));
+        jScrollPane1.setViewportView(usersTable);
 
         student_delete.setBackground(new java.awt.Color(102, 51, 0));
         student_delete.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
@@ -104,11 +135,16 @@ public class usersDashboard extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Note: Any missing details of one of the users have it deleted and notify the said user afterwards to retry their registration.");
 
-        registerEvent_user1.setBackground(new java.awt.Color(51, 0, 0));
-        registerEvent_user1.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
-        registerEvent_user1.setForeground(new java.awt.Color(255, 255, 255));
-        registerEvent_user1.setText("Log out");
-        registerEvent_user1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        logout.setBackground(new java.awt.Color(51, 0, 0));
+        logout.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
+        logout.setForeground(new java.awt.Color(255, 255, 255));
+        logout.setText("Log out");
+        logout.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout DBlue_panel1Layout = new javax.swing.GroupLayout(DBlue_panel1);
         DBlue_panel1.setLayout(DBlue_panel1Layout);
@@ -118,7 +154,7 @@ public class usersDashboard extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(organzier_viewstudents)
-                    .addComponent(registerEvent_user1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(DBlue_panel1Layout.createSequentialGroup()
@@ -139,7 +175,7 @@ public class usersDashboard extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addComponent(organzier_viewstudents)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(registerEvent_user1)))
+                        .addComponent(logout)))
                 .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DBlue_panel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -190,9 +226,14 @@ public class usersDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_student_deleteActionPerformed
 
     private void organzier_viewstudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organzier_viewstudentsActionPerformed
-        organizerDashboard.main(args);
+        new adminDashboard("admin").setVisible(true);
         dispose();
     }//GEN-LAST:event_organzier_viewstudentsActionPerformed
+
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        new login().setVisible(true);
+        ((JFrame) SwingUtilities.getWindowAncestor(logout)).dispose();
+    }//GEN-LAST:event_logoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,7 +268,7 @@ public class usersDashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new usersDashboard().setVisible(true);
+                new usersDashboard("admin").setVisible(true);
             }
         });
     }
@@ -239,9 +280,9 @@ public class usersDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton logout;
     private javax.swing.JButton organzier_viewstudents;
-    private javax.swing.JButton registerEvent_user1;
     private javax.swing.JButton student_delete;
-    private javax.swing.JTable students_table;
+    private javax.swing.JTable usersTable;
     // End of variables declaration//GEN-END:variables
 }

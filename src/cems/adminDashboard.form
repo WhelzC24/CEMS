@@ -124,12 +124,12 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="organizer_new" max="32767" attributes="0"/>
                           <Component id="organizer_edit" max="32767" attributes="0"/>
-                          <Component id="registerEvent_user1" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                          <Component id="logout" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="organzier_viewstudents" min="-2" pref="170" max="-2" attributes="0"/>
+                              <Component id="organizer_viewstudents" min="-2" pref="170" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="487" max="-2" attributes="0"/>
                               <Component id="organizer_delete" min="-2" pref="113" max="-2" attributes="0"/>
                           </Group>
@@ -149,13 +149,13 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="organizer_edit" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
-                              <Component id="registerEvent_user1" min="-2" max="-2" attributes="0"/>
+                              <Component id="logout" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" min="-2" pref="258" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="organzier_viewstudents" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="organizer_viewstudents" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="organizer_delete" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="46" max="32767" attributes="0"/>
@@ -175,13 +175,13 @@
                   <Properties>
                     <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="14" green="14" red="14" type="rgb"/>
+                      <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="14" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="33" green="33" red="33" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="6" rowCount="4">
@@ -193,9 +193,46 @@
                         <Column editable="true" title="Participants" type="java.lang.Object"/>
                       </Table>
                     </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
+                    </Property>
                     <Property name="focusable" type="boolean" value="false"/>
                     <Property name="selectionForeground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -261,7 +298,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="organzier_viewstudents">
+            <Component class="javax.swing.JButton" name="organizer_viewstudents">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="33" red="66" type="rgb"/>
@@ -280,10 +317,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="organzier_viewstudentsActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="organizer_viewstudentsActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="registerEvent_user1">
+            <Component class="javax.swing.JButton" name="logout">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="33" type="rgb"/>
@@ -301,6 +338,9 @@
                   </Border>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

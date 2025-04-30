@@ -4,18 +4,22 @@
  */
 package cems;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author whelz
  */
-public class registerEvent extends javax.swing.JFrame {
+public class register extends javax.swing.JFrame {
 
     private String[] args;
 
     /**
      * Creates new form Register_Frames_fixed
      */
-    public registerEvent() {
+    public register() {
         initComponents();
     }
 
@@ -28,6 +32,7 @@ public class registerEvent extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        genderGroup = new javax.swing.ButtonGroup();
         DBlue_panel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -49,6 +54,7 @@ public class registerEvent extends javax.swing.JFrame {
         Register_cancel = new javax.swing.JButton();
         rbutton_male = new javax.swing.JRadioButton();
         rbutton_female = new javax.swing.JRadioButton();
+        rbutton_other = new javax.swing.JRadioButton();
         Cbox_role = new javax.swing.JComboBox<>();
         register_id = new javax.swing.JTextField();
 
@@ -159,6 +165,11 @@ public class registerEvent extends javax.swing.JFrame {
         Register_submit.setForeground(new java.awt.Color(255, 255, 255));
         Register_submit.setText("SUBMIT");
         Register_submit.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Register_submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Register_submitActionPerformed(evt);
+            }
+        });
 
         Register_cancel.setBackground(new java.awt.Color(102, 0, 0));
         Register_cancel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -171,6 +182,7 @@ public class registerEvent extends javax.swing.JFrame {
             }
         });
 
+        genderGroup.add(rbutton_male);
         rbutton_male.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         rbutton_male.setForeground(new java.awt.Color(0, 0, 0));
         rbutton_male.setText("Male");
@@ -180,9 +192,15 @@ public class registerEvent extends javax.swing.JFrame {
             }
         });
 
+        genderGroup.add(rbutton_female);
         rbutton_female.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         rbutton_female.setForeground(new java.awt.Color(0, 0, 0));
         rbutton_female.setText("Female");
+
+        genderGroup.add(rbutton_other);
+        rbutton_other.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        rbutton_other.setForeground(new java.awt.Color(0, 0, 0));
+        rbutton_other.setText("Other");
 
         Cbox_role.setBackground(new java.awt.Color(255, 255, 255));
         Cbox_role.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -207,22 +225,24 @@ public class registerEvent extends javax.swing.JFrame {
                 .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(White_panelLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(White_panelLayout.createSequentialGroup()
-                                .addComponent(rbutton_male, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(rbutton_male, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rbutton_female))
+                                .addComponent(rbutton_female)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbutton_other))
                             .addGroup(White_panelLayout.createSequentialGroup()
                                 .addComponent(Register_submit)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -252,33 +272,32 @@ public class registerEvent extends javax.swing.JFrame {
                     .addGroup(White_panelLayout.createSequentialGroup()
                         .addComponent(register_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
-                        .addComponent(register_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(register_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(register_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(register_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbutton_male)
-                            .addComponent(rbutton_female))
-                        .addGap(6, 6, 6)
-                        .addComponent(Cbox_role, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(White_panelLayout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel9)))
+                            .addComponent(register_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(register_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(register_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(register_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbutton_male)
+                    .addComponent(rbutton_female)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbutton_other))
+                .addGap(6, 6, 6)
+                .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Cbox_role, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Register_submit)
@@ -346,9 +365,42 @@ public class registerEvent extends javax.swing.JFrame {
     }//GEN-LAST:event_register_idActionPerformed
 
     private void Register_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Register_cancelActionPerformed
-        login.main(args);
-        dispose();
+        new login().setVisible(true);
+        ((JFrame) SwingUtilities.getWindowAncestor(Register_cancel)).dispose();
     }//GEN-LAST:event_Register_cancelActionPerformed
+
+    private void Register_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Register_submitActionPerformed
+        String name = register_name.getText().trim();
+        String username = register_username.getText().trim();
+        String email = register_email.getText().trim();
+        String password = new String(register_password.getPassword()).trim(); // Read from JPasswordField
+
+        // Get selected gender
+        String gender = "";
+        if (rbutton_male.isSelected()) gender = "Male";
+        else if (rbutton_female.isSelected()) gender = "Female";
+        else if (rbutton_other.isSelected()) gender = "Other";
+
+        // Get selected role
+        String role = Cbox_role.getSelectedItem().toString();
+
+        // Basic validation (optional)
+        if (name.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty() || gender.isEmpty() || role.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please fill in all fields.");
+            return;
+        }
+
+        // Call insert function
+        boolean success = DBHelper.insertUser(name, username, email, gender, role, password);
+        if (success) {
+            JOptionPane.showMessageDialog(null, "User registered successfully!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Registration failed.");
+        }
+        
+        new login().setVisible(true);
+        ((JFrame) SwingUtilities.getWindowAncestor(Register_submit)).dispose();
+    }//GEN-LAST:event_Register_submitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -367,14 +419,18 @@ public class registerEvent extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(registerEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(registerEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(registerEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(registerEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -383,7 +439,7 @@ public class registerEvent extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new registerEvent().setVisible(true);
+                new register().setVisible(true);
             }
         });
     }
@@ -394,6 +450,7 @@ public class registerEvent extends javax.swing.JFrame {
     private javax.swing.JButton Register_cancel;
     private javax.swing.JButton Register_submit;
     private javax.swing.JPanel White_panel;
+    private javax.swing.ButtonGroup genderGroup;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -407,6 +464,7 @@ public class registerEvent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JRadioButton rbutton_female;
     private javax.swing.JRadioButton rbutton_male;
+    private javax.swing.JRadioButton rbutton_other;
     private javax.swing.JTextField register_email;
     private javax.swing.JTextField register_id;
     private javax.swing.JTextField register_name;

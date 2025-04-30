@@ -104,8 +104,8 @@
                                   <Component id="jLabel7" pref="236" max="32767" attributes="0"/>
                                   <Component id="login_password" alignment="1" max="32767" attributes="0"/>
                                   <Component id="login_username" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="Register_cancel" alignment="0" pref="236" max="32767" attributes="0"/>
-                                  <Component id="Login_login" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="register_button" alignment="0" pref="236" max="32767" attributes="0"/>
+                                  <Component id="login_button" alignment="1" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                           </Group>
@@ -131,11 +131,11 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="Login_login" min="-2" max="-2" attributes="0"/>
+                      <Component id="login_button" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Register_cancel" min="-2" max="-2" attributes="0"/>
+                      <Component id="register_button" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="28" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -202,7 +202,7 @@
                 <Property name="text" type="java.lang.String" value="Password:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="Login_login">
+            <Component class="javax.swing.JButton" name="login_button">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="66" red="0" type="rgb"/>
@@ -220,8 +220,11 @@
                   </Border>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="login_buttonActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="Register_cancel">
+            <Component class="javax.swing.JButton" name="register_button">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="0" type="rgb"/>
@@ -240,7 +243,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Register_cancelActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="register_buttonActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">

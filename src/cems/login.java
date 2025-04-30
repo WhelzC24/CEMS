@@ -4,6 +4,10 @@
  */
 package cems;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author PC
@@ -35,8 +39,8 @@ public class login extends javax.swing.JFrame {
         login_password = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        Login_login = new javax.swing.JButton();
-        Register_cancel = new javax.swing.JButton();
+        login_button = new javax.swing.JButton();
+        register_button = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
@@ -80,20 +84,25 @@ public class login extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Password:");
 
-        Login_login.setBackground(new java.awt.Color(0, 102, 0));
-        Login_login.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Login_login.setForeground(new java.awt.Color(255, 255, 255));
-        Login_login.setText("LOGIN");
-        Login_login.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        Register_cancel.setBackground(new java.awt.Color(0, 102, 102));
-        Register_cancel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Register_cancel.setForeground(new java.awt.Color(255, 255, 255));
-        Register_cancel.setText("REGISTER");
-        Register_cancel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        Register_cancel.addActionListener(new java.awt.event.ActionListener() {
+        login_button.setBackground(new java.awt.Color(0, 102, 0));
+        login_button.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        login_button.setForeground(new java.awt.Color(255, 255, 255));
+        login_button.setText("LOGIN");
+        login_button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        login_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Register_cancelActionPerformed(evt);
+                login_buttonActionPerformed(evt);
+            }
+        });
+
+        register_button.setBackground(new java.awt.Color(0, 102, 102));
+        register_button.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        register_button.setForeground(new java.awt.Color(255, 255, 255));
+        register_button.setText("REGISTER");
+        register_button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        register_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                register_buttonActionPerformed(evt);
             }
         });
 
@@ -122,8 +131,8 @@ public class login extends javax.swing.JFrame {
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
                             .addComponent(login_password)
                             .addComponent(login_username)
-                            .addComponent(Register_cancel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                            .addComponent(Login_login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(register_button, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                            .addComponent(login_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(76, 76, 76))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, White_panelLayout.createSequentialGroup()
                         .addComponent(jLabel8)
@@ -143,11 +152,11 @@ public class login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(Login_login)
+                .addComponent(login_button)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Register_cancel)
+                .addComponent(register_button)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -188,10 +197,34 @@ public class login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_login_passwordActionPerformed
 
-    private void Register_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Register_cancelActionPerformed
-        registerEvent.main(args);
-        dispose();
-    }//GEN-LAST:event_Register_cancelActionPerformed
+    private void register_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_buttonActionPerformed
+        new register().setVisible(true);
+        ((JFrame) SwingUtilities.getWindowAncestor(register_button)).dispose();
+    }//GEN-LAST:event_register_buttonActionPerformed
+
+    private void login_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_buttonActionPerformed
+        String username = login_username.getText().trim();
+        String password = new String(login_password.getPassword()).trim();
+
+        String role = DBHelper.getUserRole(username, password);
+
+        if (role != null) {
+            JOptionPane.showMessageDialog(null, "Login successful as " + role + "!");
+
+            // Navigate based on role
+            if (role.equalsIgnoreCase("Admin")) {
+                new adminDashboard(username).setVisible(true);
+            } else {
+                new userDashboard().setVisible(true); // you can pass username if needed
+            }
+
+            // Close login form (optional)
+            ((JFrame) SwingUtilities.getWindowAncestor(login_button)).dispose();
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid username or password.");
+        }
+    }//GEN-LAST:event_login_buttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -237,15 +270,15 @@ public class login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DBlue_panel;
-    private javax.swing.JButton Login_login;
-    private javax.swing.JButton Register_cancel;
     private javax.swing.JPanel White_panel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JButton login_button;
     private javax.swing.JPasswordField login_password;
     private javax.swing.JTextField login_username;
+    private javax.swing.JButton register_button;
     // End of variables declaration//GEN-END:variables
 }
