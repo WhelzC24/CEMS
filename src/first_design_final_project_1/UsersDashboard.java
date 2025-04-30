@@ -37,6 +37,7 @@ public class UsersDashboard extends javax.swing.JFrame {
         student_delete = new javax.swing.JButton();
         organzier_viewstudents = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        registerEvent_user1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -113,13 +114,13 @@ public class UsersDashboard extends javax.swing.JFrame {
         students_table.setForeground(new java.awt.Color(51, 51, 51));
         students_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Name", "Username", "Email", "Gender"
+                "ID", "Name", "Username", "Email", "Gender"
             }
         ));
         students_table.setFocusable(false);
@@ -147,6 +148,12 @@ public class UsersDashboard extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Note: Any missing details of one of the users have it deleted and notify the said user afterwards to retry their registration.");
 
+        registerEvent_user1.setBackground(new java.awt.Color(51, 0, 0));
+        registerEvent_user1.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
+        registerEvent_user1.setForeground(new java.awt.Color(255, 255, 255));
+        registerEvent_user1.setText("Log out");
+        registerEvent_user1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         javax.swing.GroupLayout DBlue_panel1Layout = new javax.swing.GroupLayout(DBlue_panel1);
         DBlue_panel1.setLayout(DBlue_panel1Layout);
         DBlue_panel1Layout.setHorizontalGroup(
@@ -155,18 +162,19 @@ public class UsersDashboard extends javax.swing.JFrame {
                 .addComponent(DBlue_panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 2, Short.MAX_VALUE))
             .addGroup(DBlue_panel1Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
                 .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DBlue_panel1Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(student_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(student_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(DBlue_panel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
                         .addComponent(organzier_viewstudents)
                         .addGap(26, 26, 26)
-                        .addComponent(jLabel8)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(registerEvent_user1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         DBlue_panel1Layout.setVerticalGroup(
             DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,11 +186,17 @@ public class UsersDashboard extends javax.swing.JFrame {
                     .addGroup(DBlue_panel1Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(student_delete)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(organzier_viewstudents)
-                    .addComponent(jLabel8))
-                .addGap(18, 18, 18)
+                .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DBlue_panel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(organzier_viewstudents)
+                            .addComponent(jLabel8))
+                        .addGap(18, 18, 18))
+                    .addGroup(DBlue_panel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(registerEvent_user1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(DBlue_panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -241,6 +255,7 @@ public class UsersDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton organzier_viewstudents;
+    private javax.swing.JButton registerEvent_user1;
     private javax.swing.JButton student_delete;
     private javax.swing.JTable students_table;
     // End of variables declaration//GEN-END:variables

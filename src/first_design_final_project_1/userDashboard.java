@@ -8,12 +8,12 @@ package first_design_final_project_1;
  *
  * @author PC
  */
-public class OrganizerDashboard extends javax.swing.JFrame {
+public class userDashboard extends javax.swing.JFrame {
 
     /**
      * Creates new form Organizer_Dashboard_Admin
      */
-    public OrganizerDashboard() {
+    public userDashboard() {
         initComponents();
     }
 
@@ -29,11 +29,8 @@ public class OrganizerDashboard extends javax.swing.JFrame {
         DBlue_panel1 = new javax.swing.JPanel();
         DBlue_panel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        event_table = new javax.swing.JTable();
-        organizer_new = new javax.swing.JButton();
-        organizer_edit = new javax.swing.JButton();
-        organizer_delete = new javax.swing.JButton();
-        organzier_viewstudents = new javax.swing.JButton();
+        eventList_table = new javax.swing.JTable();
+        registerEvent_user = new javax.swing.JButton();
         registerEvent_user1 = new javax.swing.JButton();
         DBlue_panel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -59,48 +56,30 @@ public class OrganizerDashboard extends javax.swing.JFrame {
             .addGap(0, 110, Short.MAX_VALUE)
         );
 
-        event_table.setAutoCreateRowSorter(true);
-        event_table.setBackground(new java.awt.Color(20, 20, 20));
-        event_table.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        event_table.setForeground(new java.awt.Color(51, 51, 51));
-        event_table.setModel(new javax.swing.table.DefaultTableModel(
+        eventList_table.setAutoCreateRowSorter(true);
+        eventList_table.setBackground(new java.awt.Color(20, 20, 20));
+        eventList_table.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        eventList_table.setForeground(new java.awt.Color(51, 51, 51));
+        eventList_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "No.", "Events", "Event type", "Location", "Date & Time: Begin/End", "Participants"
+                "No.", "Events", "Event type", "Location", "Date & Time: Begin/End", "Participants", "Registered"
             }
         ));
-        event_table.setFocusable(false);
-        event_table.setSelectionForeground(new java.awt.Color(51, 51, 51));
-        jScrollPane1.setViewportView(event_table);
+        eventList_table.setFocusable(false);
+        eventList_table.setSelectionForeground(new java.awt.Color(51, 51, 51));
+        jScrollPane1.setViewportView(eventList_table);
 
-        organizer_new.setBackground(new java.awt.Color(37, 55, 30));
-        organizer_new.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
-        organizer_new.setForeground(new java.awt.Color(255, 255, 255));
-        organizer_new.setText("Create new event");
-        organizer_new.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        organizer_edit.setBackground(new java.awt.Color(37, 55, 30));
-        organizer_edit.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
-        organizer_edit.setForeground(new java.awt.Color(255, 255, 255));
-        organizer_edit.setText("Edit event");
-        organizer_edit.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        organizer_delete.setBackground(new java.awt.Color(51, 0, 0));
-        organizer_delete.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
-        organizer_delete.setForeground(new java.awt.Color(255, 255, 255));
-        organizer_delete.setText("Delete event");
-        organizer_delete.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        organzier_viewstudents.setBackground(new java.awt.Color(102, 51, 0));
-        organzier_viewstudents.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
-        organzier_viewstudents.setForeground(new java.awt.Color(255, 255, 255));
-        organzier_viewstudents.setText("View registered users");
-        organzier_viewstudents.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        registerEvent_user.setBackground(new java.awt.Color(37, 55, 30));
+        registerEvent_user.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
+        registerEvent_user.setForeground(new java.awt.Color(255, 255, 255));
+        registerEvent_user.setText("Register Event");
+        registerEvent_user.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         registerEvent_user1.setBackground(new java.awt.Color(51, 0, 0));
         registerEvent_user1.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
@@ -112,24 +91,19 @@ public class OrganizerDashboard extends javax.swing.JFrame {
         DBlue_panel1.setLayout(DBlue_panel1Layout);
         DBlue_panel1Layout.setHorizontalGroup(
             DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DBlue_panel1Layout.createSequentialGroup()
-                        .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(organizer_new, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(organizer_edit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(organizer_delete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DBlue_panel1Layout.createSequentialGroup()
-                        .addComponent(organzier_viewstudents, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(registerEvent_user1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
             .addGroup(DBlue_panel1Layout.createSequentialGroup()
                 .addComponent(DBlue_panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 2, Short.MAX_VALUE))
+            .addGroup(DBlue_panel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(registerEvent_user, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(registerEvent_user1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         DBlue_panel1Layout.setVerticalGroup(
             DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,19 +111,13 @@ public class OrganizerDashboard extends javax.swing.JFrame {
                 .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DBlue_panel1Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
-                        .addComponent(organizer_new)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(organizer_edit)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(organizer_delete))
+                        .addComponent(registerEvent_user, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(DBlue_panel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(registerEvent_user1)
-                    .addComponent(organzier_viewstudents))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(registerEvent_user1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(DBlue_panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -162,8 +130,8 @@ public class OrganizerDashboard extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 36)); // NOI18N
         jLabel1.setText("BISU Campus Event Manager");
 
-        jLabel2.setFont(new java.awt.Font("Rockwell Condensed", 0, 24)); // NOI18N
-        jLabel2.setText("Event Organizer Dashboard");
+        jLabel2.setFont(new java.awt.Font("Rockwell Condensed", 0, 36)); // NOI18N
+        jLabel2.setText("Event Lists");
 
         javax.swing.GroupLayout DBlue_panelLayout = new javax.swing.GroupLayout(DBlue_panel);
         DBlue_panel.setLayout(DBlue_panelLayout);
@@ -172,11 +140,11 @@ public class OrganizerDashboard extends javax.swing.JFrame {
             .addGroup(DBlue_panelLayout.createSequentialGroup()
                 .addGroup(DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DBlue_panelLayout.createSequentialGroup()
-                        .addGap(355, 355, 355)
-                        .addComponent(jLabel2))
-                    .addGroup(DBlue_panelLayout.createSequentialGroup()
                         .addGap(154, 154, 154)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(DBlue_panelLayout.createSequentialGroup()
+                        .addGap(395, 395, 395)
+                        .addComponent(jLabel2)))
                 .addContainerGap(176, Short.MAX_VALUE))
         );
         DBlue_panelLayout.setVerticalGroup(
@@ -184,7 +152,7 @@ public class OrganizerDashboard extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panelLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -211,21 +179,23 @@ public class OrganizerDashboard extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OrganizerDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(userDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OrganizerDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(userDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OrganizerDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(userDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OrganizerDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(userDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OrganizerDashboard().setVisible(true);
+                new userDashboard().setVisible(true);
             }
         });
     }
@@ -234,14 +204,11 @@ public class OrganizerDashboard extends javax.swing.JFrame {
     private javax.swing.JPanel DBlue_panel;
     private javax.swing.JPanel DBlue_panel1;
     private javax.swing.JPanel DBlue_panel2;
-    private javax.swing.JTable event_table;
+    private javax.swing.JTable eventList_table;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton organizer_delete;
-    private javax.swing.JButton organizer_edit;
-    private javax.swing.JButton organizer_new;
-    private javax.swing.JButton organzier_viewstudents;
+    private javax.swing.JButton registerEvent_user;
     private javax.swing.JButton registerEvent_user1;
     // End of variables declaration//GEN-END:variables
 }
