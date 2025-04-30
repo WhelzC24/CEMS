@@ -127,7 +127,7 @@ public class UsersDashboard extends javax.swing.JFrame {
         students_table.setSelectionForeground(new java.awt.Color(51, 51, 51));
         jScrollPane1.setViewportView(students_table);
 
-        student_delete.setBackground(new java.awt.Color(37, 55, 30));
+        student_delete.setBackground(new java.awt.Color(102, 51, 0));
         student_delete.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
         student_delete.setForeground(new java.awt.Color(255, 255, 255));
         student_delete.setText("Delete User");
@@ -138,7 +138,7 @@ public class UsersDashboard extends javax.swing.JFrame {
             }
         });
 
-        organzier_viewstudents.setBackground(new java.awt.Color(102, 51, 0));
+        organzier_viewstudents.setBackground(new java.awt.Color(37, 55, 30));
         organzier_viewstudents.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
         organzier_viewstudents.setForeground(new java.awt.Color(255, 255, 255));
         organzier_viewstudents.setText("Events Manager");
@@ -162,41 +162,36 @@ public class UsersDashboard extends javax.swing.JFrame {
                 .addComponent(DBlue_panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 2, Short.MAX_VALUE))
             .addGroup(DBlue_panel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(25, 25, 25)
+                .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(organzier_viewstudents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(student_delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(DBlue_panel1Layout.createSequentialGroup()
-                        .addComponent(student_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DBlue_panel1Layout.createSequentialGroup()
-                        .addComponent(organzier_viewstudents)
-                        .addGap(26, 26, 26)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(registerEvent_user1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(registerEvent_user1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         DBlue_panel1Layout.setVerticalGroup(
             DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panel1Layout.createSequentialGroup()
-                .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(DBlue_panel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(DBlue_panel1Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
-                        .addComponent(student_delete)))
-                .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DBlue_panel1Layout.createSequentialGroup()
+                        .addComponent(organzier_viewstudents)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(organzier_viewstudents)
-                            .addComponent(jLabel8))
-                        .addGap(18, 18, 18))
-                    .addGroup(DBlue_panel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(registerEvent_user1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(student_delete)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(registerEvent_user1)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
                 .addComponent(DBlue_panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 

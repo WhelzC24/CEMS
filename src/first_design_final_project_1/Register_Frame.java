@@ -83,7 +83,7 @@ public class Register_Frame extends javax.swing.JFrame {
                 register_nameActionPerformed(evt);
             }
         });
-        White_panel.add(register_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 59, 236, -1));
+        White_panel.add(register_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 236, -1));
 
         register_password.setBackground(new java.awt.Color(0, 0, 0));
         register_password.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -93,13 +93,13 @@ public class Register_Frame extends javax.swing.JFrame {
                 register_passwordActionPerformed(evt);
             }
         });
-        White_panel.add(register_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 155, 236, -1));
+        White_panel.add(register_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 236, -1));
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Name:");
-        White_panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 65, -1, -1));
+        White_panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 65, 90, 20));
 
         register_email.setBackground(new java.awt.Color(0, 0, 0));
         register_email.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -109,7 +109,7 @@ public class Register_Frame extends javax.swing.JFrame {
                 register_emailActionPerformed(evt);
             }
         });
-        White_panel.add(register_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 91, 236, -1));
+        White_panel.add(register_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 236, -1));
 
         register_username.setBackground(new java.awt.Color(0, 0, 0));
         register_username.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -119,39 +119,39 @@ public class Register_Frame extends javax.swing.JFrame {
                 register_usernameActionPerformed(evt);
             }
         });
-        White_panel.add(register_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 123, 236, -1));
+        White_panel.add(register_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 236, -1));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Email:");
-        White_panel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 95, -1, -1));
+        White_panel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 95, 90, 20));
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Username:");
-        White_panel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 125, -1, -1));
+        White_panel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 125, 90, 20));
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Password:");
-        White_panel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 155, -1, -1));
+        White_panel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 155, 90, 20));
 
         Register_submit.setBackground(new java.awt.Color(0, 102, 0));
         Register_submit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Register_submit.setForeground(new java.awt.Color(255, 255, 255));
         Register_submit.setText("SUBMIT");
         Register_submit.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        White_panel.add(Register_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 266, -1, -1));
+        White_panel.add(Register_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, -1, -1));
 
         Register_cancel.setBackground(new java.awt.Color(102, 0, 0));
         Register_cancel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Register_cancel.setForeground(new java.awt.Color(255, 255, 255));
         Register_cancel.setText("CANCEL");
         Register_cancel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        White_panel.add(Register_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(301, 266, -1, -1));
+        White_panel.add(Register_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
@@ -168,10 +168,10 @@ public class Register_Frame extends javax.swing.JFrame {
         Cbox_role.setForeground(new java.awt.Color(255, 255, 255));
         Cbox_role.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Student", "Faculty Staff", "Admin", "Crew", "Guest" }));
         Cbox_role.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        White_panel.add(Cbox_role, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 266, 161, -1));
+        White_panel.add(Cbox_role, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 161, -1));
 
         jLabel9.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel9.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Role:");
         White_panel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 272, -1, -1));
@@ -185,19 +185,19 @@ public class Register_Frame extends javax.swing.JFrame {
                 rbutton_maleActionPerformed(evt);
             }
         });
-        White_panel.add(rbutton_male, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 231, 83, -1));
+        White_panel.add(rbutton_male, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 70, -1));
 
         genderGroup.add(rbutton_female);
         rbutton_female.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         rbutton_female.setForeground(new java.awt.Color(0, 0, 0));
         rbutton_female.setText("Female");
-        White_panel.add(rbutton_female, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 231, -1, -1));
+        White_panel.add(rbutton_female, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, -1, -1));
 
         jLabel10.setBackground(new java.awt.Color(0, 0, 0));
         jLabel10.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("I.D. :");
-        White_panel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 187, -1, -1));
+        White_panel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 90, -1));
 
         register_id.setBackground(new java.awt.Color(0, 0, 0));
         register_id.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -207,7 +207,7 @@ public class Register_Frame extends javax.swing.JFrame {
                 register_idActionPerformed(evt);
             }
         });
-        White_panel.add(register_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 187, 236, -1));
+        White_panel.add(register_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 236, -1));
 
         DBlue_panel.add(White_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 410, 310));
 

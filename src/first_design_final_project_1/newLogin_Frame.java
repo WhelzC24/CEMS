@@ -121,13 +121,13 @@ public class newLogin_Frame extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Password:");
 
-        Login_login.setBackground(new java.awt.Color(0, 102, 102));
+        Login_login.setBackground(new java.awt.Color(0, 102, 0));
         Login_login.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Login_login.setForeground(new java.awt.Color(255, 255, 255));
-        Login_login.setText("SUBMIT");
+        Login_login.setText("LOGIN");
         Login_login.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        Register_cancel.setBackground(new java.awt.Color(102, 51, 0));
+        Register_cancel.setBackground(new java.awt.Color(0, 102, 102));
         Register_cancel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Register_cancel.setForeground(new java.awt.Color(255, 255, 255));
         Register_cancel.setText("REGISTER");
@@ -153,19 +153,19 @@ public class newLogin_Frame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, White_panelLayout.createSequentialGroup()
                 .addContainerGap(81, Short.MAX_VALUE)
                 .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, White_panelLayout.createSequentialGroup()
-                        .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(login_password, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(login_username, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(93, 93, 93))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, White_panelLayout.createSequentialGroup()
-                        .addComponent(Login_login)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Register_cancel)
-                        .addGap(77, 77, 77))
                     .addGroup(White_panelLayout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, White_panelLayout.createSequentialGroup()
+                        .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(White_panelLayout.createSequentialGroup()
+                                .addComponent(Login_login)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Register_cancel))
+                            .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(login_password, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(login_username, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(93, 93, 93))))
         );
         White_panelLayout.setVerticalGroup(
             White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,11 +180,11 @@ public class newLogin_Frame extends javax.swing.JFrame {
                 .addComponent(login_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Register_cancel)
                     .addComponent(Login_login))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         getContentPane().add(White_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 109, 410, 280));
