@@ -4,6 +4,9 @@
  */
 package cems;
 
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author PC
@@ -35,7 +38,7 @@ public class userDashboard extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         eventList_table = new javax.swing.JTable();
         registerEvent_user = new javax.swing.JButton();
-        registerEvent_user1 = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusable(false);
@@ -87,11 +90,16 @@ public class userDashboard extends javax.swing.JFrame {
             }
         });
 
-        registerEvent_user1.setBackground(new java.awt.Color(51, 0, 0));
-        registerEvent_user1.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
-        registerEvent_user1.setForeground(new java.awt.Color(255, 255, 255));
-        registerEvent_user1.setText("Log out");
-        registerEvent_user1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        logout.setBackground(new java.awt.Color(51, 0, 0));
+        logout.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
+        logout.setForeground(new java.awt.Color(255, 255, 255));
+        logout.setText("Log out");
+        logout.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout DBlue_panel1Layout = new javax.swing.GroupLayout(DBlue_panel1);
         DBlue_panel1.setLayout(DBlue_panel1Layout);
@@ -101,7 +109,7 @@ public class userDashboard extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(registerEvent_user, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                    .addComponent(registerEvent_user1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -117,7 +125,7 @@ public class userDashboard extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addComponent(registerEvent_user)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(registerEvent_user1)))
+                        .addComponent(logout)))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
 
@@ -161,6 +169,11 @@ public class userDashboard extends javax.swing.JFrame {
     private void registerEvent_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerEvent_userActionPerformed
         
     }//GEN-LAST:event_registerEvent_userActionPerformed
+
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        new login().setVisible(true);
+        ((JFrame) SwingUtilities.getWindowAncestor(logout)).dispose();
+    }//GEN-LAST:event_logoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,7 +220,7 @@ public class userDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton logout;
     private javax.swing.JButton registerEvent_user;
-    private javax.swing.JButton registerEvent_user1;
     // End of variables declaration//GEN-END:variables
 }
