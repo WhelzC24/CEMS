@@ -6,6 +6,7 @@ package cems;
 
 import java.sql.*;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,41 +15,15 @@ import javax.swing.table.DefaultTableModel;
  * @author PC
  */
 public class usersDashboard extends javax.swing.JFrame {
-
-    private String currentUsername;
+    
+    String currentUsername = Session.currentUsername;
     
     /**
      * Creates new form adminDashboard
      */
-    public usersDashboard(String username) {
-        this.currentUsername = username;
+    public usersDashboard() {
         initComponents();
-        loadUsersToTable();
     }
-    
-    private void loadUsersToTable() {
-        ResultSet rs = DBHelper.getAllUsersExcept(currentUsername);
-        DefaultTableModel model = (DefaultTableModel) usersTable.getModel();
-        model.setRowCount(0); // clear existing rows
-
-        try {
-            while (rs.next()) {
-                Object[] row = {
-                    rs.getInt("id"),
-                    rs.getString("name"),
-                    rs.getString("username"),
-                    rs.getString("email"),
-                    rs.getString("gender"),
-                    rs.getString("role")
-                };
-                model.addRow(row);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,6 +46,11 @@ public class usersDashboard extends javax.swing.JFrame {
         logout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         DBlue_panel.setBackground(new java.awt.Color(0, 0, 51));
@@ -102,7 +82,7 @@ public class usersDashboard extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Name", "Username", "Email", "Gender", "Role"
+                "Student ID", "Name", "Username", "Email", "Gender", "Role"
             }
         ));
         usersTable.setFocusable(false);
@@ -222,12 +202,37 @@ public class usersDashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void student_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_deleteActionPerformed
-        // TODO add your handling code here:
+        // Get the selected row index from the JTable
+        int selectedRow = usersTable.getSelectedRow();
+
+        if (selectedRow == -1) {
+            // No user is selected
+            JOptionPane.showMessageDialog(null, "Please select a user to delete.");
+            return;
+        }
+
+        // Get the student ID (or username) of the selected user (since student_id is the first column)
+        String studentID = usersTable.getValueAt(selectedRow, 0).toString(); // Assuming student_id is in the first column
+
+        // Confirm deletion with the user
+        int confirmation = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this user?", "Confirm Deletion", JOptionPane.YES_NO_OPTION);
+
+        if (confirmation == JOptionPane.YES_OPTION) {
+            // Call the function to delete the user from the database
+            boolean success = DBHelper.deleteUser(studentID); // Pass the student ID to delete from database
+
+            if (success) {
+                JOptionPane.showMessageDialog(null, "User deleted successfully!");
+                loadUsersToTable();  // Reload the table data after deletion
+            } else {
+                JOptionPane.showMessageDialog(null, "Failed to delete the user.");
+            }
+        }
     }//GEN-LAST:event_student_deleteActionPerformed
 
     private void organzier_viewstudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organzier_viewstudentsActionPerformed
-        new adminDashboard("admin").setVisible(true);
-        dispose();
+        new adminDashboard().setVisible(true);
+        ((JFrame) SwingUtilities.getWindowAncestor(organzier_viewstudents)).dispose();
     }//GEN-LAST:event_organzier_viewstudentsActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
@@ -235,6 +240,34 @@ public class usersDashboard extends javax.swing.JFrame {
         ((JFrame) SwingUtilities.getWindowAncestor(logout)).dispose();
     }//GEN-LAST:event_logoutActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        loadUsersToTable();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void loadUsersToTable() {
+        // Assuming 'currentUsername' holds the logged-in admin's username
+        ResultSet rs = DBHelper.getAllUsersExcept(currentUsername);  // Filter out the logged-in admin
+
+        DefaultTableModel model = (DefaultTableModel) usersTable.getModel();
+        model.setRowCount(0); // Clear existing rows
+
+        try {
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getString("student_id"),
+                    rs.getString("name"),
+                    rs.getString("username"),
+                    rs.getString("email"),
+                    rs.getString("gender"),
+                    rs.getString("role")
+                };
+                model.addRow(row);  // Add row data to the table
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -268,7 +301,7 @@ public class usersDashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new usersDashboard("admin").setVisible(true);
+                new usersDashboard().setVisible(true);
             }
         });
     }

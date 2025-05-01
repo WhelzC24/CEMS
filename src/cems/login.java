@@ -207,13 +207,15 @@ public class login extends javax.swing.JFrame {
         String password = new String(login_password.getPassword()).trim();
 
         String role = DBHelper.getUserRole(username, password);
+        
+        Session.currentUsername = username;
 
         if (role != null) {
             JOptionPane.showMessageDialog(null, "Login successful as " + role + "!");
 
             // Navigate based on role
             if (role.equalsIgnoreCase("Admin")) {
-                new adminDashboard(username).setVisible(true);
+                new adminDashboard().setVisible(true);
             } else {
                 new userDashboard().setVisible(true); // you can pass username if needed
             }

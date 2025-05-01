@@ -21,6 +21,8 @@ public class register extends javax.swing.JFrame {
      */
     public register() {
         initComponents();
+        jLabel10.setVisible(false);
+        register_id.setVisible(false);
     }
 
     /**
@@ -43,7 +45,6 @@ public class register extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         register_name = new javax.swing.JTextField();
@@ -56,6 +57,7 @@ public class register extends javax.swing.JFrame {
         rbutton_female = new javax.swing.JRadioButton();
         rbutton_other = new javax.swing.JRadioButton();
         Cbox_role = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
         register_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -108,11 +110,6 @@ public class register extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Password:");
-
-        jLabel10.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel10.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("I.D. :");
 
         jLabel11.setBackground(new java.awt.Color(0, 0, 0));
         jLabel11.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
@@ -205,8 +202,18 @@ public class register extends javax.swing.JFrame {
         Cbox_role.setBackground(new java.awt.Color(255, 255, 255));
         Cbox_role.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Cbox_role.setForeground(new java.awt.Color(0, 0, 0));
-        Cbox_role.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Student", "Faculty Staff", "Admin", "Crew", "Guest" }));
+        Cbox_role.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Select Role--", "Student", "Faculty Staff", "Admin", "Crew", "Guest" }));
         Cbox_role.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Cbox_role.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cbox_roleActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel10.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("I.D. :");
 
         register_id.setBackground(new java.awt.Color(0, 0, 0));
         register_id.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -225,34 +232,39 @@ public class register extends javax.swing.JFrame {
                 .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(White_panelLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(White_panelLayout.createSequentialGroup()
-                                .addComponent(rbutton_male, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rbutton_female)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rbutton_other))
+                                .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(White_panelLayout.createSequentialGroup()
+                                        .addComponent(rbutton_male, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rbutton_female)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rbutton_other))
+                                    .addGroup(White_panelLayout.createSequentialGroup()
+                                        .addComponent(Register_submit)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Register_cancel))
+                                    .addComponent(register_password, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                                    .addComponent(register_username)
+                                    .addComponent(register_email)
+                                    .addComponent(register_name)))
                             .addGroup(White_panelLayout.createSequentialGroup()
-                                .addComponent(Register_submit)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Register_cancel))
-                            .addComponent(register_password)
-                            .addComponent(register_username)
-                            .addComponent(register_email)
-                            .addComponent(register_name)
-                            .addComponent(register_id)
-                            .addComponent(Cbox_role, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(Cbox_role, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(White_panelLayout.createSequentialGroup()
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(register_id))))
                     .addGroup(White_panelLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,21 +296,21 @@ public class register extends javax.swing.JFrame {
                 .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(register_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(register_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Cbox_role, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbutton_male)
                     .addComponent(rbutton_female)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rbutton_other))
-                .addGap(6, 6, 6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Cbox_role, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(18, 18, 18)
+                    .addComponent(register_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
                 .addGroup(White_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Register_submit)
                     .addComponent(Register_cancel))
@@ -331,7 +343,7 @@ public class register extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(White_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         getContentPane().add(DBlue_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 550));
@@ -373,34 +385,63 @@ public class register extends javax.swing.JFrame {
         String name = register_name.getText().trim();
         String username = register_username.getText().trim();
         String email = register_email.getText().trim();
-        String password = new String(register_password.getPassword()).trim(); // Read from JPasswordField
+        String password = new String(register_password.getPassword()).trim();
 
-        // Get selected gender
         String gender = "";
         if (rbutton_male.isSelected()) gender = "Male";
         else if (rbutton_female.isSelected()) gender = "Female";
         else if (rbutton_other.isSelected()) gender = "Other";
 
-        // Get selected role
         String role = Cbox_role.getSelectedItem().toString();
 
-        // Basic validation (optional)
-        if (name.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty() || gender.isEmpty() || role.isEmpty()) {
+        String studentID = "";
+        if (role.equalsIgnoreCase("Student") || role.equalsIgnoreCase("Faculty Staff") || role.equalsIgnoreCase("Admin")) {
+            studentID = register_id.getText().trim();
+            if (studentID.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please enter an ID for the selected role.");
+                return;
+            }
+
+            // ❗ Check for duplicate ID
+            if (DBHelper.studentIDExists(studentID)) {
+                JOptionPane.showMessageDialog(null, "The ID '" + studentID + "' is already registered.", "Duplicate ID", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        }
+
+        if (name.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty() || gender.isEmpty() || role.equals("--Select Role--")) {
             JOptionPane.showMessageDialog(null, "Please fill in all fields.");
             return;
         }
 
-        // Call insert function
-        boolean success = DBHelper.insertUser(name, username, email, gender, role, password);
+        boolean success = DBHelper.insertUser(studentID, name, username, email, gender, role, password);
         if (success) {
             JOptionPane.showMessageDialog(null, "User registered successfully!");
+            new login().setVisible(true);
+            ((JFrame) SwingUtilities.getWindowAncestor(Register_submit)).dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Registration failed.");
         }
-        
+
+        // Redirect to login page
         new login().setVisible(true);
         ((JFrame) SwingUtilities.getWindowAncestor(Register_submit)).dispose();
     }//GEN-LAST:event_Register_submitActionPerformed
+
+    private void Cbox_roleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cbox_roleActionPerformed
+        String selectedRole = Cbox_role.getSelectedItem().toString().toLowerCase();
+
+        boolean showID = selectedRole.equals("student") ||
+                         selectedRole.equals("faculty staff") ||
+                         selectedRole.equals("admin");
+
+        jLabel10.setVisible(showID);
+        register_id.setVisible(showID);
+        register_id.setEnabled(showID);  // Enable/disable field
+        if (!showID) {
+            register_id.setText("");     // Clear if not needed
+        }
+    }//GEN-LAST:event_Cbox_roleActionPerformed
 
     /**
      * @param args the command line arguments

@@ -13,13 +13,10 @@ import javax.swing.SwingUtilities;
  */
 public class adminDashboard extends javax.swing.JFrame {
 
-    private String currentUsername;
-
     /**
      * Creates new form Organizer_Dashboard_Admin
      */
-    public adminDashboard(String username) {
-        this.currentUsername = username;
+    public adminDashboard() {
         initComponents();
     }
 
@@ -204,7 +201,7 @@ public class adminDashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void organizer_viewstudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizer_viewstudentsActionPerformed
-        new usersDashboard(currentUsername).setVisible(true);
+        new usersDashboard().setVisible(true);
         ((JFrame) SwingUtilities.getWindowAncestor(organizer_viewstudents)).dispose();
     }//GEN-LAST:event_organizer_viewstudentsActionPerformed
 
@@ -255,7 +252,7 @@ public class adminDashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new adminDashboard("admin").setVisible(true);
+                new adminDashboard().setVisible(true);
             }
         });
     }
