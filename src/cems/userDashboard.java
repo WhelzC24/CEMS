@@ -66,13 +66,13 @@ public class userDashboard extends javax.swing.JFrame {
         eventList_table.setForeground(new java.awt.Color(51, 51, 51));
         eventList_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "No.", "Events", "Event type", "Location", "Date & Time: Begin/End", "Participants", "Registered"
+                "No.", "Events", "Event type", "Location", "Date & Time: Begin/End", "Registered"
             }
         ));
         eventList_table.setFocusable(false);
@@ -116,17 +116,15 @@ public class userDashboard extends javax.swing.JFrame {
         );
         DBlue_panel1Layout.setVerticalGroup(
             DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panel1Layout.createSequentialGroup()
+            .addGroup(DBlue_panel1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
                 .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(DBlue_panel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DBlue_panel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
                         .addComponent(registerEvent_user)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(logout)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                        .addComponent(logout))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout DBlue_panelLayout = new javax.swing.GroupLayout(DBlue_panel);
