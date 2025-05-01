@@ -26,23 +26,37 @@ public class DBHelper {
     }
 
     //Insert user
-    public static boolean insertUser(String name, String username, String email, String gender, String role, String password) {
-        String sql = "INSERT INTO users (name, username, email, gender, role, password) VALUES (?, ?, ?, ?, ?, ?)";
+    public static boolean insertUser(String studentID, String name, String username, String email, String gender, String role, String password) {
+        if (role.equalsIgnoreCase("Student") || role.equalsIgnoreCase("Faculty Staff") || role.equalsIgnoreCase("Admin")) {
+            if (studentID == null || studentID.trim().isEmpty()) {
+                System.out.println("Student ID is required for role: " + role);
+                return false;
+            }
+
+            if (studentIDExists(studentID)) {
+                System.out.println("Student ID already exists: " + studentID);
+                return false;
+            }
+        }
+
+        String sql = "INSERT INTO users (student_id, name, username, email, gender, role, password) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
         try (Connection conn = connect(); PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, name);
-            ps.setString(2, username);
-            ps.setString(3, email);
-            ps.setString(4, gender);
-            ps.setString(5, role);
-            ps.setString(6, password);
+            ps.setString(1, studentID);
+            ps.setString(2, name);
+            ps.setString(3, username);
+            ps.setString(4, email);
+            ps.setString(5, gender);
+            ps.setString(6, role);
+            ps.setString(7, password);
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
-    
-    //get user role
+
+    //Get user role
     public static String getUserRole(String username, String password) {
         String sql = "SELECT role FROM users WHERE username = ? AND password = ?";
         try (Connection conn = connect(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -57,10 +71,10 @@ public class DBHelper {
         }
         return null; // Invalid login
     }
-    
-    //get users
+
+    //Get all users
     public static ResultSet getAllUsers() {
-        String sql = "SELECT id, name, username, email, gender, role FROM users";
+        String sql = "SELECT student_id, name, username, email, gender, role FROM users";
         try {
             Connection conn = connect();
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -70,10 +84,10 @@ public class DBHelper {
             return null;
         }
     }
-    
-    //get users (execpt mode)
+
+    //Get all users except a specific username
     public static ResultSet getAllUsersExcept(String excludedUsername) {
-        String sql = "SELECT id, name, username, email, gender, role FROM users WHERE username <> ?";
+        String sql = "SELECT student_id, name, username, email, gender, role FROM users WHERE username <> ?";
         try {
             Connection conn = connect();
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -82,6 +96,32 @@ public class DBHelper {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+    
+    //check if a student ID exists
+    public static boolean studentIDExists(String studentID) {
+        String sql = "SELECT student_id FROM users WHERE student_id = ?";
+        try (Connection conn = connect(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, studentID);
+            ResultSet rs = ps.executeQuery();
+            return rs.next(); // true if a row is returned
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return true; // assume exists on error to be safe
+        }
+    }
+    
+    //delete user
+    public static boolean deleteUser(String studentID) {
+        String sql = "DELETE FROM users WHERE student_id = ?";
+
+        try (Connection conn = connect(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, studentID);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }
