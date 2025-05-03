@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -141,12 +142,13 @@ public class DBHelper {
         }
     }
     
-    public static boolean registerUserToEvent(int eventNo, String username) {
+    public static boolean registerUserToEvent(String username, int eventNo) {
         String selectSql = "SELECT participants FROM events WHERE event_no = ?";
-        String updateSql = "UPDATE events SET participants = ? WHERE event_no = ?";
+        String updateSql = "UPDATE events SET participants = ?, registered = 'true' WHERE event_no = ?";
 
         try (Connection conn = connect();
-             PreparedStatement selectPs = conn.prepareStatement(selectSql)) {
+             PreparedStatement selectPs = conn.prepareStatement(selectSql);
+             PreparedStatement updatePs = conn.prepareStatement(updateSql)) {
 
             selectPs.setInt(1, eventNo);
             ResultSet rs = selectPs.executeQuery();
@@ -159,20 +161,23 @@ public class DBHelper {
                     participantList = new ArrayList<>(Arrays.asList(participants.split(",")));
                 }
 
-                if (!participantList.contains(username)) {
-                    participantList.add(username);
-                    String updatedParticipants = String.join(",", participantList);
-
-                    try (PreparedStatement updatePs = conn.prepareStatement(updateSql)) {
-                        updatePs.setString(1, updatedParticipants);
-                        updatePs.setInt(2, eventNo);
-                        return updatePs.executeUpdate() > 0;
-                    }
+                if (participantList.contains(username)) {
+                    return false; // already registered
                 }
+
+                participantList.add(username);
+                String updatedParticipants = String.join(",", participantList);
+
+                updatePs.setString(1, updatedParticipants);
+                updatePs.setInt(2, eventNo);
+
+                return updatePs.executeUpdate() > 0;
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return false;
     }
     
