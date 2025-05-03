@@ -7,6 +7,7 @@ package cems;
 import java.sql.*;
 import java.util.Arrays;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,32 +25,6 @@ public class userDashboard extends javax.swing.JFrame {
     public userDashboard() {
         initComponents();
         loadEventsToUserTable(currentUsername);
-    }
-    
-    private void loadEventsToUserTable(String currentUsername) {
-        ResultSet rs = DBHelper.getAllEvents();
-        DefaultTableModel model = (DefaultTableModel) userEventTable.getModel();
-        model.setRowCount(0);
-
-        try {
-            while (rs.next()) {
-                String participants = rs.getString("participants");
-                boolean isRegistered = participants != null && Arrays.asList(participants.split(",")).contains(currentUsername);
-
-                Object[] row = {
-                    rs.getInt("event_no"),
-                    rs.getString("event_name"),
-                    rs.getString("event_type"),
-                    rs.getString("location"),
-                    rs.getTimestamp("date_start"),
-                    rs.getTimestamp("date_end"),
-                    isRegistered ? "Yes" : "No"
-                };
-                model.addRow(row);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -195,7 +170,22 @@ public class userDashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerEvent_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerEvent_userActionPerformed
-        
+        int selectedRow = userEventTable.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select an event to register.");
+            return;
+        }
+
+        // Assume column 0 is event_no
+        int eventNo = (int) userEventTable.getValueAt(selectedRow, 0);
+
+        boolean registered = DBHelper.registerUserToEvent(currentUsername, eventNo);
+        if (registered) {
+            JOptionPane.showMessageDialog(this, "Successfully registered for the event!");
+            loadEventsToUserTable(currentUsername); // Refresh data if needed
+        } else {
+            JOptionPane.showMessageDialog(this, "You are already registered for this event.");
+        }
     }//GEN-LAST:event_registerEvent_userActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
@@ -203,6 +193,32 @@ public class userDashboard extends javax.swing.JFrame {
         ((JFrame) SwingUtilities.getWindowAncestor(logout)).dispose();
     }//GEN-LAST:event_logoutActionPerformed
 
+    private void loadEventsToUserTable(String currentUsername) {
+        ResultSet rs = DBHelper.getAllEvents();
+        DefaultTableModel model = (DefaultTableModel) userEventTable.getModel();
+        model.setRowCount(0);
+
+        try {
+            while (rs.next()) {
+                String participants = rs.getString("participants");
+                boolean isRegistered = participants != null && Arrays.asList(participants.split(",")).contains(currentUsername);
+
+                Object[] row = {
+                    rs.getInt("event_no"),
+                    rs.getString("event_name"),
+                    rs.getString("event_type"),
+                    rs.getString("location"),
+                    rs.getTimestamp("date_start"),
+                    rs.getTimestamp("date_end"),
+                    isRegistered ? "Yes" : "No"
+                };
+                model.addRow(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
