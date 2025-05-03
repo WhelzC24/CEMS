@@ -4,8 +4,10 @@
  */
 package cems;
 
+import java.sql.*;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,6 +20,30 @@ public class adminDashboard extends javax.swing.JFrame {
      */
     public adminDashboard() {
         initComponents();
+        loadEventsToAdminTable();
+    }
+    
+    private void loadEventsToAdminTable() {
+        ResultSet rs = DBHelper.getAllEvents();
+        DefaultTableModel model = (DefaultTableModel) adminEventTable.getModel();
+        model.setRowCount(0);
+
+        try {
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getInt("event_no"),
+                    rs.getString("event_name"),
+                    rs.getString("event_type"),
+                    rs.getString("location"),
+                    rs.getTimestamp("date_start"),
+                    rs.getTimestamp("date_end"),
+                    rs.getString("participants")
+                };
+                model.addRow(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -34,7 +60,7 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         DBlue_panel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        event_table = new javax.swing.JTable();
+        adminEventTable = new javax.swing.JTable();
         organizer_new = new javax.swing.JButton();
         organizer_edit = new javax.swing.JButton();
         organizer_delete = new javax.swing.JButton();
@@ -61,24 +87,24 @@ public class adminDashboard extends javax.swing.JFrame {
 
         DBlue_panel1.setBackground(new java.awt.Color(98, 98, 130));
 
-        event_table.setAutoCreateRowSorter(true);
-        event_table.setBackground(new java.awt.Color(0, 0, 0));
-        event_table.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        event_table.setForeground(new java.awt.Color(255, 255, 255));
-        event_table.setModel(new javax.swing.table.DefaultTableModel(
+        adminEventTable.setAutoCreateRowSorter(true);
+        adminEventTable.setBackground(new java.awt.Color(0, 0, 0));
+        adminEventTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        adminEventTable.setForeground(new java.awt.Color(255, 255, 255));
+        adminEventTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "No.", "Events", "Event type", "Location", "Date & Time: Begin/End", "Participants"
+                "No.", "Events", "Event Type", "Location", "Date", "Start Time", "End Time", "Participants"
             }
         ));
-        event_table.setFocusable(false);
-        event_table.setSelectionForeground(new java.awt.Color(51, 51, 51));
-        jScrollPane1.setViewportView(event_table);
+        adminEventTable.setFocusable(false);
+        adminEventTable.setSelectionForeground(new java.awt.Color(51, 51, 51));
+        jScrollPane1.setViewportView(adminEventTable);
 
         organizer_new.setBackground(new java.awt.Color(37, 55, 30));
         organizer_new.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
@@ -206,8 +232,21 @@ public class adminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_organizer_viewstudentsActionPerformed
 
     private void organizer_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizer_newActionPerformed
-        new createEvent().setVisible(true);
-        ((JFrame) SwingUtilities.getWindowAncestor(organizer_new)).dispose();
+        createEvent event = new createEvent();
+        this.setEnabled(false);
+    
+        // Set the new window to always be on top
+        event.setAlwaysOnTop(true);
+
+        event.setVisible(true);
+
+        // When the new window is closed, enable the parent window again
+        event.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                setEnabled(true);  // Re-enable the parent window when the new window is closed
+                setVisible(true);
+            }
+        });
     }//GEN-LAST:event_organizer_newActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
@@ -260,7 +299,7 @@ public class adminDashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DBlue_panel;
     private javax.swing.JPanel DBlue_panel1;
-    private javax.swing.JTable event_table;
+    private javax.swing.JTable adminEventTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

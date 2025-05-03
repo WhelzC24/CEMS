@@ -4,8 +4,11 @@
  */
 package cems;
 
+import java.sql.*;
+import java.util.Arrays;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,13 +16,40 @@ import javax.swing.SwingUtilities;
  */
 public class userDashboard extends javax.swing.JFrame {
 
-    private String[] args;
-
+    String currentUsername = Session.currentUsername;
+    
     /**
      * Creates new form Organizer_Dashboard_Admin
      */
     public userDashboard() {
         initComponents();
+        loadEventsToUserTable(currentUsername);
+    }
+    
+    private void loadEventsToUserTable(String currentUsername) {
+        ResultSet rs = DBHelper.getAllEvents();
+        DefaultTableModel model = (DefaultTableModel) userEventTable.getModel();
+        model.setRowCount(0);
+
+        try {
+            while (rs.next()) {
+                String participants = rs.getString("participants");
+                boolean isRegistered = participants != null && Arrays.asList(participants.split(",")).contains(currentUsername);
+
+                Object[] row = {
+                    rs.getInt("event_no"),
+                    rs.getString("event_name"),
+                    rs.getString("event_type"),
+                    rs.getString("location"),
+                    rs.getTimestamp("date_start"),
+                    rs.getTimestamp("date_end"),
+                    isRegistered ? "Yes" : "No"
+                };
+                model.addRow(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -36,7 +66,7 @@ public class userDashboard extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         DBlue_panel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        eventList_table = new javax.swing.JTable();
+        userEventTable = new javax.swing.JTable();
         registerEvent_user = new javax.swing.JButton();
         logout = new javax.swing.JButton();
 
@@ -60,24 +90,24 @@ public class userDashboard extends javax.swing.JFrame {
 
         DBlue_panel1.setBackground(new java.awt.Color(98, 98, 130));
 
-        eventList_table.setAutoCreateRowSorter(true);
-        eventList_table.setBackground(new java.awt.Color(20, 20, 20));
-        eventList_table.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        eventList_table.setForeground(new java.awt.Color(51, 51, 51));
-        eventList_table.setModel(new javax.swing.table.DefaultTableModel(
+        userEventTable.setAutoCreateRowSorter(true);
+        userEventTable.setBackground(new java.awt.Color(20, 20, 20));
+        userEventTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        userEventTable.setForeground(new java.awt.Color(51, 51, 51));
+        userEventTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "No.", "Events", "Event type", "Location", "Date & Time: Begin/End", "Registered"
+                "No.", "Events", "Event Type", "Location", "Date", "Start Time", "End Time", "Registered"
             }
         ));
-        eventList_table.setFocusable(false);
-        eventList_table.setSelectionForeground(new java.awt.Color(51, 51, 51));
-        jScrollPane1.setViewportView(eventList_table);
+        userEventTable.setFocusable(false);
+        userEventTable.setSelectionForeground(new java.awt.Color(51, 51, 51));
+        jScrollPane1.setViewportView(userEventTable);
 
         registerEvent_user.setBackground(new java.awt.Color(37, 55, 30));
         registerEvent_user.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
@@ -214,11 +244,11 @@ public class userDashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DBlue_panel;
     private javax.swing.JPanel DBlue_panel1;
-    private javax.swing.JTable eventList_table;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logout;
     private javax.swing.JButton registerEvent_user;
+    private javax.swing.JTable userEventTable;
     // End of variables declaration//GEN-END:variables
 }

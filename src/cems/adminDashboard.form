@@ -171,7 +171,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="event_table">
+                <Component class="javax.swing.JTable" name="adminEventTable">
                   <Properties>
                     <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -184,17 +184,29 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="6" rowCount="4">
+                      <Table columnCount="8" rowCount="4">
                         <Column editable="true" title="No." type="java.lang.Object"/>
                         <Column editable="true" title="Events" type="java.lang.Object"/>
-                        <Column editable="true" title="Event type" type="java.lang.Object"/>
+                        <Column editable="true" title="Event Type" type="java.lang.Object"/>
                         <Column editable="true" title="Location" type="java.lang.Object"/>
-                        <Column editable="true" title="Date &amp; Time: Begin/End" type="java.lang.Object"/>
+                        <Column editable="true" title="Date" type="java.lang.Object"/>
+                        <Column editable="true" title="Start Time" type="java.lang.Object"/>
+                        <Column editable="true" title="End Time" type="java.lang.Object"/>
                         <Column editable="true" title="Participants" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
