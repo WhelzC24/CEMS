@@ -447,8 +447,6 @@ public class register extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Registration failed.");
         }
 
-        // Redirect to login page
-        new login().setVisible(true);
         ((JFrame) SwingUtilities.getWindowAncestor(Register_submit)).dispose();
     }//GEN-LAST:event_Register_submitActionPerformed
 
