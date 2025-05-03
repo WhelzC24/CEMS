@@ -5,6 +5,9 @@
 package cems;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -123,5 +126,53 @@ public class DBHelper {
             e.printStackTrace();
             return false;
         }
+    }
+    
+    //get events
+    public static ResultSet getAllEvents() {
+        String sql = "SELECT event_no, event_name, event_type, location, date_start, date_end, participants FROM events";
+        try {
+            Connection conn = connect();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            return ps.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public static boolean registerUserToEvent(int eventNo, String username) {
+        String selectSql = "SELECT participants FROM events WHERE event_no = ?";
+        String updateSql = "UPDATE events SET participants = ? WHERE event_no = ?";
+
+        try (Connection conn = connect();
+             PreparedStatement selectPs = conn.prepareStatement(selectSql)) {
+
+            selectPs.setInt(1, eventNo);
+            ResultSet rs = selectPs.executeQuery();
+
+            if (rs.next()) {
+                String participants = rs.getString("participants");
+                List<String> participantList = new ArrayList<>();
+
+                if (participants != null && !participants.trim().isEmpty()) {
+                    participantList = new ArrayList<>(Arrays.asList(participants.split(",")));
+                }
+
+                if (!participantList.contains(username)) {
+                    participantList.add(username);
+                    String updatedParticipants = String.join(",", participantList);
+
+                    try (PreparedStatement updatePs = conn.prepareStatement(updateSql)) {
+                        updatePs.setString(1, updatedParticipants);
+                        updatePs.setInt(2, eventNo);
+                        return updatePs.executeUpdate() > 0;
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
