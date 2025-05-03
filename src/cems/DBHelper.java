@@ -175,4 +175,63 @@ public class DBHelper {
         }
         return false;
     }
+    
+    public static boolean insertEvent(String name, String type, String location, Timestamp dateStart, Timestamp dateEnd) {
+        String sql = "INSERT INTO events (event_no, event_name, event_type, location, date_start, date_end) " +
+                     "VALUES (?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = connect();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            int availableEventNo = getAvailableEventNo(); // get next reusable event_no
+
+            ps.setInt(1, availableEventNo);
+            ps.setString(2, name);
+            ps.setString(3, type);
+            ps.setString(4, location);
+            ps.setTimestamp(5, dateStart);
+            ps.setTimestamp(6, dateEnd);
+
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public static int getAvailableEventNo() {
+        String sql = "SELECT event_no FROM events ORDER BY event_no";
+        try (Connection conn = connect(); 
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            int expected = 1;
+            while (rs.next()) {
+                int current = rs.getInt("event_no");
+                if (current != expected) {
+                    return expected;  // Gap found
+                }
+                expected++;
+            }
+            return expected;  // No gaps, return next number
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 1;  // Default to 1 if query fails
+        }
+    }
+    
+    public static boolean deleteEvent(int eventNo) {
+        String sql = "DELETE FROM events WHERE event_no = ?";
+
+        try (Connection conn = connect();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, eventNo);
+            return ps.executeUpdate() > 0; // Returns true if a row was deleted
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
