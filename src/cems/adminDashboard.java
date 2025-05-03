@@ -5,9 +5,14 @@
 package cems;
 
 import java.sql.*;
+import java.util.Arrays;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -21,29 +26,7 @@ public class adminDashboard extends javax.swing.JFrame {
     public adminDashboard() {
         initComponents();
         loadEventsToAdminTable();
-    }
-    
-    private void loadEventsToAdminTable() {
-        ResultSet rs = DBHelper.getAllEvents();
-        DefaultTableModel model = (DefaultTableModel) adminEventTable.getModel();
-        model.setRowCount(0);
-
-        try {
-            while (rs.next()) {
-                Object[] row = {
-                    rs.getInt("event_no"),
-                    rs.getString("event_name"),
-                    rs.getString("event_type"),
-                    rs.getString("location"),
-                    rs.getTimestamp("date_start"),
-                    rs.getTimestamp("date_end"),
-                    rs.getString("participants")
-                };
-                model.addRow(row);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        sortDefault();
     }
 
     /**
@@ -93,13 +76,13 @@ public class adminDashboard extends javax.swing.JFrame {
         adminEventTable.setForeground(new java.awt.Color(255, 255, 255));
         adminEventTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "No.", "Events", "Event Type", "Location", "Date", "Start Time", "End Time", "Participants"
+                "No.", "Events", "Event Type", "Location", "Start Time", "End Time", "Participants"
             }
         ));
         adminEventTable.setFocusable(false);
@@ -128,6 +111,11 @@ public class adminDashboard extends javax.swing.JFrame {
         organizer_delete.setForeground(new java.awt.Color(255, 255, 255));
         organizer_delete.setText("Delete event");
         organizer_delete.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        organizer_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                organizer_deleteActionPerformed(evt);
+            }
+        });
 
         organizer_viewstudents.setBackground(new java.awt.Color(102, 51, 0));
         organizer_viewstudents.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
@@ -234,9 +222,6 @@ public class adminDashboard extends javax.swing.JFrame {
     private void organizer_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizer_newActionPerformed
         createEvent event = new createEvent();
         this.setEnabled(false);
-    
-        // Set the new window to always be on top
-        event.setAlwaysOnTop(true);
 
         event.setVisible(true);
 
@@ -245,6 +230,8 @@ public class adminDashboard extends javax.swing.JFrame {
             public void windowClosed(java.awt.event.WindowEvent windowEvent) {
                 setEnabled(true);  // Re-enable the parent window when the new window is closed
                 setVisible(true);
+                loadEventsToAdminTable();
+                sortDefault();
             }
         });
     }//GEN-LAST:event_organizer_newActionPerformed
@@ -254,6 +241,64 @@ public class adminDashboard extends javax.swing.JFrame {
         ((JFrame) SwingUtilities.getWindowAncestor(logout)).dispose();
     }//GEN-LAST:event_logoutActionPerformed
 
+    private void organizer_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizer_deleteActionPerformed
+        int selectedRow = adminEventTable.getSelectedRow();
+        if (selectedRow != -1) {
+            // Get the event_no from the selected row (assuming event_no is in column 0)
+            int eventNo = (int) adminEventTable.getValueAt(selectedRow, 0);
+
+            int confirm = JOptionPane.showConfirmDialog(null,
+                    "Are you sure you want to delete this event?",
+                    "Confirm Deletion", JOptionPane.YES_NO_OPTION);
+
+            if (confirm == JOptionPane.YES_OPTION) {
+                boolean deleted = DBHelper.deleteEvent(eventNo);
+                if (deleted) {
+                    JOptionPane.showMessageDialog(null, "Event deleted successfully.");
+                    loadEventsToAdminTable(); // Reload the updated table
+                } else {
+                    JOptionPane.showMessageDialog(null, "Failed to delete event.");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select an event to delete.");
+        }
+    }//GEN-LAST:event_organizer_deleteActionPerformed
+
+    private void loadEventsToAdminTable() {
+        ResultSet rs = DBHelper.getAllEvents();
+        DefaultTableModel model = (DefaultTableModel) adminEventTable.getModel();
+        model.setRowCount(0);
+
+        try {
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getInt("event_no"),
+                    rs.getString("event_name"),
+                    rs.getString("event_type"),
+                    rs.getString("location"),
+                    rs.getTimestamp("date_start"),
+                    rs.getTimestamp("date_end"),
+                    rs.getString("participants")
+                };
+                model.addRow(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void sortDefault() {
+        DefaultTableModel model = (DefaultTableModel) adminEventTable.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+        adminEventTable.setRowSorter(sorter);
+
+        // Sort by event date column (index 4)
+        sorter.setSortKeys(Arrays.asList(
+            new RowSorter.SortKey(0, SortOrder.ASCENDING)
+        ));
+    }
+    
     /**
      * @param args the command line arguments
      */
