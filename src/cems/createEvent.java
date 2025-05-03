@@ -4,6 +4,12 @@
  */
 package cems;
 
+import java.util.Date;
+import javax.swing.JFrame;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author PC
@@ -17,6 +23,15 @@ public class createEvent extends javax.swing.JFrame {
      */
     public createEvent() {
         initComponents();
+        startTimeSpinner.setModel(new SpinnerDateModel());
+        JSpinner.DateEditor startEditor = new JSpinner.DateEditor(startTimeSpinner, "hh:mm a");
+        startTimeSpinner.setEditor(startEditor);
+        startTimeSpinner.setValue(new Date());
+
+        endTimeSpinner.setModel(new SpinnerDateModel());
+        JSpinner.DateEditor endEditor = new JSpinner.DateEditor(endTimeSpinner, "hh:mm a");
+        endTimeSpinner.setEditor(endEditor);
+        endTimeSpinner.setValue(new Date());
     }
 
     /**
@@ -37,22 +52,28 @@ public class createEvent extends javax.swing.JFrame {
         organizer_delete = new javax.swing.JButton();
         organzier_viewstudents = new javax.swing.JButton();
         organizer_poster = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         DBlue_panel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         DBlue_panel3 = new javax.swing.JPanel();
-        createEvent_title = new javax.swing.JTextField();
-        createEvent_location = new javax.swing.JTextField();
+        locationField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        createEvent_category = new javax.swing.JComboBox<>();
-        createEvent_type = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        createEvent_dateTime = new javax.swing.JSpinner();
-        jLabel9 = new javax.swing.JLabel();
         createEvent_submit = new javax.swing.JButton();
         createEvent_cancel = new javax.swing.JButton();
+        eventTypeComboBox = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        eventNameField = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        startdateChooser = new com.toedter.calendar.JDateChooser();
+        createEvent_clear = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        enddateChooser = new com.toedter.calendar.JDateChooser();
+        startTimeSpinner = new javax.swing.JSpinner();
+        endTimeSpinner = new javax.swing.JSpinner();
 
         DBlue_panel1.setBackground(new java.awt.Color(98, 98, 130));
 
@@ -166,6 +187,8 @@ public class createEvent extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+
         DBlue_panel.setBackground(new java.awt.Color(0, 0, 51));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -182,64 +205,24 @@ public class createEvent extends javax.swing.JFrame {
 
         DBlue_panel3.setBackground(new java.awt.Color(130, 130, 146));
 
-        createEvent_title.setBackground(new java.awt.Color(0, 0, 0));
-        createEvent_title.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        createEvent_title.setForeground(new java.awt.Color(255, 255, 255));
-        createEvent_title.addActionListener(new java.awt.event.ActionListener() {
+        locationField.setBackground(new java.awt.Color(0, 0, 0));
+        locationField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        locationField.setForeground(new java.awt.Color(255, 255, 255));
+        locationField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createEvent_titleActionPerformed(evt);
-            }
-        });
-
-        createEvent_location.setBackground(new java.awt.Color(0, 0, 0));
-        createEvent_location.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        createEvent_location.setForeground(new java.awt.Color(255, 255, 255));
-        createEvent_location.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createEvent_locationActionPerformed(evt);
+                locationFieldActionPerformed(evt);
             }
         });
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Event title:");
+        jLabel5.setText("Event Title:");
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Location:");
-
-        createEvent_category.setBackground(new java.awt.Color(255, 255, 255));
-        createEvent_category.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        createEvent_category.setForeground(new java.awt.Color(0, 0, 0));
-        createEvent_category.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Academic", "Cultural", "Sports & Fitness", "Student Engagement", "Tech & Innovation", "Social Impact", "Professional Development" }));
-        createEvent_category.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        createEvent_category.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createEvent_categoryActionPerformed(evt);
-            }
-        });
-
-        createEvent_type.setBackground(new java.awt.Color(255, 255, 255));
-        createEvent_type.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        createEvent_type.setForeground(new java.awt.Color(0, 0, 0));
-        createEvent_type.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel7.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel7.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Category:");
-
-        jLabel8.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel8.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Type:");
-
-        jLabel9.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel9.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("Date/Time:");
+        jLabel6.setText("Event Type:");
 
         createEvent_submit.setBackground(new java.awt.Color(51, 102, 0));
         createEvent_submit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -258,63 +241,130 @@ public class createEvent extends javax.swing.JFrame {
             }
         });
 
+        eventTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Select Event Type --", "App Launch", "Art Exhibit", "Author Talk", "Awareness Campaign", "Blood Donation Drive", "Book Fair", "Career Talk", "Charity Event", "Clean-Up Drive", "Club Meeting", "Coding Competition", "Community Service", "Concert", "Cultural Festival", "Dance Party", "Debate Competition", "Entrepreneurhip Pitch", "Essay Writing Contest", "Fashion Show", "Fitness Challenge", "Food Festival", "Game Night", "Guest Lecture", "Hackathon", "Health Awareness Camp", "Innovation Challenge", "Internship Info Session", "Job Fair", "Marathon", "Movie Night", "Networking Event", "Open Mic Night", "Poetry Reading", "Research Presentation", "Resume Workshop", "Robotics Demo", "Seminar", "Sports Tournament", "Storytelling Session", "Student Assembly", "Student Council Election", "Talent Show", "Tech Expo", "Thesis Defense", "Tree Planting", "Workshop", "Yoga Session", "Zumba Class" }));
+        eventTypeComboBox.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel10.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel10.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("Location:");
+
+        eventNameField.setBackground(new java.awt.Color(0, 0, 0));
+        eventNameField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        eventNameField.setForeground(new java.awt.Color(255, 255, 255));
+        eventNameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eventNameFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel11.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("Date Start:");
+
+        createEvent_clear.setBackground(new java.awt.Color(153, 102, 0));
+        createEvent_clear.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        createEvent_clear.setForeground(new java.awt.Color(255, 255, 255));
+        createEvent_clear.setText("CLEAR");
+        createEvent_clear.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        createEvent_clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createEvent_clearActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel12.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setText("Time:");
+
+        jLabel13.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel13.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setText("Date End:");
+
+        jLabel14.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel14.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("Time:");
+
         javax.swing.GroupLayout DBlue_panel3Layout = new javax.swing.GroupLayout(DBlue_panel3);
         DBlue_panel3.setLayout(DBlue_panel3Layout);
         DBlue_panel3Layout.setHorizontalGroup(
             DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DBlue_panel3Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DBlue_panel3Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(createEvent_submit)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(createEvent_cancel))
-                    .addGroup(DBlue_panel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(createEvent_category, javax.swing.GroupLayout.Alignment.LEADING, 0, 256, Short.MAX_VALUE)
-                                .addComponent(createEvent_type, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(createEvent_dateTime, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(createEvent_location, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-                            .addComponent(createEvent_title))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(startdateChooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(locationField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(eventTypeComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 245, Short.MAX_VALUE)
+                                .addComponent(eventNameField, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(startTimeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(DBlue_panel3Layout.createSequentialGroup()
+                        .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(endTimeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(DBlue_panel3Layout.createSequentialGroup()
+                                    .addComponent(createEvent_submit)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(createEvent_cancel)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(createEvent_clear, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(enddateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(20, 20, 20))
         );
         DBlue_panel3Layout.setVerticalGroup(
             DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panel3Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(32, 32, 32)
                 .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createEvent_title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(10, 10, 10)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(eventNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createEvent_location, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(24, 24, 24)
+                    .addComponent(jLabel6)
+                    .addComponent(eventTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(createEvent_category, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel10)
+                    .addComponent(locationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel11)
+                    .addComponent(startdateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(createEvent_type, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel12)
+                    .addComponent(startTimeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addComponent(enddateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(endTimeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(createEvent_dateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createEvent_submit)
-                    .addComponent(createEvent_cancel))
-                .addContainerGap(28, Short.MAX_VALUE))
+                    .addComponent(createEvent_cancel)
+                    .addComponent(createEvent_clear))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout DBlue_panelLayout = new javax.swing.GroupLayout(DBlue_panel);
@@ -322,54 +372,82 @@ public class createEvent extends javax.swing.JFrame {
         DBlue_panelLayout.setHorizontalGroup(
             DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DBlue_panelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(DBlue_panel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(DBlue_panelLayout.createSequentialGroup()
                 .addGroup(DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DBlue_panelLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel1))
+                        .addContainerGap()
+                        .addComponent(DBlue_panel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(DBlue_panelLayout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(DBlue_panelLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         DBlue_panelLayout.setVerticalGroup(
             DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DBlue_panelLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
                 .addComponent(DBlue_panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
-        getContentPane().add(DBlue_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 540));
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 410, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(DBlue_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(9, Short.MAX_VALUE)))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 550, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(DBlue_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 550));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void createEvent_titleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvent_titleActionPerformed
+    private void locationFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_createEvent_titleActionPerformed
-
-    private void createEvent_locationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvent_locationActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_createEvent_locationActionPerformed
+    }//GEN-LAST:event_locationFieldActionPerformed
 
     private void createEvent_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvent_cancelActionPerformed
-        adminDashboard.main(args);
-        dispose();
+        ((JFrame) SwingUtilities.getWindowAncestor(createEvent_cancel)).dispose();
     }//GEN-LAST:event_createEvent_cancelActionPerformed
 
-    private void createEvent_categoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvent_categoryActionPerformed
-       
-        
-    }//GEN-LAST:event_createEvent_categoryActionPerformed
+    private void eventNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventNameFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eventNameFieldActionPerformed
+
+    private void createEvent_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvent_clearActionPerformed
+        eventNameField.setText("");
+        locationField.setText("");
+        eventTypeComboBox.setSelectedIndex(0); // assuming index 0 is "-- Select Event Type --"
+        startdateChooser.setDate(null);
+        enddateChooser.setDate(null);
+
+        // Reset time spinners to current time or any default time
+        startTimeSpinner.setValue(new java.util.Date());
+        endTimeSpinner.setValue(new java.util.Date());
+    }//GEN-LAST:event_createEvent_clearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -413,25 +491,31 @@ public class createEvent extends javax.swing.JFrame {
     private javax.swing.JPanel DBlue_panel2;
     private javax.swing.JPanel DBlue_panel3;
     private javax.swing.JButton createEvent_cancel;
-    private javax.swing.JComboBox<String> createEvent_category;
-    private javax.swing.JSpinner createEvent_dateTime;
-    private javax.swing.JTextField createEvent_location;
+    private javax.swing.JButton createEvent_clear;
     private javax.swing.JButton createEvent_submit;
-    private javax.swing.JTextField createEvent_title;
-    private javax.swing.JComboBox<String> createEvent_type;
+    private javax.swing.JSpinner endTimeSpinner;
+    private com.toedter.calendar.JDateChooser enddateChooser;
+    private javax.swing.JTextField eventNameField;
+    private javax.swing.JComboBox<String> eventTypeComboBox;
     private javax.swing.JTable event_table;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField locationField;
     private javax.swing.JButton organizer_delete;
     private javax.swing.JButton organizer_edit;
     private javax.swing.JButton organizer_new;
     private javax.swing.JButton organizer_poster;
     private javax.swing.JButton organzier_viewstudents;
+    private javax.swing.JSpinner startTimeSpinner;
+    private com.toedter.calendar.JDateChooser startdateChooser;
     // End of variables declaration//GEN-END:variables
 }
