@@ -381,12 +381,12 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="startdateChooser" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="locationField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="eventTypeComboBox" alignment="0" pref="245" max="32767" attributes="0"/>
-                                          <Component id="eventNameField" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jDateChooserStart" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtLocation" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="comboEventType" alignment="0" pref="245" max="32767" attributes="0"/>
+                                          <Component id="txtEventName" alignment="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="startTimeSpinner" min="-2" pref="130" max="-2" attributes="0"/>
+                                      <Component id="spinnerStartTime" min="-2" pref="130" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -396,7 +396,7 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="endTimeSpinner" min="-2" pref="130" max="-2" attributes="0"/>
+                                      <Component id="spinnerEndTime" min="-2" pref="130" max="-2" attributes="0"/>
                                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                           <Group type="102" attributes="0">
                                               <Component id="createEvent_submit" min="-2" max="-2" attributes="0"/>
@@ -405,7 +405,7 @@
                                               <EmptySpace max="32767" attributes="0"/>
                                               <Component id="createEvent_clear" min="-2" pref="70" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="enddateChooser" min="-2" pref="245" max="-2" attributes="0"/>
+                                          <Component id="jDateChooserEnd" min="-2" pref="245" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -420,37 +420,37 @@
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel5" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                              <Component id="eventNameField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtEventName" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="eventTypeComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="comboEventType" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="locationField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtLocation" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                              <Component id="startdateChooser" min="-2" max="-2" attributes="0"/>
+                              <Component id="jDateChooserStart" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="startTimeSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spinnerStartTime" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                              <Component id="enddateChooser" min="-2" max="-2" attributes="0"/>
+                              <Component id="jDateChooserEnd" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="endTimeSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spinnerEndTime" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -464,7 +464,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="locationField">
+                <Component class="javax.swing.JTextField" name="txtLocation">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
@@ -477,7 +477,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="locationFieldActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtLocationActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel5">
@@ -526,6 +526,9 @@
                       </Border>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createEvent_submitActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="createEvent_cancel">
                   <Properties>
@@ -549,7 +552,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createEvent_cancelActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="eventTypeComboBox">
+                <Component class="javax.swing.JComboBox" name="comboEventType">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="49">
@@ -628,7 +631,7 @@
                     <Property name="text" type="java.lang.String" value="Location:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="eventNameField">
+                <Component class="javax.swing.JTextField" name="txtEventName">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
@@ -641,7 +644,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eventNameFieldActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEventNameActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel11">
@@ -658,7 +661,7 @@
                     <Property name="text" type="java.lang.String" value="Date Start:"/>
                   </Properties>
                 </Component>
-                <Component class="com.toedter.calendar.JDateChooser" name="startdateChooser">
+                <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserStart">
                 </Component>
                 <Component class="javax.swing.JButton" name="createEvent_clear">
                   <Properties>
@@ -724,11 +727,11 @@
                     <Property name="text" type="java.lang.String" value="Time:"/>
                   </Properties>
                 </Component>
-                <Component class="com.toedter.calendar.JDateChooser" name="enddateChooser">
+                <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserEnd">
                 </Component>
-                <Component class="javax.swing.JSpinner" name="startTimeSpinner">
+                <Component class="javax.swing.JSpinner" name="spinnerStartTime">
                 </Component>
-                <Component class="javax.swing.JSpinner" name="endTimeSpinner">
+                <Component class="javax.swing.JSpinner" name="spinnerEndTime">
                 </Component>
               </SubComponents>
             </Container>

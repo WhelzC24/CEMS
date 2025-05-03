@@ -4,8 +4,11 @@
  */
 package cems;
 
+import java.sql.*;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SwingUtilities;
@@ -16,22 +19,20 @@ import javax.swing.SwingUtilities;
  */
 public class createEvent extends javax.swing.JFrame {
 
-    private String[] args;
-
     /**
      * Creates new form CreateEvent
      */
     public createEvent() {
         initComponents();
-        startTimeSpinner.setModel(new SpinnerDateModel());
-        JSpinner.DateEditor startEditor = new JSpinner.DateEditor(startTimeSpinner, "hh:mm a");
-        startTimeSpinner.setEditor(startEditor);
-        startTimeSpinner.setValue(new Date());
+        spinnerStartTime.setModel(new SpinnerDateModel());
+        JSpinner.DateEditor startEditor = new JSpinner.DateEditor(spinnerStartTime, "hh:mm a");
+        spinnerStartTime.setEditor(startEditor);
+        spinnerStartTime.setValue(new Date());
 
-        endTimeSpinner.setModel(new SpinnerDateModel());
-        JSpinner.DateEditor endEditor = new JSpinner.DateEditor(endTimeSpinner, "hh:mm a");
-        endTimeSpinner.setEditor(endEditor);
-        endTimeSpinner.setValue(new Date());
+        spinnerEndTime.setModel(new SpinnerDateModel());
+        JSpinner.DateEditor endEditor = new JSpinner.DateEditor(spinnerEndTime, "hh:mm a");
+        spinnerEndTime.setEditor(endEditor);
+        spinnerEndTime.setValue(new Date());
     }
 
     /**
@@ -57,23 +58,23 @@ public class createEvent extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         DBlue_panel3 = new javax.swing.JPanel();
-        locationField = new javax.swing.JTextField();
+        txtLocation = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         createEvent_submit = new javax.swing.JButton();
         createEvent_cancel = new javax.swing.JButton();
-        eventTypeComboBox = new javax.swing.JComboBox<>();
+        comboEventType = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
-        eventNameField = new javax.swing.JTextField();
+        txtEventName = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        startdateChooser = new com.toedter.calendar.JDateChooser();
+        jDateChooserStart = new com.toedter.calendar.JDateChooser();
         createEvent_clear = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        enddateChooser = new com.toedter.calendar.JDateChooser();
-        startTimeSpinner = new javax.swing.JSpinner();
-        endTimeSpinner = new javax.swing.JSpinner();
+        jDateChooserEnd = new com.toedter.calendar.JDateChooser();
+        spinnerStartTime = new javax.swing.JSpinner();
+        spinnerEndTime = new javax.swing.JSpinner();
 
         DBlue_panel1.setBackground(new java.awt.Color(98, 98, 130));
 
@@ -205,12 +206,12 @@ public class createEvent extends javax.swing.JFrame {
 
         DBlue_panel3.setBackground(new java.awt.Color(130, 130, 146));
 
-        locationField.setBackground(new java.awt.Color(0, 0, 0));
-        locationField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        locationField.setForeground(new java.awt.Color(255, 255, 255));
-        locationField.addActionListener(new java.awt.event.ActionListener() {
+        txtLocation.setBackground(new java.awt.Color(0, 0, 0));
+        txtLocation.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtLocation.setForeground(new java.awt.Color(255, 255, 255));
+        txtLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                locationFieldActionPerformed(evt);
+                txtLocationActionPerformed(evt);
             }
         });
 
@@ -229,6 +230,11 @@ public class createEvent extends javax.swing.JFrame {
         createEvent_submit.setForeground(new java.awt.Color(255, 255, 255));
         createEvent_submit.setText("SUBMIT");
         createEvent_submit.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        createEvent_submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createEvent_submitActionPerformed(evt);
+            }
+        });
 
         createEvent_cancel.setBackground(new java.awt.Color(102, 0, 0));
         createEvent_cancel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -241,20 +247,20 @@ public class createEvent extends javax.swing.JFrame {
             }
         });
 
-        eventTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Select Event Type --", "App Launch", "Art Exhibit", "Author Talk", "Awareness Campaign", "Blood Donation Drive", "Book Fair", "Career Talk", "Charity Event", "Clean-Up Drive", "Club Meeting", "Coding Competition", "Community Service", "Concert", "Cultural Festival", "Dance Party", "Debate Competition", "Entrepreneurhip Pitch", "Essay Writing Contest", "Fashion Show", "Fitness Challenge", "Food Festival", "Game Night", "Guest Lecture", "Hackathon", "Health Awareness Camp", "Innovation Challenge", "Internship Info Session", "Job Fair", "Marathon", "Movie Night", "Networking Event", "Open Mic Night", "Poetry Reading", "Research Presentation", "Resume Workshop", "Robotics Demo", "Seminar", "Sports Tournament", "Storytelling Session", "Student Assembly", "Student Council Election", "Talent Show", "Tech Expo", "Thesis Defense", "Tree Planting", "Workshop", "Yoga Session", "Zumba Class" }));
-        eventTypeComboBox.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        comboEventType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Select Event Type --", "App Launch", "Art Exhibit", "Author Talk", "Awareness Campaign", "Blood Donation Drive", "Book Fair", "Career Talk", "Charity Event", "Clean-Up Drive", "Club Meeting", "Coding Competition", "Community Service", "Concert", "Cultural Festival", "Dance Party", "Debate Competition", "Entrepreneurhip Pitch", "Essay Writing Contest", "Fashion Show", "Fitness Challenge", "Food Festival", "Game Night", "Guest Lecture", "Hackathon", "Health Awareness Camp", "Innovation Challenge", "Internship Info Session", "Job Fair", "Marathon", "Movie Night", "Networking Event", "Open Mic Night", "Poetry Reading", "Research Presentation", "Resume Workshop", "Robotics Demo", "Seminar", "Sports Tournament", "Storytelling Session", "Student Assembly", "Student Council Election", "Talent Show", "Tech Expo", "Thesis Defense", "Tree Planting", "Workshop", "Yoga Session", "Zumba Class" }));
+        comboEventType.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel10.setBackground(new java.awt.Color(0, 0, 0));
         jLabel10.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Location:");
 
-        eventNameField.setBackground(new java.awt.Color(0, 0, 0));
-        eventNameField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        eventNameField.setForeground(new java.awt.Color(255, 255, 255));
-        eventNameField.addActionListener(new java.awt.event.ActionListener() {
+        txtEventName.setBackground(new java.awt.Color(0, 0, 0));
+        txtEventName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtEventName.setForeground(new java.awt.Color(255, 255, 255));
+        txtEventName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eventNameFieldActionPerformed(evt);
+                txtEventNameActionPerformed(evt);
             }
         });
 
@@ -306,18 +312,18 @@ public class createEvent extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(startdateChooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(locationField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(eventTypeComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 245, Short.MAX_VALUE)
-                                .addComponent(eventNameField, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(startTimeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jDateChooserStart, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtLocation, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(comboEventType, javax.swing.GroupLayout.Alignment.LEADING, 0, 245, Short.MAX_VALUE)
+                                .addComponent(txtEventName, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(spinnerStartTime, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(DBlue_panel3Layout.createSequentialGroup()
                         .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(endTimeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spinnerEndTime, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(DBlue_panel3Layout.createSequentialGroup()
                                     .addComponent(createEvent_submit)
@@ -325,7 +331,7 @@ public class createEvent extends javax.swing.JFrame {
                                     .addComponent(createEvent_cancel)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(createEvent_clear, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(enddateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jDateChooserEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(20, 20, 20))
         );
         DBlue_panel3Layout.setVerticalGroup(
@@ -334,31 +340,31 @@ public class createEvent extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(eventNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEventName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(eventTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboEventType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(locationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel11)
-                    .addComponent(startdateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooserStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(startTimeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spinnerStartTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
-                    .addComponent(enddateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooserEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(endTimeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spinnerEndTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createEvent_submit)
@@ -425,29 +431,75 @@ public class createEvent extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void locationFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationFieldActionPerformed
+    private void txtLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLocationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_locationFieldActionPerformed
+    }//GEN-LAST:event_txtLocationActionPerformed
 
     private void createEvent_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvent_cancelActionPerformed
         ((JFrame) SwingUtilities.getWindowAncestor(createEvent_cancel)).dispose();
     }//GEN-LAST:event_createEvent_cancelActionPerformed
 
-    private void eventNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventNameFieldActionPerformed
+    private void txtEventNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEventNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_eventNameFieldActionPerformed
+    }//GEN-LAST:event_txtEventNameActionPerformed
 
     private void createEvent_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvent_clearActionPerformed
-        eventNameField.setText("");
-        locationField.setText("");
-        eventTypeComboBox.setSelectedIndex(0); // assuming index 0 is "-- Select Event Type --"
-        startdateChooser.setDate(null);
-        enddateChooser.setDate(null);
+        txtEventName.setText("");
+        txtLocation.setText("");
+        comboEventType.setSelectedIndex(0); // assuming index 0 is "-- Select Event Type --"
+        jDateChooserStart.setDate(null);
+        jDateChooserEnd.setDate(null);
 
         // Reset time spinners to current time or any default time
-        startTimeSpinner.setValue(new java.util.Date());
-        endTimeSpinner.setValue(new java.util.Date());
+        spinnerStartTime.setValue(new java.util.Date());
+        spinnerEndTime.setValue(new java.util.Date());
     }//GEN-LAST:event_createEvent_clearActionPerformed
+
+    private void createEvent_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvent_submitActionPerformed
+        String eventName = txtEventName.getText().trim();
+        String eventType = comboEventType.getSelectedItem().toString();
+        String location = txtLocation.getText().trim();
+
+        // Get selected values
+        Date dateStart = jDateChooserStart.getDate();
+        Date dateEnd = jDateChooserEnd.getDate();
+        Date timeStart = (Date) spinnerStartTime.getValue();
+        Date timeEnd = (Date) spinnerEndTime.getValue();
+
+        // Validation
+        if (eventName.isEmpty() || location.isEmpty() || dateStart == null || dateEnd == null || timeStart == null || timeEnd == null) {
+            JOptionPane.showMessageDialog(null, "Please fill in all required fields.");
+            return;
+        }
+
+        // Merge date and time into full datetime
+        Calendar calStart = Calendar.getInstance();
+        calStart.setTime(dateStart);
+        Calendar calStartTime = Calendar.getInstance();
+        calStartTime.setTime(timeStart);
+        calStart.set(Calendar.HOUR_OF_DAY, calStartTime.get(Calendar.HOUR_OF_DAY));
+        calStart.set(Calendar.MINUTE, calStartTime.get(Calendar.MINUTE));
+        calStart.set(Calendar.SECOND, calStartTime.get(Calendar.SECOND));
+        Timestamp date_start = new Timestamp(calStart.getTimeInMillis());
+
+        Calendar calEnd = Calendar.getInstance();
+        calEnd.setTime(dateEnd);
+        Calendar calEndTime = Calendar.getInstance();
+        calEndTime.setTime(timeEnd);
+        calEnd.set(Calendar.HOUR_OF_DAY, calEndTime.get(Calendar.HOUR_OF_DAY));
+        calEnd.set(Calendar.MINUTE, calEndTime.get(Calendar.MINUTE));
+        calEnd.set(Calendar.SECOND, calEndTime.get(Calendar.SECOND));
+        Timestamp date_end = new Timestamp(calEnd.getTimeInMillis());
+
+        // Insert into DB
+        boolean success = DBHelper.insertEvent(eventName, eventType, location, date_start, date_end);
+        if (success) {
+            JOptionPane.showMessageDialog(null, "Event created successfully!");
+            ((JFrame) SwingUtilities.getWindowAncestor(createEvent_submit)).dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Failed to create event.");
+        }
+    }//GEN-LAST:event_createEvent_submitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -490,14 +542,13 @@ public class createEvent extends javax.swing.JFrame {
     private javax.swing.JPanel DBlue_panel1;
     private javax.swing.JPanel DBlue_panel2;
     private javax.swing.JPanel DBlue_panel3;
+    private javax.swing.JComboBox<String> comboEventType;
     private javax.swing.JButton createEvent_cancel;
     private javax.swing.JButton createEvent_clear;
     private javax.swing.JButton createEvent_submit;
-    private javax.swing.JSpinner endTimeSpinner;
-    private com.toedter.calendar.JDateChooser enddateChooser;
-    private javax.swing.JTextField eventNameField;
-    private javax.swing.JComboBox<String> eventTypeComboBox;
     private javax.swing.JTable event_table;
+    private com.toedter.calendar.JDateChooser jDateChooserEnd;
+    private com.toedter.calendar.JDateChooser jDateChooserStart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -509,13 +560,14 @@ public class createEvent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField locationField;
     private javax.swing.JButton organizer_delete;
     private javax.swing.JButton organizer_edit;
     private javax.swing.JButton organizer_new;
     private javax.swing.JButton organizer_poster;
     private javax.swing.JButton organzier_viewstudents;
-    private javax.swing.JSpinner startTimeSpinner;
-    private com.toedter.calendar.JDateChooser startdateChooser;
+    private javax.swing.JSpinner spinnerEndTime;
+    private javax.swing.JSpinner spinnerStartTime;
+    private javax.swing.JTextField txtEventName;
+    private javax.swing.JTextField txtLocation;
     // End of variables declaration//GEN-END:variables
 }

@@ -91,18 +91,18 @@ public class userDashboard extends javax.swing.JFrame {
         DBlue_panel1.setBackground(new java.awt.Color(98, 98, 130));
 
         userEventTable.setAutoCreateRowSorter(true);
-        userEventTable.setBackground(new java.awt.Color(20, 20, 20));
+        userEventTable.setBackground(new java.awt.Color(0, 0, 0));
         userEventTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        userEventTable.setForeground(new java.awt.Color(51, 51, 51));
+        userEventTable.setForeground(new java.awt.Color(255, 255, 255));
         userEventTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "No.", "Events", "Event Type", "Location", "Date", "Start Time", "End Time", "Registered"
+                "No.", "Events", "Event Type", "Location", "Start Time", "End Time", "Registered"
             }
         ));
         userEventTable.setFocusable(false);

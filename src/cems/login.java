@@ -265,9 +265,6 @@ public class login extends javax.swing.JFrame {
     private void register_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_buttonActionPerformed
         register reg = new register();
         this.setEnabled(false);
-    
-        // Set the new window to always be on top
-        reg.setAlwaysOnTop(true);
 
         reg.setVisible(true);
 
