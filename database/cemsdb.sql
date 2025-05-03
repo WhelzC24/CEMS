@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2025 at 09:00 PM
+-- Generation Time: May 03, 2025 at 01:12 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -22,6 +22,33 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `cemsdb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `cemsdb`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `events`
+--
+
+DROP TABLE IF EXISTS `events`;
+CREATE TABLE `events` (
+  `id` int(11) NOT NULL,
+  `event_no` int(11) NOT NULL,
+  `event_name` varchar(100) DEFAULT NULL,
+  `event_type` varchar(50) DEFAULT NULL,
+  `location` varchar(100) DEFAULT NULL,
+  `date_start` datetime DEFAULT NULL,
+  `date_end` datetime DEFAULT NULL,
+  `participants` text DEFAULT NULL,
+  `registered` varchar(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`id`, `event_no`, `event_name`, `event_type`, `location`, `date_start`, `date_end`, `participants`, `registered`) VALUES
+(1, 1, 'Basketball', 'Sports Tournament', 'Covered Court', '2025-05-05 08:00:00', '2025-05-05 17:00:00', 'jhon,jack', 'true'),
+(2, 2, 'VolleyBall', 'Sports Tournament', 'Covered Court', '2025-05-06 20:48:00', '2025-05-06 17:48:57', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -45,7 +72,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`student_id`, `name`, `username`, `email`, `gender`, `role`, `password`) VALUES
-('', 'Creek', 'creek', 'creek123', 'Other', 'Guest', 'creek143'),
+('', 'Jack', 'jack', 'jzck124@gmail.com', 'Male', 'Guest', 'jack143'),
 ('121444', 'Jhon', 'jhon', 'jhon123@gmail.com', 'Male', 'Student', 'jhon143'),
 ('717224', 'Whelzcy Mark Laniba', 'whelz', 'whelz123@gmail.com', 'Male', 'Admin', 'whelz14390');
 
@@ -54,10 +81,26 @@ INSERT INTO `users` (`student_id`, `name`, `username`, `email`, `gender`, `role`
 --
 
 --
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD UNIQUE KEY `student_id` (`student_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `events`
+--
+ALTER TABLE `events`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
