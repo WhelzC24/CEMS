@@ -421,33 +421,74 @@ public class register extends javax.swing.JFrame {
         String studentID = "";
         if (role.equalsIgnoreCase("Student") || role.equalsIgnoreCase("Faculty Staff") || role.equalsIgnoreCase("Admin")) {
             studentID = register_id.getText().trim();
+
             if (studentID.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Please enter an ID for the selected role.");
                 return;
             }
 
-            // ❗ Check for duplicate ID
+            // Check: student ID must be digits only (or alphanumeric, adjust if needed)
+            if (!studentID.matches("\\d+")) {
+                JOptionPane.showMessageDialog(null, "Student ID must contain only digits.");
+                return;
+            }
+
+            // Check: student ID must be exactly 6 digits
+            if (studentID.length() != 6) {
+                JOptionPane.showMessageDialog(null, "Student ID must be exactly 9 digits.");
+                return;
+            }
+
+            // Check for duplicate ID
             if (DBHelper.studentIDExists(studentID)) {
                 JOptionPane.showMessageDialog(null, "The ID '" + studentID + "' is already registered.", "Duplicate ID", JOptionPane.WARNING_MESSAGE);
                 return;
             }
         }
 
+        // Required field check
         if (name.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty() || gender.isEmpty() || role.equals("--Select Role--")) {
-            JOptionPane.showMessageDialog(null, "Please fill in all fields.");
+            JOptionPane.showMessageDialog(null, "Please fill in all fields.", "Missing Fields", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        boolean success = DBHelper.insertUser(studentID, name, username, email, gender, role, password);
-        if (success) {
-            JOptionPane.showMessageDialog(null, "User registered successfully!");
-            new login().setVisible(true);
-            ((JFrame) SwingUtilities.getWindowAncestor(Register_submit)).dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Registration failed.");
+        // Username length check
+        if (username.length() < 4) {
+            JOptionPane.showMessageDialog(null, "Username must be at least 4 characters long.", "Invalid Username", JOptionPane.WARNING_MESSAGE);
+            return;
         }
 
-        ((JFrame) SwingUtilities.getWindowAncestor(Register_submit)).dispose();
+        // Password length check
+        if (password.length() < 6) {
+            JOptionPane.showMessageDialog(null, "Password must be at least 6 characters long.", "Weak Password", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Email format check (basic)
+        if (!email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid email address.", "Invalid Email", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Check for duplicate username/email
+        if (DBHelper.usernameExists(username)) {
+            JOptionPane.showMessageDialog(null, "The username '" + username + "' is already taken.", "Duplicate Username", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (DBHelper.emailExists(email)) {
+            JOptionPane.showMessageDialog(null, "The email '" + email + "' is already registered.", "Duplicate Email", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Insert user
+        boolean success = DBHelper.insertUser(studentID, name, username, email, gender, role, password);
+        if (success) {
+            JOptionPane.showMessageDialog(null, "User registered successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            ((JFrame) SwingUtilities.getWindowAncestor(Register_submit)).dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Registration failed. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_Register_submitActionPerformed
 
     private void Cbox_roleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cbox_roleActionPerformed

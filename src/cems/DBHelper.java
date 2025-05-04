@@ -115,6 +115,32 @@ public class DBHelper {
         }
     }
     
+    public static boolean usernameExists(String username) {
+        String sql = "SELECT 1 FROM users WHERE username = ?";
+        try (Connection conn = connect();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            return rs.next(); // Username already exists
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public static boolean emailExists(String email) {
+        String sql = "SELECT 1 FROM users WHERE email = ?";
+        try (Connection conn = connect();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            return rs.next(); // Email already exists
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
     //delete user
     public static boolean deleteUser(String studentID) {
         String sql = "DELETE FROM users WHERE student_id = ?";
