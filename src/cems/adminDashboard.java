@@ -107,7 +107,12 @@ public class adminDashboard extends javax.swing.JFrame {
         eventTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         eventTable.setFocusable(false);
         eventTable.setRowHeight(30);
-        eventTable.setSelectionForeground(new java.awt.Color(51, 51, 51));
+        eventTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        eventTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                eventTableMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(eventTable);
 
         organizer_new.setBackground(new java.awt.Color(37, 55, 30));
@@ -349,6 +354,17 @@ public class adminDashboard extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Failed to parse date/time data.");
         }
     }//GEN-LAST:event_organizer_editActionPerformed
+
+    private void eventTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eventTableMousePressed
+        // Disables click editing
+        if (evt.getClickCount() > 1) {
+            int row = eventTable.rowAtPoint(evt.getPoint());
+            int column = eventTable.columnAtPoint(evt.getPoint());
+            
+            // Cancel the editing on double-click
+            eventTable.getCellEditor(row, column).stopCellEditing();
+        }
+    }//GEN-LAST:event_eventTableMousePressed
 
     private void loadEventsToAdminTable() {
         ResultSet rs = DBHelper.getAllEvents();

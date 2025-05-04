@@ -105,7 +105,12 @@ public class usersDashboard extends javax.swing.JFrame {
         usersTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         usersTable.setFocusable(false);
         usersTable.setRowHeight(30);
-        usersTable.setSelectionForeground(new java.awt.Color(51, 51, 51));
+        usersTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        usersTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                usersTableMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(usersTable);
 
         student_delete.setBackground(new java.awt.Color(102, 51, 0));
@@ -257,6 +262,17 @@ public class usersDashboard extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         loadUsersToTable();
     }//GEN-LAST:event_formWindowOpened
+
+    private void usersTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usersTableMousePressed
+        // Disables click editing
+        if (evt.getClickCount() > 1) {
+            int row = usersTable.rowAtPoint(evt.getPoint());
+            int column = usersTable.columnAtPoint(evt.getPoint());
+            
+            // Cancel the editing on double-click
+            usersTable.getCellEditor(row, column).stopCellEditing();
+        }
+    }//GEN-LAST:event_usersTableMousePressed
 
     private void loadUsersToTable() {
         // Assuming 'currentUsername' holds the logged-in admin's username

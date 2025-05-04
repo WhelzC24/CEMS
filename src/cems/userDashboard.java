@@ -100,7 +100,12 @@ public class userDashboard extends javax.swing.JFrame {
         userEventTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         userEventTable.setFocusable(false);
         userEventTable.setRowHeight(30);
-        userEventTable.setSelectionForeground(new java.awt.Color(51, 51, 51));
+        userEventTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        userEventTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                userEventTableMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(userEventTable);
 
         registerEvent_user.setBackground(new java.awt.Color(37, 55, 30));
@@ -211,6 +216,17 @@ public class userDashboard extends javax.swing.JFrame {
         new login().setVisible(true);
         ((JFrame) SwingUtilities.getWindowAncestor(logout)).dispose();
     }//GEN-LAST:event_logoutActionPerformed
+
+    private void userEventTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userEventTableMousePressed
+        // Disables click editing
+        if (evt.getClickCount() > 1) {
+            int row = userEventTable.rowAtPoint(evt.getPoint());
+            int column = userEventTable.columnAtPoint(evt.getPoint());
+            
+            // Cancel the editing on double-click
+            userEventTable.getCellEditor(row, column).stopCellEditing();
+        }
+    }//GEN-LAST:event_userEventTableMousePressed
 
     private void loadEventsToUserTable(String currentUsername) {
         ResultSet rs = DBHelper.getAllEvents();
