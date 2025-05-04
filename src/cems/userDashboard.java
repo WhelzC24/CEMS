@@ -4,11 +4,14 @@
  */
 package cems;
 
+import java.awt.Component;
 import java.sql.*;
 import java.util.Arrays;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,6 +28,20 @@ public class userDashboard extends javax.swing.JFrame {
     public userDashboard() {
         initComponents();
         loadEventsToUserTable(currentUsername);
+        
+        userEventTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                                                           boolean hasFocus, int row, int column) {
+                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                if (value != null) {
+                    setToolTipText(value.toString());  // Show cell content as tooltip
+                } else {
+                    setToolTipText(null);
+                }
+                return c;
+            }
+        });
     }
 
     /**
@@ -80,7 +97,9 @@ public class userDashboard extends javax.swing.JFrame {
                 "No.", "Events", "Event Type", "Location", "Start Time", "End Time", "Registered"
             }
         ));
+        userEventTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         userEventTable.setFocusable(false);
+        userEventTable.setRowHeight(30);
         userEventTable.setSelectionForeground(new java.awt.Color(51, 51, 51));
         jScrollPane1.setViewportView(userEventTable);
 

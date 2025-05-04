@@ -4,10 +4,13 @@
  */
 package cems;
 
+import java.awt.Component;
 import java.sql.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,6 +26,20 @@ public class usersDashboard extends javax.swing.JFrame {
      */
     public usersDashboard() {
         initComponents();
+        
+        usersTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                                                           boolean hasFocus, int row, int column) {
+                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                if (value != null) {
+                    setToolTipText(value.toString());  // Show cell content as tooltip
+                } else {
+                    setToolTipText(null);
+                }
+                return c;
+            }
+        });
     }
 
     /**
@@ -85,7 +102,9 @@ public class usersDashboard extends javax.swing.JFrame {
                 "Student ID", "Name", "Username", "Email", "Gender", "Role"
             }
         ));
+        usersTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         usersTable.setFocusable(false);
+        usersTable.setRowHeight(30);
         usersTable.setSelectionForeground(new java.awt.Color(51, 51, 51));
         jScrollPane1.setViewportView(usersTable);
 
