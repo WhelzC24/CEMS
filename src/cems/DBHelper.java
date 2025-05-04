@@ -239,4 +239,26 @@ public class DBHelper {
             return false;
         }
     }
+    
+    public static boolean updateEvent(int eventNo, String name, String type, String location, Timestamp dateStart, Timestamp dateEnd) {
+        String sql = "UPDATE events SET event_name = ?, event_type = ?, location = ?, date_start = ?, date_end = ? WHERE event_no = ?";
+
+        try (Connection conn = connect(); // Establish connection
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            // Set the parameters for the query
+            ps.setString(1, name);
+            ps.setString(2, type);
+            ps.setString(3, location);
+            ps.setTimestamp(4, dateStart);
+            ps.setTimestamp(5, dateEnd);
+            ps.setInt(6, eventNo); // Use the event number as the identifier
+
+            // Execute the update query
+            return ps.executeUpdate() > 0; // Returns true if one or more rows were updated
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // Return false if the update failed
+        }
+    }
 }
