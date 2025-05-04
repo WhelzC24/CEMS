@@ -6,6 +6,7 @@ package cems;
 
 import java.awt.Component;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -232,9 +233,17 @@ public class userDashboard extends javax.swing.JFrame {
         ResultSet rs = DBHelper.getAllEvents();
         DefaultTableModel model = (DefaultTableModel) userEventTable.getModel();
         model.setRowCount(0);
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy hh:mm a");
 
         try {
             while (rs.next()) {
+                Timestamp start = rs.getTimestamp("date_start");
+                Timestamp end = rs.getTimestamp("date_end");
+
+                String formattedStart = formatter.format(start);
+                String formattedEnd = formatter.format(end);
+                
                 String participants = rs.getString("participants");
                 boolean isRegistered = participants != null && Arrays.asList(participants.split(",")).contains(currentUsername);
 
@@ -243,8 +252,8 @@ public class userDashboard extends javax.swing.JFrame {
                     rs.getString("event_name"),
                     rs.getString("event_type"),
                     rs.getString("location"),
-                    rs.getTimestamp("date_start"),
-                    rs.getTimestamp("date_end"),
+                    formattedStart,
+                    formattedEnd,
                     isRegistered ? "Yes" : "No"
                 };
                 model.addRow(row);
