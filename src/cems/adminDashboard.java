@@ -4,13 +4,18 @@
  */
 package cems;
 
+import java.awt.Component;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -27,6 +32,20 @@ public class adminDashboard extends javax.swing.JFrame {
         initComponents();
         loadEventsToAdminTable();
         sortDefault();
+        
+        eventTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                                                           boolean hasFocus, int row, int column) {
+                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                if (value != null) {
+                    setToolTipText(value.toString());  // Show cell content as tooltip
+                } else {
+                    setToolTipText(null);
+                }
+                return c;
+            }
+        });
     }
 
     /**
@@ -43,7 +62,7 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         DBlue_panel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        adminEventTable = new javax.swing.JTable();
+        eventTable = new javax.swing.JTable();
         organizer_new = new javax.swing.JButton();
         organizer_edit = new javax.swing.JButton();
         organizer_delete = new javax.swing.JButton();
@@ -70,11 +89,11 @@ public class adminDashboard extends javax.swing.JFrame {
 
         DBlue_panel1.setBackground(new java.awt.Color(98, 98, 130));
 
-        adminEventTable.setAutoCreateRowSorter(true);
-        adminEventTable.setBackground(new java.awt.Color(0, 0, 0));
-        adminEventTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        adminEventTable.setForeground(new java.awt.Color(255, 255, 255));
-        adminEventTable.setModel(new javax.swing.table.DefaultTableModel(
+        eventTable.setAutoCreateRowSorter(true);
+        eventTable.setBackground(new java.awt.Color(0, 0, 0));
+        eventTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        eventTable.setForeground(new java.awt.Color(255, 255, 255));
+        eventTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -85,9 +104,11 @@ public class adminDashboard extends javax.swing.JFrame {
                 "No.", "Events", "Event Type", "Location", "Start Time", "End Time", "Participants"
             }
         ));
-        adminEventTable.setFocusable(false);
-        adminEventTable.setSelectionForeground(new java.awt.Color(51, 51, 51));
-        jScrollPane1.setViewportView(adminEventTable);
+        eventTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        eventTable.setFocusable(false);
+        eventTable.setRowHeight(30);
+        eventTable.setSelectionForeground(new java.awt.Color(51, 51, 51));
+        jScrollPane1.setViewportView(eventTable);
 
         organizer_new.setBackground(new java.awt.Color(37, 55, 30));
         organizer_new.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
@@ -105,6 +126,11 @@ public class adminDashboard extends javax.swing.JFrame {
         organizer_edit.setForeground(new java.awt.Color(255, 255, 255));
         organizer_edit.setText("Edit event");
         organizer_edit.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        organizer_edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                organizer_editActionPerformed(evt);
+            }
+        });
 
         organizer_delete.setBackground(new java.awt.Color(51, 0, 0));
         organizer_delete.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
@@ -242,10 +268,10 @@ public class adminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutActionPerformed
 
     private void organizer_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizer_deleteActionPerformed
-        int selectedRow = adminEventTable.getSelectedRow();
+        int selectedRow = eventTable.getSelectedRow();
         if (selectedRow != -1) {
             // Get the event_no from the selected row (assuming event_no is in column 0)
-            int eventNo = (int) adminEventTable.getValueAt(selectedRow, 0);
+            int eventNo = (int) eventTable.getValueAt(selectedRow, 0);
 
             int confirm = JOptionPane.showConfirmDialog(null,
                     "Are you sure you want to delete this event?",
@@ -265,20 +291,87 @@ public class adminDashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_organizer_deleteActionPerformed
 
-    private void loadEventsToAdminTable() {
-        ResultSet rs = DBHelper.getAllEvents();
-        DefaultTableModel model = (DefaultTableModel) adminEventTable.getModel();
-        model.setRowCount(0);
+    private void organizer_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizer_editActionPerformed
+        int selectedRow = eventTable.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select an event to edit.");
+            return;
+        }
 
         try {
+            // Get event details from the selected row in the table
+            int eventNo = Integer.parseInt(eventTable.getValueAt(selectedRow, 0).toString());
+            String title = eventTable.getValueAt(selectedRow, 1).toString();
+            String type = eventTable.getValueAt(selectedRow, 2).toString();
+            String location = eventTable.getValueAt(selectedRow, 3).toString();
+
+            // Get the merged datetime strings from the table
+            String dateTimeStartStr = eventTable.getValueAt(selectedRow, 4).toString(); // format: yyyy-MM-dd HH:mm:ss
+            String dateTimeEndStr = eventTable.getValueAt(selectedRow, 5).toString();
+
+            // Define the date/time format used in the table (you can adjust if needed)
+            SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy hh:mm a");
+
+            // Parse the datetime strings into java.util.Date objects
+            java.util.Date utilStart = sdf.parse(dateTimeStartStr);
+            java.util.Date utilEnd = sdf.parse(dateTimeEndStr);
+
+            // Convert to java.sql.Date and java.sql.Time for database compatibility
+            java.sql.Date sqlDateStart = new java.sql.Date(utilStart.getTime());
+            java.sql.Time sqlTimeStart = new java.sql.Time(utilStart.getTime());
+            java.sql.Date sqlDateEnd = new java.sql.Date(utilEnd.getTime());
+            java.sql.Time sqlTimeEnd = new java.sql.Time(utilEnd.getTime());
+
+            // Create an EditEventData object to pass to the editEvent form
+            EditEventData data = new EditEventData(eventNo, title, type, location, sqlDateStart, sqlTimeStart, sqlDateEnd, sqlTimeEnd);
+
+            // Create and display the editEvent form, passing the data for editing
+            editEvent event = new editEvent(this, data);
+
+            // Disable the parent window while editing
+            this.setEnabled(false);
+
+            // Show the editEvent form
+            event.setVisible(true);
+
+            // Add a window listener to re-enable the parent window and refresh the event list after closing the edit form
+            event.addWindowListener(new java.awt.event.WindowAdapter() {
+                public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                    setEnabled(true);  // Re-enable the parent window when the new window is closed
+                    setVisible(true);
+                    loadEventsToAdminTable();  // Reload events to the admin table
+                    sortDefault();             // Optionally, you can sort the table here as well
+                }
+            });
+
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Failed to parse date/time data.");
+        }
+    }//GEN-LAST:event_organizer_editActionPerformed
+
+    private void loadEventsToAdminTable() {
+        ResultSet rs = DBHelper.getAllEvents();
+        DefaultTableModel model = (DefaultTableModel) eventTable.getModel();
+        model.setRowCount(0);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy hh:mm a");
+        
+        try {
             while (rs.next()) {
+                Timestamp start = rs.getTimestamp("date_start");
+                Timestamp end = rs.getTimestamp("date_end");
+
+                String formattedStart = formatter.format(start);
+                String formattedEnd = formatter.format(end);
+                
                 Object[] row = {
                     rs.getInt("event_no"),
                     rs.getString("event_name"),
                     rs.getString("event_type"),
                     rs.getString("location"),
-                    rs.getTimestamp("date_start"),
-                    rs.getTimestamp("date_end"),
+                    formattedStart,
+                    formattedEnd,
                     rs.getString("participants")
                 };
                 model.addRow(row);
@@ -289,9 +382,9 @@ public class adminDashboard extends javax.swing.JFrame {
     }
     
     private void sortDefault() {
-        DefaultTableModel model = (DefaultTableModel) adminEventTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) eventTable.getModel();
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
-        adminEventTable.setRowSorter(sorter);
+        eventTable.setRowSorter(sorter);
 
         // Sort by event date column (index 4)
         sorter.setSortKeys(Arrays.asList(
@@ -344,7 +437,7 @@ public class adminDashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DBlue_panel;
     private javax.swing.JPanel DBlue_panel1;
-    private javax.swing.JTable adminEventTable;
+    private javax.swing.JTable eventTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
