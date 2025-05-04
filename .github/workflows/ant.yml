@@ -20,6 +20,6 @@ jobs:
       uses: actions/setup-java@v4
       with:
         java-version: '21'
-        distribution: 'graalmv'
+        distribution: 'graalvm'
     - name: Build with Ant
       run: ant -noinput -buildfile build.xml
