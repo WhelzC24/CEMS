@@ -4,11 +4,14 @@
  */
 package cems;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -25,11 +28,23 @@ import javax.swing.table.TableRowSorter;
  */
 public class adminDashboard extends javax.swing.JFrame {
 
+    
+    
     /**
      * Creates new form Organizer_Dashboard_Admin
      */
     public adminDashboard() {
         initComponents();
+        
+        FontLoader.applyFontCentered(jLabel1, "/fonts/ROCKB.TTF", 48f);
+        FontLoader.applyFontCentered(jLabel2, "/fonts/ROCK.TTF", 24f);
+
+        // clean jtable
+        if (eventTable instanceof TransparentJTable) {
+            ((TransparentJTable) eventTable).setEmptyBackgroundColor("3366FF");
+            TransparentJTable.decorateScrollPane(jScrollPane1);
+        }
+        
         loadEventsToAdminTable();
         sortDefault();
         
@@ -58,16 +73,18 @@ public class adminDashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         DBlue_panel = new javax.swing.JPanel();
+        kGradientPanel2 = new com.k33ptoo.components.KGradientPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        eventTable = new cems.TransparentJTable()
+        ;
+        organizer_new = new com.k33ptoo.components.KButton();
+        organizer_edit = new com.k33ptoo.components.KButton();
+        organizer_delete = new com.k33ptoo.components.KButton();
+        organizer_viewstudents = new com.k33ptoo.components.KButton();
+        logout = new com.k33ptoo.components.KButton();
+        kGradientPanel1 = new com.k33ptoo.components.KGradientPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        DBlue_panel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        eventTable = new javax.swing.JTable();
-        organizer_new = new javax.swing.JButton();
-        organizer_edit = new javax.swing.JButton();
-        organizer_delete = new javax.swing.JButton();
-        organizer_viewstudents = new javax.swing.JButton();
-        logout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusable(false);
@@ -77,21 +94,15 @@ public class adminDashboard extends javax.swing.JFrame {
         DBlue_panel.setBackground(new java.awt.Color(0, 0, 51));
         DBlue_panel.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("BISU Campus Event Manager");
+        kGradientPanel2.setkBorderRadius(0);
+        kGradientPanel2.setkEndColor(new java.awt.Color(51, 102, 255));
+        kGradientPanel2.setkStartColor(new java.awt.Color(0, 0, 51));
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Rockwell Condensed", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Event Organizer Dashboard");
-
-        DBlue_panel1.setBackground(new java.awt.Color(98, 98, 130));
+        jScrollPane1.setOpaque(false);
 
         eventTable.setAutoCreateRowSorter(true);
-        eventTable.setBackground(new java.awt.Color(0, 0, 0));
-        eventTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        eventTable.setBackground(new java.awt.Color(0, 0, 51));
+        eventTable.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         eventTable.setForeground(new java.awt.Color(255, 255, 255));
         eventTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,7 +117,9 @@ public class adminDashboard extends javax.swing.JFrame {
         ));
         eventTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         eventTable.setFocusable(false);
+        eventTable.setOpaque(false);
         eventTable.setRowHeight(30);
+        eventTable.setSelectionBackground(new java.awt.Color(51, 102, 255));
         eventTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
         eventTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -115,97 +128,144 @@ public class adminDashboard extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(eventTable);
 
-        organizer_new.setBackground(new java.awt.Color(37, 55, 30));
-        organizer_new.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
-        organizer_new.setForeground(new java.awt.Color(255, 255, 255));
-        organizer_new.setText("Create new event");
-        organizer_new.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        organizer_new.setText("New Event");
+        organizer_new.setkEndColor(new java.awt.Color(30, 153, 0));
+        organizer_new.setkHoverEndColor(new java.awt.Color(15, 76, 0));
+        organizer_new.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        organizer_new.setkHoverStartColor(new java.awt.Color(30, 153, 0));
+        organizer_new.setkPressedColor(new java.awt.Color(30, 153, 0));
+        organizer_new.setkStartColor(new java.awt.Color(0, 76, 0));
         organizer_new.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 organizer_newActionPerformed(evt);
             }
         });
 
-        organizer_edit.setBackground(new java.awt.Color(37, 55, 30));
-        organizer_edit.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
-        organizer_edit.setForeground(new java.awt.Color(255, 255, 255));
-        organizer_edit.setText("Edit event");
-        organizer_edit.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        organizer_edit.setText("Edit Event");
+        organizer_edit.setkEndColor(new java.awt.Color(30, 153, 0));
+        organizer_edit.setkHoverEndColor(new java.awt.Color(15, 76, 0));
+        organizer_edit.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        organizer_edit.setkHoverStartColor(new java.awt.Color(30, 153, 0));
+        organizer_edit.setkPressedColor(new java.awt.Color(30, 153, 0));
+        organizer_edit.setkStartColor(new java.awt.Color(0, 76, 0));
         organizer_edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 organizer_editActionPerformed(evt);
             }
         });
 
-        organizer_delete.setBackground(new java.awt.Color(51, 0, 0));
-        organizer_delete.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
-        organizer_delete.setForeground(new java.awt.Color(255, 255, 255));
-        organizer_delete.setText("Delete event");
-        organizer_delete.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        organizer_delete.setText("Delete Event");
+        organizer_delete.setkEndColor(new java.awt.Color(153, 0, 0));
+        organizer_delete.setkHoverEndColor(new java.awt.Color(76, 0, 0));
+        organizer_delete.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        organizer_delete.setkHoverStartColor(new java.awt.Color(153, 0, 0));
+        organizer_delete.setkPressedColor(new java.awt.Color(153, 0, 0));
+        organizer_delete.setkStartColor(new java.awt.Color(76, 0, 0));
         organizer_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 organizer_deleteActionPerformed(evt);
             }
         });
 
-        organizer_viewstudents.setBackground(new java.awt.Color(102, 51, 0));
-        organizer_viewstudents.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
-        organizer_viewstudents.setForeground(new java.awt.Color(255, 255, 255));
-        organizer_viewstudents.setText("View registered users");
-        organizer_viewstudents.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        organizer_viewstudents.setText("View Registered Users");
+        organizer_viewstudents.setkEndColor(new java.awt.Color(153, 153, 0));
+        organizer_viewstudents.setkHoverEndColor(new java.awt.Color(76, 76, 0));
+        organizer_viewstudents.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        organizer_viewstudents.setkHoverStartColor(new java.awt.Color(153, 153, 0));
+        organizer_viewstudents.setkPressedColor(new java.awt.Color(153, 153, 0));
+        organizer_viewstudents.setkStartColor(new java.awt.Color(76, 76, 0));
         organizer_viewstudents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 organizer_viewstudentsActionPerformed(evt);
             }
         });
 
-        logout.setBackground(new java.awt.Color(51, 0, 0));
-        logout.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
-        logout.setForeground(new java.awt.Color(255, 255, 255));
-        logout.setText("Log out");
-        logout.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        logout.setText("Logout");
+        logout.setkEndColor(new java.awt.Color(153, 0, 0));
+        logout.setkHoverEndColor(new java.awt.Color(76, 0, 0));
+        logout.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        logout.setkHoverStartColor(new java.awt.Color(153, 0, 0));
+        logout.setkPressedColor(new java.awt.Color(153, 0, 0));
+        logout.setkStartColor(new java.awt.Color(76, 0, 0));
         logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout DBlue_panel1Layout = new javax.swing.GroupLayout(DBlue_panel1);
-        DBlue_panel1.setLayout(DBlue_panel1Layout);
-        DBlue_panel1Layout.setHorizontalGroup(
-            DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(organizer_new, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(organizer_edit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+        javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
+        kGradientPanel2.setLayout(kGradientPanel2Layout);
+        kGradientPanel2Layout.setHorizontalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(organizer_new, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(organizer_edit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(organizer_delete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(organizer_viewstudents, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(logout, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(DBlue_panel1Layout.createSequentialGroup()
-                        .addComponent(organizer_viewstudents, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(organizer_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        DBlue_panel1Layout.setVerticalGroup(
-            DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panel1Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(DBlue_panel1Layout.createSequentialGroup()
-                        .addComponent(organizer_new)
+        kGradientPanel2Layout.setVerticalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                        .addComponent(organizer_new, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(organizer_edit)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(logout))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(organizer_delete)
-                    .addComponent(organizer_viewstudents))
-                .addGap(18, 18, 18))
+                        .addComponent(organizer_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(organizer_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(organizer_viewstudents, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
+                        .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19))
+        );
+
+        kGradientPanel1.setkBorderRadius(0);
+        kGradientPanel1.setkEndColor(new java.awt.Color(51, 102, 255));
+        kGradientPanel1.setkGradientFocus(1000);
+        kGradientPanel1.setkStartColor(new java.awt.Color(0, 0, 51));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("BISU Campus Event Manager");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Rockwell Condensed", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Event Organizer Dashboard");
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
+        kGradientPanel1.setLayout(kGradientPanel1Layout);
+        kGradientPanel1Layout.setHorizontalGroup(
+            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 926, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 926, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        kGradientPanel1Layout.setVerticalGroup(
+            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout DBlue_panelLayout = new javax.swing.GroupLayout(DBlue_panel);
@@ -213,30 +273,20 @@ public class adminDashboard extends javax.swing.JFrame {
         DBlue_panelLayout.setHorizontalGroup(
             DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DBlue_panelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DBlue_panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(DBlue_panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(DBlue_panelLayout.createSequentialGroup()
-                        .addGap(225, 225, 225)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(368, 368, 368))
         );
         DBlue_panelLayout.setVerticalGroup(
             DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panelLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addContainerGap()
+                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(DBlue_panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         getContentPane().add(DBlue_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 540));
@@ -245,10 +295,16 @@ public class adminDashboard extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void organizer_viewstudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizer_viewstudentsActionPerformed
-        new usersDashboard().setVisible(true);
-        ((JFrame) SwingUtilities.getWindowAncestor(organizer_viewstudents)).dispose();
-    }//GEN-LAST:event_organizer_viewstudentsActionPerformed
+    private void eventTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eventTableMousePressed
+        // Disables click editing
+        if (evt.getClickCount() > 1) {
+            int row = eventTable.rowAtPoint(evt.getPoint());
+            int column = eventTable.columnAtPoint(evt.getPoint());
+            
+            // Cancel the editing on double-click
+            eventTable.getCellEditor(row, column).stopCellEditing();
+        }
+    }//GEN-LAST:event_eventTableMousePressed
 
     private void organizer_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizer_newActionPerformed
         createEvent event = new createEvent();
@@ -266,35 +322,6 @@ public class adminDashboard extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_organizer_newActionPerformed
-
-    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
-        new login().setVisible(true);
-        ((JFrame) SwingUtilities.getWindowAncestor(logout)).dispose();
-    }//GEN-LAST:event_logoutActionPerformed
-
-    private void organizer_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizer_deleteActionPerformed
-        int selectedRow = eventTable.getSelectedRow();
-        if (selectedRow != -1) {
-            // Get the event_no from the selected row (assuming event_no is in column 0)
-            int eventNo = (int) eventTable.getValueAt(selectedRow, 0);
-
-            int confirm = JOptionPane.showConfirmDialog(null,
-                    "Are you sure you want to delete this event?",
-                    "Confirm Deletion", JOptionPane.YES_NO_OPTION);
-
-            if (confirm == JOptionPane.YES_OPTION) {
-                boolean deleted = DBHelper.deleteEvent(eventNo);
-                if (deleted) {
-                    JOptionPane.showMessageDialog(null, "Event deleted successfully.");
-                    loadEventsToAdminTable(); // Reload the updated table
-                } else {
-                    JOptionPane.showMessageDialog(null, "Failed to delete event.");
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select an event to delete.");
-        }
-    }//GEN-LAST:event_organizer_deleteActionPerformed
 
     private void organizer_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizer_editActionPerformed
         int selectedRow = eventTable.getSelectedRow();
@@ -355,16 +382,39 @@ public class adminDashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_organizer_editActionPerformed
 
-    private void eventTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eventTableMousePressed
-        // Disables click editing
-        if (evt.getClickCount() > 1) {
-            int row = eventTable.rowAtPoint(evt.getPoint());
-            int column = eventTable.columnAtPoint(evt.getPoint());
-            
-            // Cancel the editing on double-click
-            eventTable.getCellEditor(row, column).stopCellEditing();
+    private void organizer_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizer_deleteActionPerformed
+        int selectedRow = eventTable.getSelectedRow();
+        if (selectedRow != -1) {
+            // Get the event_no from the selected row (assuming event_no is in column 0)
+            int eventNo = (int) eventTable.getValueAt(selectedRow, 0);
+
+            int confirm = JOptionPane.showConfirmDialog(null,
+                    "Are you sure you want to delete this event?",
+                    "Confirm Deletion", JOptionPane.YES_NO_OPTION);
+
+            if (confirm == JOptionPane.YES_OPTION) {
+                boolean deleted = DBHelper.deleteEvent(eventNo);
+                if (deleted) {
+                    JOptionPane.showMessageDialog(null, "Event deleted successfully.");
+                    loadEventsToAdminTable(); // Reload the updated table
+                } else {
+                    JOptionPane.showMessageDialog(null, "Failed to delete event.");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select an event to delete.");
         }
-    }//GEN-LAST:event_eventTableMousePressed
+    }//GEN-LAST:event_organizer_deleteActionPerformed
+
+    private void organizer_viewstudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizer_viewstudentsActionPerformed
+        new usersDashboard().setVisible(true);
+        ((JFrame) SwingUtilities.getWindowAncestor(organizer_viewstudents)).dispose();
+    }//GEN-LAST:event_organizer_viewstudentsActionPerformed
+
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        new login().setVisible(true);
+        ((JFrame) SwingUtilities.getWindowAncestor(logout)).dispose();
+    }//GEN-LAST:event_logoutActionPerformed
 
     private void loadEventsToAdminTable() {
         ResultSet rs = DBHelper.getAllEvents();
@@ -452,15 +502,16 @@ public class adminDashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DBlue_panel;
-    private javax.swing.JPanel DBlue_panel1;
     private javax.swing.JTable eventTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton logout;
-    private javax.swing.JButton organizer_delete;
-    private javax.swing.JButton organizer_edit;
-    private javax.swing.JButton organizer_new;
-    private javax.swing.JButton organizer_viewstudents;
+    private com.k33ptoo.components.KGradientPanel kGradientPanel1;
+    private com.k33ptoo.components.KGradientPanel kGradientPanel2;
+    private com.k33ptoo.components.KButton logout;
+    private com.k33ptoo.components.KButton organizer_delete;
+    private com.k33ptoo.components.KButton organizer_edit;
+    private com.k33ptoo.components.KButton organizer_new;
+    private com.k33ptoo.components.KButton organizer_viewstudents;
     // End of variables declaration//GEN-END:variables
 }

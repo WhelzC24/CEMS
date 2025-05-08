@@ -31,6 +31,16 @@ public class userDashboard extends javax.swing.JFrame {
      */
     public userDashboard() {
         initComponents();
+        
+        FontLoader.applyFontCentered(jLabel1, "/fonts/ROCKB.TTF", 48f);
+        FontLoader.applyFontCentered(jLabel2, "/fonts/ROCK.TTF", 24f);
+        
+        // clean jtable
+        if (userEventTable instanceof TransparentJTable) {
+            ((TransparentJTable) userEventTable).setEmptyBackgroundColor("3366FF");
+            TransparentJTable.decorateScrollPane(jScrollPane1);
+        }
+        
         loadEventsToUserTable(currentUsername);
         sortDefault();
         
@@ -59,13 +69,14 @@ public class userDashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         DBlue_panel = new javax.swing.JPanel();
+        kGradientPanel2 = new com.k33ptoo.components.KGradientPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        DBlue_panel1 = new javax.swing.JPanel();
+        kGradientPanel1 = new com.k33ptoo.components.KGradientPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        userEventTable = new javax.swing.JTable();
-        registerEvent_user = new javax.swing.JButton();
-        logout = new javax.swing.JButton();
+        userEventTable = new cems.TransparentJTable();
+        registerEvent_user = new com.k33ptoo.components.KButton();
+        logout = new com.k33ptoo.components.KButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusable(false);
@@ -75,21 +86,53 @@ public class userDashboard extends javax.swing.JFrame {
         DBlue_panel.setBackground(new java.awt.Color(0, 0, 51));
         DBlue_panel.setForeground(new java.awt.Color(0, 0, 0));
 
+        kGradientPanel2.setkBorderRadius(0);
+        kGradientPanel2.setkEndColor(new java.awt.Color(51, 102, 255));
+        kGradientPanel2.setkGradientFocus(1000);
+        kGradientPanel2.setkStartColor(new java.awt.Color(0, 0, 51));
+
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("BISU Campus Event Manager");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Rockwell Condensed", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Event Lists");
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        DBlue_panel1.setBackground(new java.awt.Color(98, 98, 130));
+        javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
+        kGradientPanel2.setLayout(kGradientPanel2Layout);
+        kGradientPanel2Layout.setHorizontalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        kGradientPanel2Layout.setVerticalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        kGradientPanel1.setkBorderRadius(0);
+        kGradientPanel1.setkEndColor(new java.awt.Color(51, 102, 255));
+        kGradientPanel1.setkStartColor(new java.awt.Color(0, 0, 51));
 
         userEventTable.setAutoCreateRowSorter(true);
-        userEventTable.setBackground(new java.awt.Color(0, 0, 0));
-        userEventTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        userEventTable.setBackground(new java.awt.Color(0, 0, 51));
+        userEventTable.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         userEventTable.setForeground(new java.awt.Color(255, 255, 255));
         userEventTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,6 +148,7 @@ public class userDashboard extends javax.swing.JFrame {
         userEventTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         userEventTable.setFocusable(false);
         userEventTable.setRowHeight(30);
+        userEventTable.setSelectionBackground(new java.awt.Color(51, 102, 255));
         userEventTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
         userEventTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -113,52 +157,56 @@ public class userDashboard extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(userEventTable);
 
-        registerEvent_user.setBackground(new java.awt.Color(37, 55, 30));
-        registerEvent_user.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
-        registerEvent_user.setForeground(new java.awt.Color(255, 255, 255));
         registerEvent_user.setText("Register Event");
-        registerEvent_user.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        registerEvent_user.setkEndColor(new java.awt.Color(30, 153, 0));
+        registerEvent_user.setkHoverEndColor(new java.awt.Color(15, 76, 0));
+        registerEvent_user.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        registerEvent_user.setkHoverStartColor(new java.awt.Color(30, 153, 0));
+        registerEvent_user.setkPressedColor(new java.awt.Color(30, 153, 0));
+        registerEvent_user.setkStartColor(new java.awt.Color(0, 76, 0));
         registerEvent_user.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registerEvent_userActionPerformed(evt);
             }
         });
 
-        logout.setBackground(new java.awt.Color(51, 0, 0));
-        logout.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
-        logout.setForeground(new java.awt.Color(255, 255, 255));
-        logout.setText("Log out");
-        logout.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        logout.setText("Logout");
+        logout.setkEndColor(new java.awt.Color(153, 0, 0));
+        logout.setkHoverEndColor(new java.awt.Color(76, 0, 0));
+        logout.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        logout.setkHoverStartColor(new java.awt.Color(153, 0, 0));
+        logout.setkPressedColor(new java.awt.Color(153, 0, 0));
+        logout.setkStartColor(new java.awt.Color(76, 0, 0));
         logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout DBlue_panel1Layout = new javax.swing.GroupLayout(DBlue_panel1);
-        DBlue_panel1.setLayout(DBlue_panel1Layout);
-        DBlue_panel1Layout.setHorizontalGroup(
-            DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DBlue_panel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
+        kGradientPanel1.setLayout(kGradientPanel1Layout);
+        kGradientPanel1Layout.setHorizontalGroup(
+            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(registerEvent_user, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                    .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(registerEvent_user, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
+                .addGap(16, 16, 16))
         );
-        DBlue_panel1Layout.setVerticalGroup(
-            DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DBlue_panel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(DBlue_panel1Layout.createSequentialGroup()
-                        .addComponent(registerEvent_user)
+        kGradientPanel1Layout.setVerticalGroup(
+            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(registerEvent_user, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(logout))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
+                        .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout DBlue_panelLayout = new javax.swing.GroupLayout(DBlue_panel);
@@ -167,27 +215,19 @@ public class userDashboard extends javax.swing.JFrame {
             DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DBlue_panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(DBlue_panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(DBlue_panelLayout.createSequentialGroup()
-                .addGap(225, 225, 225)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(430, 430, 430))
         );
         DBlue_panelLayout.setVerticalGroup(
             DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panelLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addContainerGap()
+                .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(DBlue_panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         getContentPane().add(DBlue_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 540));
@@ -195,6 +235,17 @@ public class userDashboard extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void userEventTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userEventTableMousePressed
+        // Disables click editing
+        if (evt.getClickCount() > 1) {
+            int row = userEventTable.rowAtPoint(evt.getPoint());
+            int column = userEventTable.columnAtPoint(evt.getPoint());
+            
+            // Cancel the editing on double-click
+            userEventTable.getCellEditor(row, column).stopCellEditing();
+        }
+    }//GEN-LAST:event_userEventTableMousePressed
 
     private void registerEvent_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerEvent_userActionPerformed
         int selectedRow = userEventTable.getSelectedRow();
@@ -219,17 +270,6 @@ public class userDashboard extends javax.swing.JFrame {
         new login().setVisible(true);
         ((JFrame) SwingUtilities.getWindowAncestor(logout)).dispose();
     }//GEN-LAST:event_logoutActionPerformed
-
-    private void userEventTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userEventTableMousePressed
-        // Disables click editing
-        if (evt.getClickCount() > 1) {
-            int row = userEventTable.rowAtPoint(evt.getPoint());
-            int column = userEventTable.columnAtPoint(evt.getPoint());
-            
-            // Cancel the editing on double-click
-            userEventTable.getCellEditor(row, column).stopCellEditing();
-        }
-    }//GEN-LAST:event_userEventTableMousePressed
 
     private void loadEventsToUserTable(String currentUsername) {
         ResultSet rs = DBHelper.getAllEvents();
@@ -316,12 +356,13 @@ public class userDashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DBlue_panel;
-    private javax.swing.JPanel DBlue_panel1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton logout;
-    private javax.swing.JButton registerEvent_user;
+    private com.k33ptoo.components.KGradientPanel kGradientPanel1;
+    private com.k33ptoo.components.KGradientPanel kGradientPanel2;
+    private com.k33ptoo.components.KButton logout;
+    private com.k33ptoo.components.KButton registerEvent_user;
     private javax.swing.JTable userEventTable;
     // End of variables declaration//GEN-END:variables
 }
