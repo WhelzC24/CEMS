@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2025 at 01:12 PM
+-- Generation Time: May 08, 2025 at 07:02 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -47,8 +47,9 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `event_no`, `event_name`, `event_type`, `location`, `date_start`, `date_end`, `participants`, `registered`) VALUES
-(1, 1, 'Basketball', 'Sports Tournament', 'Covered Court', '2025-05-05 08:00:00', '2025-05-05 17:00:00', 'jhon,jack', 'true'),
-(2, 2, 'VolleyBall', 'Sports Tournament', 'Covered Court', '2025-05-06 20:48:00', '2025-05-06 17:48:57', NULL, NULL);
+(1, 1, 'Basketball', 'Sports Tournament', 'Covered Court', '2025-05-02 08:00:00', '2025-05-02 12:00:00', 'jhon,ligma', 'true'),
+(10, 3, 'Baseball', 'Sports Tournament', 'Oval', '2025-05-02 12:00:00', '2025-05-02 18:00:00', 'jhon', 'true'),
+(11, 2, 'Meeting', 'Student Assembly', 'BISU Calape Campus', '2025-04-25 08:00:00', '2025-04-25 12:00:00', 'jhon', 'true');
 
 -- --------------------------------------------------------
 
@@ -58,7 +59,7 @@ INSERT INTO `events` (`id`, `event_no`, `event_name`, `event_type`, `location`, 
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-  `student_id` varchar(50) NOT NULL,
+  `student_id` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
@@ -72,9 +73,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`student_id`, `name`, `username`, `email`, `gender`, `role`, `password`) VALUES
-('', 'Jack', 'jack', 'jzck124@gmail.com', 'Male', 'Guest', 'jack143'),
 ('121444', 'Jhon', 'jhon', 'jhon123@gmail.com', 'Male', 'Student', 'jhon143'),
-('717224', 'Whelzcy Mark Laniba', 'whelz', 'whelz123@gmail.com', 'Male', 'Admin', 'whelz14390');
+('646452', 'Pokemon', 'poke', 'poke143@gmail.com', 'Female', 'Student', 'poke123'),
+('717224', 'Whelzcy Mark Laniba', 'whelz', 'whelz123@gmail.com', 'Male', 'Admin', 'whelz14390'),
+('890868', 'iori', 'ligma', 'sigma@gmail.com', 'Male', 'Student', 'pistingyawa'),
+(NULL, 'Pokemon', 'pokemon', 'pokemon123@gmail.com', 'Male', 'Crew', 'pokemon143');
 
 --
 -- Indexes for dumped tables
@@ -100,7 +103,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
