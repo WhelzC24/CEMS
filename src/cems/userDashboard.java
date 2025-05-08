@@ -11,9 +11,12 @@ import java.util.Arrays;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -29,6 +32,7 @@ public class userDashboard extends javax.swing.JFrame {
     public userDashboard() {
         initComponents();
         loadEventsToUserTable(currentUsername);
+        sortDefault();
         
         userEventTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
@@ -261,6 +265,17 @@ public class userDashboard extends javax.swing.JFrame {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    private void sortDefault() {
+        DefaultTableModel model = (DefaultTableModel) userEventTable.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+        userEventTable.setRowSorter(sorter);
+
+        // Sort by event date column (index 4)
+        sorter.setSortKeys(Arrays.asList(
+            new RowSorter.SortKey(0, SortOrder.ASCENDING)
+        ));
     }
     
     /**
