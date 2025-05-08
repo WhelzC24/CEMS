@@ -30,7 +30,12 @@ public class DBHelper {
 
     //Insert user
     public static boolean insertUser(String studentID, String name, String username, String email, String gender, String role, String password) {
-        if (role.equalsIgnoreCase("Student") || role.equalsIgnoreCase("Faculty Staff") || role.equalsIgnoreCase("Admin")) {
+        // Only enforce studentID for specific roles
+        boolean requiresID = role.equalsIgnoreCase("Student") ||
+                             role.equalsIgnoreCase("Faculty Staff") ||
+                             role.equalsIgnoreCase("Admin");
+
+        if (requiresID) {
             if (studentID == null || studentID.trim().isEmpty()) {
                 System.out.println("Student ID is required for role: " + role);
                 return false;
@@ -40,18 +45,25 @@ public class DBHelper {
                 System.out.println("Student ID already exists: " + studentID);
                 return false;
             }
+        } else {
+            studentID = null; // Set to null for roles that don't require it
         }
 
         String sql = "INSERT INTO users (student_id, name, username, email, gender, role, password) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = connect(); PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, studentID);
+            if (studentID != null) {
+                ps.setString(1, studentID);
+            } else {
+                ps.setNull(1, java.sql.Types.VARCHAR);
+            }
             ps.setString(2, name);
             ps.setString(3, username);
             ps.setString(4, email);
             ps.setString(5, gender);
             ps.setString(6, role);
             ps.setString(7, password);
+
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -143,11 +155,83 @@ public class DBHelper {
     
     //delete user
     public static boolean deleteUser(String studentID) {
-        String sql = "DELETE FROM users WHERE student_id = ?";
+        Connection conn = null;
+        PreparedStatement updatePs = null;
+        PreparedStatement deletePs = null;
 
-        try (Connection conn = connect(); PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, studentID);
-            return ps.executeUpdate() > 0;
+        try {
+            conn = connect();
+            conn.setAutoCommit(false); // Start transaction
+
+            // Step 1: Remove studentID from participants column
+            String updateSql = "UPDATE events SET participants = TRIM(BOTH ',' FROM REPLACE(CONCAT(',', participants, ','), CONCAT(',', ?, ','), ',')) WHERE participants LIKE ?";
+            updatePs = conn.prepareStatement(updateSql);
+            updatePs.setString(1, studentID);
+            updatePs.setString(2, "%" + studentID + "%");
+            updatePs.executeUpdate();
+
+            // Step 2: Delete user
+            String deleteSql = "DELETE FROM users WHERE student_id = ?";
+            deletePs = conn.prepareStatement(deleteSql);
+            deletePs.setString(1, studentID);
+            int deleted = deletePs.executeUpdate();
+
+            conn.commit(); // Commit transaction
+            return deleted > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                if (conn != null) conn.rollback(); // Rollback on error
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            return false;
+        } finally {
+            try {
+                if (updatePs != null) updatePs.close();
+                if (deletePs != null) deletePs.close();
+                if (conn != null) conn.setAutoCommit(true);
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    public static boolean deleteUserByUsername(String username) {
+        String updateSql = "UPDATE events SET participants = ? WHERE event_no = ?";
+        String selectSql = "SELECT event_no, participants FROM events";
+
+        try (Connection conn = connect();
+             PreparedStatement selectStmt = conn.prepareStatement(selectSql);
+             ResultSet rs = selectStmt.executeQuery()) {
+
+            while (rs.next()) {
+                int eventNo = rs.getInt("event_no");
+                String participants = rs.getString("participants");
+
+                if (participants != null && !participants.isEmpty()) {
+                    List<String> participantList = new ArrayList<>(Arrays.asList(participants.split(",")));
+                    participantList.removeIf(p -> p.trim().equalsIgnoreCase(username.trim()));
+
+                    String updatedParticipants = String.join(",", participantList);
+
+                    try (PreparedStatement updateStmt = conn.prepareStatement(updateSql)) {
+                        updateStmt.setString(1, updatedParticipants);
+                        updateStmt.setInt(2, eventNo);
+                        updateStmt.executeUpdate();
+                    }
+                }
+            }
+
+            // After updating participants, delete the user
+            String deleteSql = "DELETE FROM users WHERE username = ?";
+            try (PreparedStatement deleteStmt = conn.prepareStatement(deleteSql)) {
+                deleteStmt.setString(1, username);
+                return deleteStmt.executeUpdate() > 0;
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

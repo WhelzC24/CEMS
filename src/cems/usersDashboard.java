@@ -221,28 +221,44 @@ public class usersDashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void student_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_deleteActionPerformed
-        // Get the selected row index from the JTable
         int selectedRow = usersTable.getSelectedRow();
 
         if (selectedRow == -1) {
-            // No user is selected
             JOptionPane.showMessageDialog(null, "Please select a user to delete.");
             return;
         }
 
-        // Get the student ID (or username) of the selected user (since student_id is the first column)
-        String studentID = usersTable.getValueAt(selectedRow, 0).toString(); // Assuming student_id is in the first column
+        Object idObj = usersTable.getValueAt(selectedRow, 0);  // Assume student_id column
+        Object usernameObj = usersTable.getValueAt(selectedRow, 2); // Assume username is column 2
 
-        // Confirm deletion with the user
-        int confirmation = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this user?", "Confirm Deletion", JOptionPane.YES_NO_OPTION);
+        String studentID = (idObj != null) ? idObj.toString().trim() : "";
+        String username = (usernameObj != null) ? usernameObj.toString().trim() : "";
+
+        if (studentID.isEmpty() && username.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Cannot identify selected user (no ID or username).");
+            return;
+        }
+
+        int confirmation = JOptionPane.showConfirmDialog(
+            null,
+            "Are you sure you want to delete this user?",
+            "Confirm Deletion",
+            JOptionPane.YES_NO_OPTION
+        );
 
         if (confirmation == JOptionPane.YES_OPTION) {
-            // Call the function to delete the user from the database
-            boolean success = DBHelper.deleteUser(studentID); // Pass the student ID to delete from database
+            boolean success;
+
+            // Use appropriate deletion based on availability of student ID
+            if (!studentID.isEmpty()) {
+                success = DBHelper.deleteUser(studentID);
+            } else {
+                success = DBHelper.deleteUserByUsername(username); // You need to implement this method
+            }
 
             if (success) {
-                JOptionPane.showMessageDialog(null, "User deleted successfully!");
-                loadUsersToTable();  // Reload the table data after deletion
+                JOptionPane.showMessageDialog(null, "User deleted successfully.");
+                loadUsersToTable();
             } else {
                 JOptionPane.showMessageDialog(null, "Failed to delete the user.");
             }
