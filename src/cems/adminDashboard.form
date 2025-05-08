@@ -216,7 +216,7 @@
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="eventTableMousePressed"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new cems.TransparentJTable()&#xd;&#xa;"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new cems.CleanJTable()&#xd;&#xa;"/>
                   </AuxValues>
                 </Component>
               </SubComponents>

@@ -36,9 +36,9 @@ public class userDashboard extends javax.swing.JFrame {
         FontLoader.applyFontCentered(jLabel2, "/fonts/ROCK.TTF", 24f);
         
         // clean jtable
-        if (userEventTable instanceof TransparentJTable) {
-            ((TransparentJTable) userEventTable).setEmptyBackgroundColor("3366FF");
-            TransparentJTable.decorateScrollPane(jScrollPane1);
+        if (userEventTable instanceof CleanJTable) {
+            ((CleanJTable) userEventTable).setEmptyBackgroundColor("3366FF");
+            CleanJTable.decorateScrollPane(jScrollPane1);
         }
         
         loadEventsToUserTable(currentUsername);
@@ -74,7 +74,7 @@ public class userDashboard extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         kGradientPanel1 = new com.k33ptoo.components.KGradientPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        userEventTable = new cems.TransparentJTable();
+        userEventTable = new cems.CleanJTable();
         registerEvent_user = new com.k33ptoo.components.KButton();
         logout = new com.k33ptoo.components.KButton();
 

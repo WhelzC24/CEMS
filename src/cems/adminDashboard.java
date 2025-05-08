@@ -40,9 +40,9 @@ public class adminDashboard extends javax.swing.JFrame {
         FontLoader.applyFontCentered(jLabel2, "/fonts/ROCK.TTF", 24f);
 
         // clean jtable
-        if (eventTable instanceof TransparentJTable) {
-            ((TransparentJTable) eventTable).setEmptyBackgroundColor("3366FF");
-            TransparentJTable.decorateScrollPane(jScrollPane1);
+        if (eventTable instanceof CleanJTable) {
+            ((CleanJTable) eventTable).setEmptyBackgroundColor("3366FF");
+            CleanJTable.decorateScrollPane(jScrollPane1);
         }
         
         loadEventsToAdminTable();
@@ -75,7 +75,7 @@ public class adminDashboard extends javax.swing.JFrame {
         DBlue_panel = new javax.swing.JPanel();
         kGradientPanel2 = new com.k33ptoo.components.KGradientPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        eventTable = new cems.TransparentJTable()
+        eventTable = new cems.CleanJTable()
         ;
         organizer_new = new com.k33ptoo.components.KButton();
         organizer_edit = new com.k33ptoo.components.KButton();
