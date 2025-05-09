@@ -228,11 +228,6 @@ public class editEvent extends javax.swing.JFrame {
         locationTextField.setBackground(new java.awt.Color(0, 0, 0));
         locationTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         locationTextField.setForeground(new java.awt.Color(255, 255, 255));
-        locationTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                locationTextFieldActionPerformed(evt);
-            }
-        });
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
@@ -277,11 +272,6 @@ public class editEvent extends javax.swing.JFrame {
         titleTextField.setBackground(new java.awt.Color(0, 0, 0));
         titleTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         titleTextField.setForeground(new java.awt.Color(255, 255, 255));
-        titleTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                titleTextFieldActionPerformed(evt);
-            }
-        });
 
         jLabel11.setBackground(new java.awt.Color(0, 0, 0));
         jLabel11.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
@@ -436,17 +426,9 @@ public class editEvent extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void locationTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_locationTextFieldActionPerformed
-
     private void createEvent_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvent_cancelActionPerformed
         this.dispose();
     }//GEN-LAST:event_createEvent_cancelActionPerformed
-
-    private void titleTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_titleTextFieldActionPerformed
 
     private void createEvent_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvent_submitActionPerformed
        updateEvent();

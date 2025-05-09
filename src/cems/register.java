@@ -14,8 +14,6 @@ import javax.swing.SwingUtilities;
  */
 public class register extends javax.swing.JFrame {
 
-    private String[] args;
-
     /**
      * Creates new form Register_Frames_fixed
      */
@@ -129,38 +127,18 @@ public class register extends javax.swing.JFrame {
         register_name.setBackground(new java.awt.Color(0, 0, 0));
         register_name.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         register_name.setForeground(new java.awt.Color(255, 255, 255));
-        register_name.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                register_nameActionPerformed(evt);
-            }
-        });
 
         register_email.setBackground(new java.awt.Color(0, 0, 0));
         register_email.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         register_email.setForeground(new java.awt.Color(255, 255, 255));
-        register_email.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                register_emailActionPerformed(evt);
-            }
-        });
 
         register_username.setBackground(new java.awt.Color(0, 0, 0));
         register_username.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         register_username.setForeground(new java.awt.Color(255, 255, 255));
-        register_username.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                register_usernameActionPerformed(evt);
-            }
-        });
 
         register_password.setBackground(new java.awt.Color(0, 0, 0));
         register_password.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         register_password.setForeground(new java.awt.Color(255, 255, 255));
-        register_password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                register_passwordActionPerformed(evt);
-            }
-        });
 
         Register_submit.setBackground(new java.awt.Color(0, 102, 0));
         Register_submit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -188,11 +166,6 @@ public class register extends javax.swing.JFrame {
         rbutton_male.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         rbutton_male.setForeground(new java.awt.Color(0, 0, 0));
         rbutton_male.setText("Male");
-        rbutton_male.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbutton_maleActionPerformed(evt);
-            }
-        });
 
         genderGroup.add(rbutton_female);
         rbutton_female.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
@@ -221,11 +194,6 @@ public class register extends javax.swing.JFrame {
         register_id.setBackground(new java.awt.Color(0, 0, 0));
         register_id.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         register_id.setForeground(new java.awt.Color(255, 255, 255));
-        register_id.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                register_idActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout White_panelLayout = new javax.swing.GroupLayout(White_panel);
         White_panel.setLayout(White_panelLayout);
@@ -378,30 +346,6 @@ public class register extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void register_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_nameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_register_nameActionPerformed
-
-    private void register_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_emailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_register_emailActionPerformed
-
-    private void register_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_usernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_register_usernameActionPerformed
-
-    private void register_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_passwordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_register_passwordActionPerformed
-
-    private void rbutton_maleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbutton_maleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbutton_maleActionPerformed
-
-    private void register_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_idActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_register_idActionPerformed
 
     private void Register_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Register_cancelActionPerformed
         this.dispose();

@@ -26,6 +26,17 @@ public class usersDashboard extends javax.swing.JFrame {
         initComponents();
         cems.GlobalMemoryManager.registerFrame(this);
         
+        FontLoader.applyFontCentered(jLabel1, "/fonts/ROCKB.TTF", 48f);
+        FontLoader.applyFontCentered(jLabel2, "/fonts/ROCKI.TTF", 24f);
+        
+        // clean jtable
+        if (usersTable instanceof CleanJTable) {
+            ((CleanJTable) usersTable).setEmptyBackgroundColor("3366FF");
+            CleanJTable.decorateScrollPane(jScrollPane1);
+        }
+        
+        loadUsersToTable();
+        
         usersTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
@@ -51,26 +62,25 @@ public class usersDashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         DBlue_panel = new javax.swing.JPanel();
+        kGradientPanel2 = new com.k33ptoo.components.KGradientPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        DBlue_panel1 = new javax.swing.JPanel();
+        kGradientPanel1 = new com.k33ptoo.components.KGradientPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        usersTable = new javax.swing.JTable();
-        student_delete = new javax.swing.JButton();
-        organzier_viewstudents = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        logout = new javax.swing.JButton();
+        usersTable = new cems.CleanJTable()
+        ;
+        student_delete = new com.k33ptoo.components.KButton();
+        organzier_viewstudents = new com.k33ptoo.components.KButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         DBlue_panel.setBackground(new java.awt.Color(0, 0, 51));
         DBlue_panel.setForeground(new java.awt.Color(0, 0, 0));
+
+        kGradientPanel2.setkBorderRadius(0);
+        kGradientPanel2.setkEndColor(new java.awt.Color(0, 0, 51));
+        kGradientPanel2.setkStartColor(new java.awt.Color(0, 0, 51));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
@@ -84,11 +94,35 @@ public class usersDashboard extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Users Manager");
 
-        DBlue_panel1.setBackground(new java.awt.Color(98, 98, 130));
+        javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
+        kGradientPanel2.setLayout(kGradientPanel2Layout);
+        kGradientPanel2Layout.setHorizontalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        kGradientPanel2Layout.setVerticalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        kGradientPanel1.setkBorderRadius(0);
+        kGradientPanel1.setkEndColor(new java.awt.Color(51, 102, 255));
+        kGradientPanel1.setkGradientFocus(0);
+        kGradientPanel1.setkStartColor(new java.awt.Color(0, 0, 51));
 
         usersTable.setAutoCreateRowSorter(true);
-        usersTable.setBackground(new java.awt.Color(0, 0, 0));
-        usersTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        usersTable.setBackground(new java.awt.Color(0, 0, 51));
+        usersTable.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         usersTable.setForeground(new java.awt.Color(255, 255, 255));
         usersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -112,76 +146,56 @@ public class usersDashboard extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(usersTable);
 
-        student_delete.setBackground(new java.awt.Color(102, 51, 0));
-        student_delete.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
-        student_delete.setForeground(new java.awt.Color(255, 255, 255));
         student_delete.setText("Delete User");
-        student_delete.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        student_delete.setkEndColor(new java.awt.Color(153, 0, 0));
+        student_delete.setkHoverEndColor(new java.awt.Color(76, 0, 0));
+        student_delete.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        student_delete.setkHoverStartColor(new java.awt.Color(153, 0, 0));
+        student_delete.setkPressedColor(new java.awt.Color(153, 0, 0));
+        student_delete.setkStartColor(new java.awt.Color(76, 0, 0));
         student_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 student_deleteActionPerformed(evt);
             }
         });
 
-        organzier_viewstudents.setBackground(new java.awt.Color(37, 55, 30));
-        organzier_viewstudents.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
-        organzier_viewstudents.setForeground(new java.awt.Color(255, 255, 255));
-        organzier_viewstudents.setText("Events Manager");
-        organzier_viewstudents.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        organzier_viewstudents.setText("Back");
+        organzier_viewstudents.setkEndColor(new java.awt.Color(30, 153, 0));
+        organzier_viewstudents.setkHoverEndColor(new java.awt.Color(15, 76, 0));
+        organzier_viewstudents.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        organzier_viewstudents.setkHoverStartColor(new java.awt.Color(30, 153, 0));
+        organzier_viewstudents.setkPressedColor(new java.awt.Color(30, 153, 0));
+        organzier_viewstudents.setkStartColor(new java.awt.Color(15, 76, 0));
         organzier_viewstudents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 organzier_viewstudentsActionPerformed(evt);
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Note: Any missing details of one of the users have it deleted and notify the said user afterwards to retry their registration.");
-
-        logout.setBackground(new java.awt.Color(51, 0, 0));
-        logout.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
-        logout.setForeground(new java.awt.Color(255, 255, 255));
-        logout.setText("Log out");
-        logout.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        logout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout DBlue_panel1Layout = new javax.swing.GroupLayout(DBlue_panel1);
-        DBlue_panel1.setLayout(DBlue_panel1Layout);
-        DBlue_panel1Layout.setHorizontalGroup(
-            DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DBlue_panel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(organzier_viewstudents)
-                    .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+        javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
+        kGradientPanel1.setLayout(kGradientPanel1Layout);
+        kGradientPanel1Layout.setHorizontalGroup(
+            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(student_delete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(organzier_viewstudents, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(DBlue_panel1Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(student_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
-        DBlue_panel1Layout.setVerticalGroup(
-            DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(DBlue_panel1Layout.createSequentialGroup()
-                        .addComponent(organzier_viewstudents)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(logout))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(DBlue_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(student_delete)
-                    .addComponent(jLabel8))
-                .addContainerGap())
+        kGradientPanel1Layout.setVerticalGroup(
+            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(student_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(290, 290, 290)
+                        .addComponent(organzier_viewstudents, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
         );
 
         javax.swing.GroupLayout DBlue_panelLayout = new javax.swing.GroupLayout(DBlue_panel);
@@ -189,28 +203,20 @@ public class usersDashboard extends javax.swing.JFrame {
         DBlue_panelLayout.setHorizontalGroup(
             DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(391, 391, 391))
-            .addGroup(DBlue_panelLayout.createSequentialGroup()
-                .addGap(224, 224, 224)
-                .addComponent(jLabel1)
-                .addContainerGap(224, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(DBlue_panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         DBlue_panelLayout.setVerticalGroup(
             DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panelLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addContainerGap()
+                .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(DBlue_panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         getContentPane().add(DBlue_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 540));
@@ -218,6 +224,17 @@ public class usersDashboard extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void usersTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usersTableMousePressed
+        // Disables click editing
+        if (evt.getClickCount() > 1) {
+            int row = usersTable.rowAtPoint(evt.getPoint());
+            int column = usersTable.columnAtPoint(evt.getPoint());
+            
+            // Cancel the editing on double-click
+            usersTable.getCellEditor(row, column).stopCellEditing();
+        }
+    }//GEN-LAST:event_usersTableMousePressed
 
     private void student_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_deleteActionPerformed
         int selectedRow = usersTable.getSelectedRow();
@@ -268,26 +285,6 @@ public class usersDashboard extends javax.swing.JFrame {
         new adminDashboard().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_organzier_viewstudentsActionPerformed
-
-    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
-        new login().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_logoutActionPerformed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        loadUsersToTable();
-    }//GEN-LAST:event_formWindowOpened
-
-    private void usersTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usersTableMousePressed
-        // Disables click editing
-        if (evt.getClickCount() > 1) {
-            int row = usersTable.rowAtPoint(evt.getPoint());
-            int column = usersTable.columnAtPoint(evt.getPoint());
-            
-            // Cancel the editing on double-click
-            usersTable.getCellEditor(row, column).stopCellEditing();
-        }
-    }//GEN-LAST:event_usersTableMousePressed
 
     private void loadUsersToTable() {
         // Assuming 'currentUsername' holds the logged-in admin's username
@@ -353,14 +350,13 @@ public class usersDashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DBlue_panel;
-    private javax.swing.JPanel DBlue_panel1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton logout;
-    private javax.swing.JButton organzier_viewstudents;
-    private javax.swing.JButton student_delete;
+    private com.k33ptoo.components.KGradientPanel kGradientPanel1;
+    private com.k33ptoo.components.KGradientPanel kGradientPanel2;
+    private com.k33ptoo.components.KButton organzier_viewstudents;
+    private com.k33ptoo.components.KButton student_delete;
     private javax.swing.JTable usersTable;
     // End of variables declaration//GEN-END:variables
 }

@@ -158,15 +158,15 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="organizer_new" pref="144" max="32767" attributes="0"/>
-                          <Component id="organizer_edit" alignment="1" pref="0" max="32767" attributes="0"/>
+                          <Component id="organizer_edit" alignment="1" pref="144" max="32767" attributes="0"/>
                           <Component id="organizer_delete" alignment="1" pref="0" max="32767" attributes="0"/>
                           <Component id="organizer_viewstudents" alignment="1" pref="0" max="32767" attributes="0"/>
                           <Component id="logout" alignment="1" pref="0" max="32767" attributes="0"/>
+                          <Component id="organizer_new" alignment="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="743" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="16" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
