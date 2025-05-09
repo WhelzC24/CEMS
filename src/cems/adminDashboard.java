@@ -9,12 +9,10 @@ import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
-import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -32,9 +30,10 @@ public class adminDashboard extends javax.swing.JFrame {
      */
     public adminDashboard() {
         initComponents();
+        cems.GlobalMemoryManager.registerFrame(this);
         
         FontLoader.applyFontCentered(jLabel1, "/fonts/ROCKB.TTF", 48f);
-        FontLoader.applyFontCentered(jLabel2, "/fonts/ROCK.TTF", 24f);
+        FontLoader.applyFontCentered(jLabel2, "/fonts/ROCKI.TTF", 24f);
 
         // clean jtable
         if (eventTable instanceof CleanJTable) {
@@ -70,6 +69,9 @@ public class adminDashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         DBlue_panel = new javax.swing.JPanel();
+        kGradientPanel1 = new com.k33ptoo.components.KGradientPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         kGradientPanel2 = new com.k33ptoo.components.KGradientPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         eventTable = new cems.CleanJTable()
@@ -79,9 +81,6 @@ public class adminDashboard extends javax.swing.JFrame {
         organizer_delete = new com.k33ptoo.components.KButton();
         organizer_viewstudents = new com.k33ptoo.components.KButton();
         logout = new com.k33ptoo.components.KButton();
-        kGradientPanel1 = new com.k33ptoo.components.KGradientPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusable(false);
@@ -91,8 +90,49 @@ public class adminDashboard extends javax.swing.JFrame {
         DBlue_panel.setBackground(new java.awt.Color(0, 0, 51));
         DBlue_panel.setForeground(new java.awt.Color(0, 0, 0));
 
+        kGradientPanel1.setkBorderRadius(0);
+        kGradientPanel1.setkEndColor(new java.awt.Color(0, 0, 51));
+        kGradientPanel1.setkGradientFocus(1000);
+        kGradientPanel1.setkStartColor(new java.awt.Color(0, 0, 51));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("BISU Campus Event Manager");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Rockwell Condensed", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Event Organizer Dashboard");
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
+        kGradientPanel1.setLayout(kGradientPanel1Layout);
+        kGradientPanel1Layout.setHorizontalGroup(
+            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 926, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 926, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        kGradientPanel1Layout.setVerticalGroup(
+            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
         kGradientPanel2.setkBorderRadius(0);
         kGradientPanel2.setkEndColor(new java.awt.Color(51, 102, 255));
+        kGradientPanel2.setkGradientFocus(0);
         kGradientPanel2.setkStartColor(new java.awt.Color(0, 0, 51));
 
         jScrollPane1.setOpaque(false);
@@ -223,46 +263,6 @@ public class adminDashboard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
                         .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(19, 19, 19))
-        );
-
-        kGradientPanel1.setkBorderRadius(0);
-        kGradientPanel1.setkEndColor(new java.awt.Color(51, 102, 255));
-        kGradientPanel1.setkGradientFocus(1000);
-        kGradientPanel1.setkStartColor(new java.awt.Color(0, 0, 51));
-
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("BISU Campus Event Manager");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Rockwell Condensed", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Event Organizer Dashboard");
-        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
-        kGradientPanel1.setLayout(kGradientPanel1Layout);
-        kGradientPanel1Layout.setHorizontalGroup(
-            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 926, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 926, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        kGradientPanel1Layout.setVerticalGroup(
-            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout DBlue_panelLayout = new javax.swing.GroupLayout(DBlue_panel);
@@ -405,12 +405,12 @@ public class adminDashboard extends javax.swing.JFrame {
 
     private void organizer_viewstudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizer_viewstudentsActionPerformed
         new usersDashboard().setVisible(true);
-        ((JFrame) SwingUtilities.getWindowAncestor(organizer_viewstudents)).dispose();
+        this.dispose();
     }//GEN-LAST:event_organizer_viewstudentsActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         new login().setVisible(true);
-        ((JFrame) SwingUtilities.getWindowAncestor(logout)).dispose();
+        this.dispose();
     }//GEN-LAST:event_logoutActionPerformed
 
     private void loadEventsToAdminTable() {

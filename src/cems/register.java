@@ -21,6 +21,8 @@ public class register extends javax.swing.JFrame {
      */
     public register() {
         initComponents();
+        cems.GlobalMemoryManager.registerFrame(this);
+        
         jLabel10.setVisible(false);
         register_id.setVisible(false);
     }
@@ -402,7 +404,7 @@ public class register extends javax.swing.JFrame {
     }//GEN-LAST:event_register_idActionPerformed
 
     private void Register_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Register_cancelActionPerformed
-        ((JFrame) SwingUtilities.getWindowAncestor(Register_cancel)).dispose();
+        this.dispose();
     }//GEN-LAST:event_Register_cancelActionPerformed
 
     private void Register_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Register_submitActionPerformed

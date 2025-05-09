@@ -8,12 +8,10 @@ import java.awt.Component;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
-import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -31,9 +29,10 @@ public class userDashboard extends javax.swing.JFrame {
      */
     public userDashboard() {
         initComponents();
+        cems.GlobalMemoryManager.registerFrame(this);
         
         FontLoader.applyFontCentered(jLabel1, "/fonts/ROCKB.TTF", 48f);
-        FontLoader.applyFontCentered(jLabel2, "/fonts/ROCK.TTF", 24f);
+        FontLoader.applyFontCentered(jLabel2, "/fonts/ROCKI.TTF", 24f);
         
         // clean jtable
         if (userEventTable instanceof CleanJTable) {
@@ -87,7 +86,7 @@ public class userDashboard extends javax.swing.JFrame {
         DBlue_panel.setForeground(new java.awt.Color(0, 0, 0));
 
         kGradientPanel2.setkBorderRadius(0);
-        kGradientPanel2.setkEndColor(new java.awt.Color(51, 102, 255));
+        kGradientPanel2.setkEndColor(new java.awt.Color(0, 0, 51));
         kGradientPanel2.setkGradientFocus(1000);
         kGradientPanel2.setkStartColor(new java.awt.Color(0, 0, 51));
 
@@ -128,6 +127,7 @@ public class userDashboard extends javax.swing.JFrame {
 
         kGradientPanel1.setkBorderRadius(0);
         kGradientPanel1.setkEndColor(new java.awt.Color(51, 102, 255));
+        kGradientPanel1.setkGradientFocus(0);
         kGradientPanel1.setkStartColor(new java.awt.Color(0, 0, 51));
 
         userEventTable.setAutoCreateRowSorter(true);
@@ -189,12 +189,12 @@ public class userDashboard extends javax.swing.JFrame {
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(registerEvent_user, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
-                .addGap(16, 16, 16))
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(registerEvent_user, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                    .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,7 +268,7 @@ public class userDashboard extends javax.swing.JFrame {
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         new login().setVisible(true);
-        ((JFrame) SwingUtilities.getWindowAncestor(logout)).dispose();
+        this.dispose();
     }//GEN-LAST:event_logoutActionPerformed
 
     private void loadEventsToUserTable(String currentUsername) {

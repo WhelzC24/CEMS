@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -27,6 +26,8 @@ public class editEvent extends javax.swing.JFrame {
      */
     public editEvent(JFrame parent, EditEventData data) {
         initComponents();
+        cems.GlobalMemoryManager.registerFrame(this);
+        
         timeStartSpinner.setModel(new SpinnerDateModel());
         JSpinner.DateEditor startEditor = new JSpinner.DateEditor(timeStartSpinner, "hh:mm a");
         timeStartSpinner.setEditor(startEditor);
@@ -440,7 +441,7 @@ public class editEvent extends javax.swing.JFrame {
     }//GEN-LAST:event_locationTextFieldActionPerformed
 
     private void createEvent_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvent_cancelActionPerformed
-        ((JFrame) SwingUtilities.getWindowAncestor(createEvent_cancel)).dispose();
+        this.dispose();
     }//GEN-LAST:event_createEvent_cancelActionPerformed
 
     private void titleTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleTextFieldActionPerformed

@@ -24,6 +24,8 @@ public class createEvent extends javax.swing.JFrame {
      */
     public createEvent() {
         initComponents();
+        cems.GlobalMemoryManager.registerFrame(this);
+        
         timeStartSpinner.setModel(new SpinnerDateModel());
         JSpinner.DateEditor startEditor = new JSpinner.DateEditor(timeStartSpinner, "hh:mm a");
         timeStartSpinner.setEditor(startEditor);
@@ -436,7 +438,7 @@ public class createEvent extends javax.swing.JFrame {
     }//GEN-LAST:event_locationTextFieldActionPerformed
 
     private void createEvent_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvent_cancelActionPerformed
-        ((JFrame) SwingUtilities.getWindowAncestor(createEvent_cancel)).dispose();
+        this.dispose();
     }//GEN-LAST:event_createEvent_cancelActionPerformed
 
     private void titleTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleTextFieldActionPerformed

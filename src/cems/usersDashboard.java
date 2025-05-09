@@ -6,10 +6,8 @@ package cems;
 
 import java.awt.Component;
 import java.sql.*;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,6 +24,7 @@ public class usersDashboard extends javax.swing.JFrame {
      */
     public usersDashboard() {
         initComponents();
+        cems.GlobalMemoryManager.registerFrame(this);
         
         usersTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
@@ -267,12 +266,12 @@ public class usersDashboard extends javax.swing.JFrame {
 
     private void organzier_viewstudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organzier_viewstudentsActionPerformed
         new adminDashboard().setVisible(true);
-        ((JFrame) SwingUtilities.getWindowAncestor(organzier_viewstudents)).dispose();
+        this.dispose();
     }//GEN-LAST:event_organzier_viewstudentsActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         new login().setVisible(true);
-        ((JFrame) SwingUtilities.getWindowAncestor(logout)).dispose();
+        this.dispose();
     }//GEN-LAST:event_logoutActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
