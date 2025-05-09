@@ -1,6 +1,8 @@
 # CEMS
 college java project
 
+import the database first from the `/database` folder to your XAMPP MySQL
+
 ## 🗃️ Import the Database
 
 1. Open XAMPP → Start MySQL
