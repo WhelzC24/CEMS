@@ -1,7 +1,8 @@
 # CEMS
-college java project
+A college java project
 
-import the database first from the `/database` folder to your XAMPP MySQL
+
+-import the database first from the `/database` folder to your XAMPP MySQL
 
 ## 🗃️ Import the Database
 
