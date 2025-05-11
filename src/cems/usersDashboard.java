@@ -5,6 +5,7 @@
 package cems;
 
 import java.awt.Component;
+import java.awt.Font;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -26,8 +27,11 @@ public class usersDashboard extends javax.swing.JFrame {
         initComponents();
         cems.GlobalMemoryManager.registerFrame(this);
         
-        FontLoader.applyFontCentered(jLabel1, "/fonts/ROCKB.TTF", 48f);
-        FontLoader.applyFontCentered(jLabel2, "/fonts/ROCKI.TTF", 24f);
+        FontLoader.applyFontToLabel(jLabel1, "/fonts/ROCKB.TTF", 48f, Font.PLAIN, true);
+        FontLoader.applyFontToLabel(jLabel2, "/fonts/ROCKI.TTF", 24f, Font.PLAIN, true);
+        
+        FontLoader.applyFontToButton(student_delete, "/fonts/ReemKufi-Regular.ttf", 12f, Font.BOLD);
+        FontLoader.applyFontToButton(back, "/fonts/ReemKufi-Regular.ttf", 12f, Font.BOLD);
         
         // clean jtable
         if (usersTable instanceof CleanJTable) {
@@ -70,7 +74,7 @@ public class usersDashboard extends javax.swing.JFrame {
         usersTable = new cems.CleanJTable()
         ;
         student_delete = new com.k33ptoo.components.KButton();
-        organzier_viewstudents = new com.k33ptoo.components.KButton();
+        back = new com.k33ptoo.components.KButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -159,16 +163,16 @@ public class usersDashboard extends javax.swing.JFrame {
             }
         });
 
-        organzier_viewstudents.setText("Back");
-        organzier_viewstudents.setkEndColor(new java.awt.Color(30, 153, 0));
-        organzier_viewstudents.setkHoverEndColor(new java.awt.Color(15, 76, 0));
-        organzier_viewstudents.setkHoverForeGround(new java.awt.Color(255, 255, 255));
-        organzier_viewstudents.setkHoverStartColor(new java.awt.Color(30, 153, 0));
-        organzier_viewstudents.setkPressedColor(new java.awt.Color(30, 153, 0));
-        organzier_viewstudents.setkStartColor(new java.awt.Color(15, 76, 0));
-        organzier_viewstudents.addActionListener(new java.awt.event.ActionListener() {
+        back.setText("Back");
+        back.setkEndColor(new java.awt.Color(30, 153, 0));
+        back.setkHoverEndColor(new java.awt.Color(15, 76, 0));
+        back.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        back.setkHoverStartColor(new java.awt.Color(30, 153, 0));
+        back.setkPressedColor(new java.awt.Color(30, 153, 0));
+        back.setkStartColor(new java.awt.Color(15, 76, 0));
+        back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                organzier_viewstudentsActionPerformed(evt);
+                backActionPerformed(evt);
             }
         });
 
@@ -180,7 +184,7 @@ public class usersDashboard extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(student_delete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(organzier_viewstudents, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(back, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
@@ -193,7 +197,7 @@ public class usersDashboard extends javax.swing.JFrame {
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addComponent(student_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(290, 290, 290)
-                        .addComponent(organzier_viewstudents, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19))
         );
@@ -281,10 +285,10 @@ public class usersDashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_student_deleteActionPerformed
 
-    private void organzier_viewstudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organzier_viewstudentsActionPerformed
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         new adminDashboard().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_organzier_viewstudentsActionPerformed
+    }//GEN-LAST:event_backActionPerformed
 
     private void loadUsersToTable() {
         // Assuming 'currentUsername' holds the logged-in admin's username
@@ -350,12 +354,12 @@ public class usersDashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DBlue_panel;
+    private com.k33ptoo.components.KButton back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private com.k33ptoo.components.KGradientPanel kGradientPanel1;
     private com.k33ptoo.components.KGradientPanel kGradientPanel2;
-    private com.k33ptoo.components.KButton organzier_viewstudents;
     private com.k33ptoo.components.KButton student_delete;
     private javax.swing.JTable usersTable;
     // End of variables declaration//GEN-END:variables

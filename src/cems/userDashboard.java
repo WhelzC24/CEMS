@@ -5,6 +5,7 @@
 package cems;
 
 import java.awt.Component;
+import java.awt.Font;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -31,8 +32,11 @@ public class userDashboard extends javax.swing.JFrame {
         initComponents();
         cems.GlobalMemoryManager.registerFrame(this);
         
-        FontLoader.applyFontCentered(jLabel1, "/fonts/ROCKB.TTF", 48f);
-        FontLoader.applyFontCentered(jLabel2, "/fonts/ROCKI.TTF", 24f);
+        FontLoader.applyFontToLabel(jLabel1, "/fonts/ROCKB.TTF", 48f, Font.PLAIN, true);
+        FontLoader.applyFontToLabel(jLabel2, "/fonts/ROCKI.TTF", 24f, Font.PLAIN, true);
+        
+        FontLoader.applyFontToButton(registerEvent_user, "/fonts/ReemKufi-Regular.ttf", 12f, Font.BOLD);
+        FontLoader.applyFontToButton(logout, "/fonts/ReemKufi-Regular.ttf", 12f, Font.BOLD);
         
         // clean jtable
         if (userEventTable instanceof CleanJTable) {

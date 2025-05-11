@@ -5,6 +5,7 @@
 package cems;
 
 import java.awt.Component;
+import java.awt.Font;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,8 +31,14 @@ public class adminDashboard extends javax.swing.JFrame {
         initComponents();
         cems.GlobalMemoryManager.registerFrame(this);
         
-        FontLoader.applyFontCentered(jLabel1, "/fonts/ROCKB.TTF", 48f);
-        FontLoader.applyFontCentered(jLabel2, "/fonts/ROCKI.TTF", 24f);
+        FontLoader.applyFontToLabel(jLabel1, "/fonts/ROCKB.TTF", 48f, Font.PLAIN, true);
+        FontLoader.applyFontToLabel(jLabel2, "/fonts/ROCKI.TTF", 24f, Font.PLAIN, true);
+        
+        FontLoader.applyFontToButton(organizer_new, "/fonts/ReemKufi-Regular.ttf", 12f, Font.BOLD);
+        FontLoader.applyFontToButton(organizer_edit, "/fonts/ReemKufi-Regular.ttf", 12f, Font.BOLD);
+        FontLoader.applyFontToButton(organizer_delete, "/fonts/ReemKufi-Regular.ttf", 12f, Font.BOLD);
+        FontLoader.applyFontToButton(organizer_viewusers, "/fonts/ReemKufi-Regular.ttf", 12f, Font.BOLD);
+        FontLoader.applyFontToButton(logout, "/fonts/ReemKufi-Regular.ttf", 12f, Font.BOLD);
 
         // clean jtable
         if (eventTable instanceof CleanJTable) {
@@ -77,7 +84,7 @@ public class adminDashboard extends javax.swing.JFrame {
         organizer_new = new com.k33ptoo.components.KButton();
         organizer_edit = new com.k33ptoo.components.KButton();
         organizer_delete = new com.k33ptoo.components.KButton();
-        organizer_viewstudents = new com.k33ptoo.components.KButton();
+        organizer_viewusers = new com.k33ptoo.components.KButton();
         logout = new com.k33ptoo.components.KButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -202,16 +209,16 @@ public class adminDashboard extends javax.swing.JFrame {
             }
         });
 
-        organizer_viewstudents.setText("View Registered Users");
-        organizer_viewstudents.setkEndColor(new java.awt.Color(153, 153, 0));
-        organizer_viewstudents.setkHoverEndColor(new java.awt.Color(76, 76, 0));
-        organizer_viewstudents.setkHoverForeGround(new java.awt.Color(255, 255, 255));
-        organizer_viewstudents.setkHoverStartColor(new java.awt.Color(153, 153, 0));
-        organizer_viewstudents.setkPressedColor(new java.awt.Color(153, 153, 0));
-        organizer_viewstudents.setkStartColor(new java.awt.Color(76, 76, 0));
-        organizer_viewstudents.addActionListener(new java.awt.event.ActionListener() {
+        organizer_viewusers.setText("View Registered Users");
+        organizer_viewusers.setkEndColor(new java.awt.Color(153, 153, 0));
+        organizer_viewusers.setkHoverEndColor(new java.awt.Color(76, 76, 0));
+        organizer_viewusers.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        organizer_viewusers.setkHoverStartColor(new java.awt.Color(153, 153, 0));
+        organizer_viewusers.setkPressedColor(new java.awt.Color(153, 153, 0));
+        organizer_viewusers.setkStartColor(new java.awt.Color(76, 76, 0));
+        organizer_viewusers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                organizer_viewstudentsActionPerformed(evt);
+                organizer_viewusersActionPerformed(evt);
             }
         });
 
@@ -237,7 +244,7 @@ public class adminDashboard extends javax.swing.JFrame {
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(organizer_edit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                     .addComponent(organizer_delete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(organizer_viewstudents, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(organizer_viewusers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(logout, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(organizer_new, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
@@ -257,7 +264,7 @@ public class adminDashboard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(organizer_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(organizer_viewstudents, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(organizer_viewusers, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
                         .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(19, 19, 19))
@@ -401,10 +408,10 @@ public class adminDashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_organizer_deleteActionPerformed
 
-    private void organizer_viewstudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizer_viewstudentsActionPerformed
+    private void organizer_viewusersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizer_viewusersActionPerformed
         new usersDashboard().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_organizer_viewstudentsActionPerformed
+    }//GEN-LAST:event_organizer_viewusersActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         new login().setVisible(true);
@@ -507,6 +514,6 @@ public class adminDashboard extends javax.swing.JFrame {
     private com.k33ptoo.components.KButton organizer_delete;
     private com.k33ptoo.components.KButton organizer_edit;
     private com.k33ptoo.components.KButton organizer_new;
-    private com.k33ptoo.components.KButton organizer_viewstudents;
+    private com.k33ptoo.components.KButton organizer_viewusers;
     // End of variables declaration//GEN-END:variables
 }

@@ -160,7 +160,7 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="organizer_edit" alignment="1" pref="144" max="32767" attributes="0"/>
                           <Component id="organizer_delete" alignment="1" pref="0" max="32767" attributes="0"/>
-                          <Component id="organizer_viewstudents" alignment="1" pref="0" max="32767" attributes="0"/>
+                          <Component id="organizer_viewusers" alignment="1" pref="0" max="32767" attributes="0"/>
                           <Component id="logout" alignment="1" pref="0" max="32767" attributes="0"/>
                           <Component id="organizer_new" alignment="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -183,7 +183,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="organizer_delete" min="-2" pref="30" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="organizer_viewstudents" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="organizer_viewusers" min="-2" pref="30" max="-2" attributes="0"/>
                               <EmptySpace pref="172" max="32767" attributes="0"/>
                               <Component id="logout" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
@@ -369,7 +369,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="organizer_deleteActionPerformed"/>
               </Events>
             </Component>
-            <Component class="com.k33ptoo.components.KButton" name="organizer_viewstudents">
+            <Component class="com.k33ptoo.components.KButton" name="organizer_viewusers">
               <Properties>
                 <Property name="text" type="java.lang.String" value="View Registered Users"/>
                 <Property name="kEndColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -392,7 +392,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="organizer_viewstudentsActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="organizer_viewusersActionPerformed"/>
               </Events>
             </Component>
             <Component class="com.k33ptoo.components.KButton" name="logout">
