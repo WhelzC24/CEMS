@@ -4,6 +4,7 @@
  */
 package cems;
 
+import java.awt.Font;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,11 +20,14 @@ public class login extends javax.swing.JFrame {
         initComponents();
         cems.GlobalMemoryManager.registerFrame(this);
         
-        FontLoader.applyFontCentered(jLabel1, "/fonts/ROCKB.TTF", 36f);
-        FontLoader.applyFontCentered(jLabel2, "/fonts/ROCKBI.TTF", 24f);
-        FontLoader.applyFontCentered(jLabel3, "/fonts/Inkfree.ttf", 36f);
-        FontLoader.applyFontCentered(jLabel5, "/fonts/ReemKufi-Regular.ttf", 18f);
-        FontLoader.applyFontCentered(jLabel6, "/fonts/ReemKufi-Regular.ttf", 18f);
+        FontLoader.applyFontToLabel(jLabel1, "/fonts/ROCKB.TTF", 36f, Font.PLAIN, true);
+        FontLoader.applyFontToLabel(jLabel2, "/fonts/ROCKBI.TTF", 24f, Font.PLAIN, true);
+        FontLoader.applyFontToLabel(jLabel3, "/fonts/Inkfree.ttf", 36f, Font.PLAIN, true);
+        FontLoader.applyFontToLabel(jLabel5, "/fonts/ReemKufi-Regular.ttf", 18f, Font.BOLD, false);
+        FontLoader.applyFontToLabel(jLabel6, "/fonts/ReemKufi-Regular.ttf", 18f, Font.BOLD, false);
+        
+        FontLoader.applyFontToButton(login_button, "/fonts/ReemKufi-Regular.ttf", 12f, Font.BOLD);
+        FontLoader.applyFontToButton(register_button, "/fonts/ReemKufi-Regular.ttf", 12f, Font.BOLD);
     }
 
     /**
@@ -105,13 +109,11 @@ public class login extends javax.swing.JFrame {
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Reem Kufi", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Username:");
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setFont(new java.awt.Font("Reem Kufi", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Password:");
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -119,11 +121,13 @@ public class login extends javax.swing.JFrame {
         jLabel8.setText("-- or --");
         jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        login_username.setBackground(new java.awt.Color(51, 102, 255));
+        login_username.setBackground(new java.awt.Color(0, 0, 51));
         login_username.setForeground(new java.awt.Color(255, 255, 255));
+        login_username.setBorde(0.0F);
 
-        login_password.setBackground(new java.awt.Color(51, 102, 255));
+        login_password.setBackground(new java.awt.Color(0, 0, 51));
         login_password.setForeground(new java.awt.Color(255, 255, 255));
+        login_password.setBorde(0.0F);
 
         login_button.setText("Login");
         login_button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -175,18 +179,18 @@ public class login extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(login_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addComponent(login_username, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(login_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99)
+                .addComponent(login_password, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96)
                 .addComponent(login_button, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(register_button, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         kGradientPanel3.setkBorderRadius(0);
