@@ -4,6 +4,7 @@
  */
 package cems;
 
+import java.awt.Font;
 import java.sql.*;
 import java.util.Calendar;
 import java.util.Date;
@@ -27,6 +28,17 @@ public class editEvent extends javax.swing.JFrame {
     public editEvent(JFrame parent, EditEventData data) {
         initComponents();
         cems.GlobalMemoryManager.registerFrame(this);
+        
+        FontLoader.applyFontToLabel(jLabel5, "/fonts/ReemKufi-Regular.ttf", 16f, Font.BOLD, false);
+        FontLoader.applyFontToLabel(jLabel6, "/fonts/ReemKufi-Regular.ttf", 16f, Font.BOLD, false);
+        FontLoader.applyFontToLabel(jLabel10, "/fonts/ReemKufi-Regular.ttf", 16f, Font.BOLD, false);
+        FontLoader.applyFontToLabel(jLabel11, "/fonts/ReemKufi-Regular.ttf", 16f, Font.BOLD ,false);
+        FontLoader.applyFontToLabel(jLabel12, "/fonts/ReemKufi-Regular.ttf", 16f, Font.BOLD, false);
+        FontLoader.applyFontToLabel(jLabel13, "/fonts/ReemKufi-Regular.ttf", 16f, Font.BOLD, false);
+        FontLoader.applyFontToLabel(jLabel14, "/fonts/ReemKufi-Regular.ttf", 16f, Font.BOLD, false);
+        
+        FontLoader.applyFontToButton(update, "/fonts/ReemKufi-Regular.ttf", 12f, Font.BOLD);
+        FontLoader.applyFontToButton(cancel, "/fonts/ReemKufi-Regular.ttf", 12f, Font.BOLD);
         
         timeStartSpinner.setModel(new SpinnerDateModel());
         JSpinner.DateEditor startEditor = new JSpinner.DateEditor(timeStartSpinner, "hh:mm a");
@@ -75,25 +87,26 @@ public class editEvent extends javax.swing.JFrame {
         organizer_poster = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         DBlue_panel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        DBlue_panel3 = new javax.swing.JPanel();
-        locationTextField = new javax.swing.JTextField();
+        kGradientPanel1 = new com.k33ptoo.components.KGradientPanel();
         jLabel5 = new javax.swing.JLabel();
+        titleTextField = new org.edisoncor.gui.textField.TextField();
         jLabel6 = new javax.swing.JLabel();
-        createEvent_submit = new javax.swing.JButton();
-        createEvent_cancel = new javax.swing.JButton();
         eventTypeComboBox = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
-        titleTextField = new javax.swing.JTextField();
+        locationTextField = new org.edisoncor.gui.textField.TextField();
         jLabel11 = new javax.swing.JLabel();
         dateStartChooser = new com.toedter.calendar.JDateChooser();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        dateEndChooser = new com.toedter.calendar.JDateChooser();
         timeStartSpinner = new javax.swing.JSpinner();
+        jLabel13 = new javax.swing.JLabel();
+        dateEndChooser = new com.toedter.calendar.JDateChooser();
+        jLabel14 = new javax.swing.JLabel();
         timeEndSpinner = new javax.swing.JSpinner();
+        cancel = new com.k33ptoo.components.KButton();
+        update = new com.k33ptoo.components.KButton();
+        kGradientPanel2 = new com.k33ptoo.components.KGradientPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         DBlue_panel1.setBackground(new java.awt.Color(98, 98, 130));
 
@@ -211,6 +224,162 @@ public class editEvent extends javax.swing.JFrame {
 
         DBlue_panel.setBackground(new java.awt.Color(0, 0, 51));
 
+        kGradientPanel1.setkBorderRadius(0);
+        kGradientPanel1.setkEndColor(new java.awt.Color(51, 102, 255));
+        kGradientPanel1.setkGradientFocus(0);
+        kGradientPanel1.setkStartColor(new java.awt.Color(0, 0, 51));
+
+        jLabel5.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Event Title:");
+
+        titleTextField.setBackground(new java.awt.Color(0, 0, 51));
+        titleTextField.setForeground(new java.awt.Color(255, 255, 255));
+        titleTextField.setBorde(0.0F);
+
+        jLabel6.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Event Type:");
+
+        eventTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Select Event Type --", "App Launch", "Art Exhibit", "Author Talk", "Awareness Campaign", "Blood Donation Drive", "Book Fair", "Career Talk", "Charity Event", "Clean-Up Drive", "Club Meeting", "Coding Competition", "Community Service", "Concert", "Cultural Festival", "Dance Party", "Debate Competition", "Entrepreneurhip Pitch", "Essay Writing Contest", "Fashion Show", "Fitness Challenge", "Food Festival", "Game Night", "Guest Lecture", "Hackathon", "Health Awareness Camp", "Innovation Challenge", "Internship Info Session", "Job Fair", "Marathon", "Movie Night", "Networking Event", "Open Mic Night", "Poetry Reading", "Research Presentation", "Resume Workshop", "Robotics Demo", "Seminar", "Sports Tournament", "Storytelling Session", "Student Assembly", "Student Council Election", "Talent Show", "Tech Expo", "Thesis Defense", "Tree Planting", "Workshop", "Yoga Session", "Zumba Class" }));
+
+        jLabel10.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Location:");
+
+        locationTextField.setBackground(new java.awt.Color(0, 0, 51));
+        locationTextField.setForeground(new java.awt.Color(255, 255, 255));
+        locationTextField.setBorde(0.0F);
+
+        jLabel11.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Date Start:");
+
+        dateStartChooser.setBackground(new java.awt.Color(0, 0, 51));
+        dateStartChooser.setForeground(new java.awt.Color(255, 255, 255));
+        dateStartChooser.setOpaque(false);
+
+        jLabel12.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Time:");
+
+        jLabel13.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Date End:");
+
+        dateEndChooser.setBackground(new java.awt.Color(0, 0, 51));
+        dateEndChooser.setForeground(new java.awt.Color(255, 255, 255));
+        dateEndChooser.setOpaque(false);
+
+        jLabel14.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Time:");
+
+        cancel.setText("Cancel");
+        cancel.setkEndColor(new java.awt.Color(153, 0, 0));
+        cancel.setkHoverEndColor(new java.awt.Color(76, 0, 0));
+        cancel.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        cancel.setkHoverStartColor(new java.awt.Color(153, 0, 0));
+        cancel.setkPressedColor(new java.awt.Color(153, 0, 0));
+        cancel.setkStartColor(new java.awt.Color(76, 0, 0));
+        cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelActionPerformed(evt);
+            }
+        });
+
+        update.setText("Update");
+        update.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        update.setkEndColor(new java.awt.Color(30, 153, 0));
+        update.setkHoverEndColor(new java.awt.Color(15, 76, 0));
+        update.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        update.setkHoverStartColor(new java.awt.Color(30, 153, 0));
+        update.setkPressedColor(new java.awt.Color(30, 153, 0));
+        update.setkStartColor(new java.awt.Color(0, 76, 0));
+        update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
+        kGradientPanel1.setLayout(kGradientPanel1Layout);
+        kGradientPanel1Layout.setHorizontalGroup(
+            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(dateStartChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(titleTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(eventTypeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(locationTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dateEndChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(timeStartSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(timeEndSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28))))
+        );
+        kGradientPanel1Layout.setVerticalGroup(
+            kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(titleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(eventTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(locationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dateStartChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(timeStartSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dateEndChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(timeEndSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26))
+        );
+
+        kGradientPanel2.setkBorderRadius(0);
+        kGradientPanel2.setkEndColor(new java.awt.Color(0, 0, 51));
+        kGradientPanel2.setkGradientFocus(0);
+        kGradientPanel2.setkStartColor(new java.awt.Color(0, 0, 51));
+
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("MV Boli", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -223,149 +392,25 @@ public class editEvent extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Edit Event");
 
-        DBlue_panel3.setBackground(new java.awt.Color(130, 130, 146));
-
-        locationTextField.setBackground(new java.awt.Color(0, 0, 0));
-        locationTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        locationTextField.setForeground(new java.awt.Color(255, 255, 255));
-
-        jLabel5.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel5.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Event Title:");
-
-        jLabel6.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel6.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Event Type:");
-
-        createEvent_submit.setBackground(new java.awt.Color(51, 102, 0));
-        createEvent_submit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        createEvent_submit.setForeground(new java.awt.Color(255, 255, 255));
-        createEvent_submit.setText("UPDATE");
-        createEvent_submit.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        createEvent_submit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createEvent_submitActionPerformed(evt);
-            }
-        });
-
-        createEvent_cancel.setBackground(new java.awt.Color(102, 0, 0));
-        createEvent_cancel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        createEvent_cancel.setForeground(new java.awt.Color(255, 255, 255));
-        createEvent_cancel.setText("CANCEL");
-        createEvent_cancel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        createEvent_cancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createEvent_cancelActionPerformed(evt);
-            }
-        });
-
-        eventTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Select Event Type --", "App Launch", "Art Exhibit", "Author Talk", "Awareness Campaign", "Blood Donation Drive", "Book Fair", "Career Talk", "Charity Event", "Clean-Up Drive", "Club Meeting", "Coding Competition", "Community Service", "Concert", "Cultural Festival", "Dance Party", "Debate Competition", "Entrepreneurhip Pitch", "Essay Writing Contest", "Fashion Show", "Fitness Challenge", "Food Festival", "Game Night", "Guest Lecture", "Hackathon", "Health Awareness Camp", "Innovation Challenge", "Internship Info Session", "Job Fair", "Marathon", "Movie Night", "Networking Event", "Open Mic Night", "Poetry Reading", "Research Presentation", "Resume Workshop", "Robotics Demo", "Seminar", "Sports Tournament", "Storytelling Session", "Student Assembly", "Student Council Election", "Talent Show", "Tech Expo", "Thesis Defense", "Tree Planting", "Workshop", "Yoga Session", "Zumba Class" }));
-        eventTypeComboBox.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel10.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel10.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("Location:");
-
-        titleTextField.setBackground(new java.awt.Color(0, 0, 0));
-        titleTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        titleTextField.setForeground(new java.awt.Color(255, 255, 255));
-
-        jLabel11.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel11.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setText("Date Start:");
-
-        jLabel12.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel12.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setText("Time:");
-
-        jLabel13.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel13.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel13.setText("Date End:");
-
-        jLabel14.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel14.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel14.setText("Time:");
-
-        javax.swing.GroupLayout DBlue_panel3Layout = new javax.swing.GroupLayout(DBlue_panel3);
-        DBlue_panel3.setLayout(DBlue_panel3Layout);
-        DBlue_panel3Layout.setHorizontalGroup(
-            DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DBlue_panel3Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DBlue_panel3Layout.createSequentialGroup()
-                        .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(dateStartChooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(locationTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(eventTypeComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 245, Short.MAX_VALUE)
-                                .addComponent(titleTextField, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(timeStartSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(DBlue_panel3Layout.createSequentialGroup()
-                        .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(timeEndSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(dateEndChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, DBlue_panel3Layout.createSequentialGroup()
-                                    .addComponent(createEvent_submit)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(createEvent_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(20, 20, 20))
+        javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
+        kGradientPanel2.setLayout(kGradientPanel2Layout);
+        kGradientPanel2Layout.setHorizontalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
-        DBlue_panel3Layout.setVerticalGroup(
-            DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DBlue_panel3Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(titleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(eventTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(locationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel11)
-                    .addComponent(dateStartChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(timeStartSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
-                    .addComponent(dateEndChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(timeEndSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        kGradientPanel2Layout.setVerticalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(DBlue_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createEvent_submit)
-                    .addComponent(createEvent_cancel))
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout DBlue_panelLayout = new javax.swing.GroupLayout(DBlue_panel);
@@ -373,30 +418,20 @@ public class editEvent extends javax.swing.JFrame {
         DBlue_panelLayout.setHorizontalGroup(
             DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DBlue_panelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DBlue_panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(DBlue_panel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(DBlue_panelLayout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(kGradientPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(DBlue_panelLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         DBlue_panelLayout.setVerticalGroup(
             DBlue_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DBlue_panelLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addComponent(DBlue_panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -426,13 +461,13 @@ public class editEvent extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void createEvent_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvent_cancelActionPerformed
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         this.dispose();
-    }//GEN-LAST:event_createEvent_cancelActionPerformed
+    }//GEN-LAST:event_cancelActionPerformed
 
-    private void createEvent_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEvent_submitActionPerformed
-       updateEvent();
-    }//GEN-LAST:event_createEvent_submitActionPerformed
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+        updateEvent();
+    }//GEN-LAST:event_updateActionPerformed
 
     private void updateEvent() {
         String eventName = titleTextField.getText().trim();
@@ -530,9 +565,7 @@ public class editEvent extends javax.swing.JFrame {
     private javax.swing.JPanel DBlue_panel;
     private javax.swing.JPanel DBlue_panel1;
     private javax.swing.JPanel DBlue_panel2;
-    private javax.swing.JPanel DBlue_panel3;
-    private javax.swing.JButton createEvent_cancel;
-    private javax.swing.JButton createEvent_submit;
+    private com.k33ptoo.components.KButton cancel;
     private com.toedter.calendar.JDateChooser dateEndChooser;
     private com.toedter.calendar.JDateChooser dateStartChooser;
     private javax.swing.JComboBox<String> eventTypeComboBox;
@@ -548,7 +581,9 @@ public class editEvent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField locationTextField;
+    private com.k33ptoo.components.KGradientPanel kGradientPanel1;
+    private com.k33ptoo.components.KGradientPanel kGradientPanel2;
+    private org.edisoncor.gui.textField.TextField locationTextField;
     private javax.swing.JButton organizer_delete;
     private javax.swing.JButton organizer_edit;
     private javax.swing.JButton organizer_new;
@@ -556,6 +591,7 @@ public class editEvent extends javax.swing.JFrame {
     private javax.swing.JButton organzier_viewstudents;
     private javax.swing.JSpinner timeEndSpinner;
     private javax.swing.JSpinner timeStartSpinner;
-    private javax.swing.JTextField titleTextField;
+    private org.edisoncor.gui.textField.TextField titleTextField;
+    private com.k33ptoo.components.KButton update;
     // End of variables declaration//GEN-END:variables
 }
